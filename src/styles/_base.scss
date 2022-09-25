@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: $large_font;
+  font-weight: $bold_x1;
+  color: $primary;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+h3 {
+  width: 100%;
+  margin: 0;
+  padding: 30px;
+  color: $primary;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  // border: 1px solid red;
+}
+
+.card {
+  padding-bottom: 30px;
+  border-radius: $border_radius;
+  border: 1px solid $primary;
+}
+
+.link, a { text-decoration: none; }
+
+.link, a, button {
+  padding: $link_padding;
+  border-radius: $border_radius;
+  color: $primary;
+  transition: background-color 0.1s linear;
+  
+  &:hover {
+    background-color: $primary;
+    color: $neutral;
+  }
+}
+
+@mixin h_center_content {
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+}
+
+@mixin v_center_content {
+  position: relative;
+  top: 50%;
+  translate: 0 -50%;
+}
+
+@mixin center_content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}

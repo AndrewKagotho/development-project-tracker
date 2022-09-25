@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
+html {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #669FC3;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+h3 {
+  width: 100%;
+  margin: 0;
+  padding: 30px;
+  color: #669FC3;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  padding-bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #669FC3;
+}
+
+.link, a {
+  text-decoration: none;
+}
+
+.link, a, button {
+  padding: 5px 15px;
+  border-radius: 10px;
+  color: #669FC3;
+  transition: background-color 0.1s linear;
+}
+.link:hover, a:hover, button:hover {
+  background-color: #669FC3;
+  color: #FFF;
+}
+
+nav {
+  padding: 10px 100px;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  translate: 0 -50%;
+  padding-left: 15px;
+}
+
+.intro {
+  justify-content: center;
+  align-items: flex-start;
+}
+.intro img {
+  width: 70vw;
+}
+.intro section {
+  width: 20vw;
+}
+.intro section h2 {
+  font-size: 2rem;
+}
+
+.sdg {
+  height: 300px;
+  justify-content: center;
+  gap: 100px;
+  margin: 50px 0;
+}
+.sdg section {
+  width: 350px;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.sdg section h3 {
+  font-size: 1.6rem;
+}
+.sdg section span {
+  font-size: 6rem;
+  font-weight: 700;
+  opacity: 0.1;
+  position: absolute;
+  top: -15px;
+  right: 0;
+}
+.sdg section:nth-child(1) h3 {
+  background-color: #F89D2A;
+}
+.sdg section:nth-child(2) h3 {
+  background-color: #E01483;
+}
+.sdg a {
+  border: 1px solid #669FC3;
+}/*# sourceMappingURL=main.css.map */
