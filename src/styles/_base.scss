@@ -17,18 +17,20 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 5px;
+  font-size: $large_font;
+  font-weight: $bold_default;
+  margin: 0;
+  margin-bottom: 25px;
 }
 
 h3 {
-  width: 100%;
   margin: 0;
-  padding: 30px;
   color: $primary;
 }
 
 p {
   line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 .flex {
@@ -38,9 +40,13 @@ p {
 }
 
 .card {
-  padding-bottom: 30px;
+  padding: $card_padding;
   border-radius: $border_radius;
+  background-color: $neutral;
   border: 1px solid $primary;
+  transition: scale 0.1s linear;
+
+  &:hover { scale: 1.02; }
 }
 
 .link, a { text-decoration: none; }

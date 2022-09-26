@@ -16,18 +16,20 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 5px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 25px;
 }
 
 h3 {
-  width: 100%;
   margin: 0;
-  padding: 30px;
   color: #669FC3;
 }
 
 p {
   line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 .flex {
@@ -36,9 +38,14 @@ p {
 }
 
 .card {
-  padding-bottom: 30px;
-  border-radius: 10px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #FFF;
   border: 1px solid #669FC3;
+  transition: scale 0.1s linear;
+}
+.card:hover {
+  scale: 1.02;
 }
 
 .link, a {
@@ -47,7 +54,7 @@ p {
 
 .link, a, button {
   padding: 5px 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #669FC3;
   transition: background-color 0.1s linear;
 }
@@ -58,6 +65,8 @@ p {
 
 nav {
   padding: 10px 100px;
+  box-shadow: 0 2px 10px #CCC;
+  margin-bottom: 50px;
 }
 nav ul {
   list-style-type: none;
@@ -72,9 +81,24 @@ nav ul li {
   padding-left: 15px;
 }
 
+footer {
+  height: 100px;
+  margin-top: 50px;
+  background-color: #669FC3;
+}
+footer span {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: #FFF;
+}
+
 .intro {
+  margin-top: 30px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 .intro img {
   width: 70vw;
@@ -87,34 +111,66 @@ nav ul li {
 }
 
 .sdg {
-  height: 300px;
-  justify-content: center;
-  gap: 100px;
+  width: 90%;
   margin: 50px 0;
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
 }
-.sdg section {
-  width: 350px;
+.sdg div {
+  justify-content: center;
+  gap: 75px;
+}
+.sdg div section {
+  width: 250px;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
 }
-.sdg section h3 {
+.sdg div section h3 {
   font-size: 1.6rem;
 }
-.sdg section span {
+.sdg div section span {
   font-size: 6rem;
   font-weight: 700;
   opacity: 0.1;
   position: absolute;
-  top: -15px;
-  right: 0;
-}
-.sdg section:nth-child(1) h3 {
-  background-color: #F89D2A;
-}
-.sdg section:nth-child(2) h3 {
-  background-color: #E01483;
+  top: -17px;
+  right: 7px;
 }
 .sdg a {
   border: 1px solid #669FC3;
+}
+.sdg a:hover {
+  width: calc(100% - 30px);
+  text-align: center;
+}
+
+.mid_section {
+  width: 90%;
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.counties {
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.counties_svg path {
+  stroke: #AAA;
+  stroke-width: 1;
+}
+.counties_svg path:hover {
+  fill: #669FC3 !important;
+  stroke: #FFF;
+  cursor: pointer;
+}
+
+.counties__list {
+  width: 400px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
 }/*# sourceMappingURL=main.css.map */

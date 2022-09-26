@@ -1,8 +1,8 @@
-$border_radius: 10px;
+$border_radius: 5px;
 
 // Colours
 $primary: #669FC3;
-$light_grey: #EEE;
+$light_grey: #CCC;
 $neutral: #FFF;
 
 // Font
@@ -10,8 +10,16 @@ $small_font: .8rem;
 $large_font: 1.6rem;
 $x1_large_font: 2rem;
 
+$bold_light: 300;
+$bold_default: 400;
 $bold_x1: 600;
 $bold_x2: 700;
 
-// Link
+// Padding
 $link_padding: 5px 15px;
+$card_padding: 30px;
+
+
+
+// { background-color: #F89D2A; }
+// { background-color: #E01483; }
