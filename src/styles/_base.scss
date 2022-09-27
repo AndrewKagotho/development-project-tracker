@@ -119,11 +119,12 @@ a, button {
 }
 
 .card_sm_number_effect {
-  font-size: $large_font_xl !important;
+  display: none;
+  font-size: $large_font_xl;
   font-weight: $bold_x2;
-  opacity: .03;
+  opacity: .1;
   position: absolute;
-  top: -60px;
+  top: -23px;
   right: 0;
 }
 

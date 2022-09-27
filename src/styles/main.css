@@ -91,11 +91,12 @@ a:hover, button:hover {
 }
 
 .card_sm_number_effect {
-  font-size: 4rem !important;
+  display: none;
+  font-size: 4rem;
   font-weight: 700;
-  opacity: 0.03;
+  opacity: 0.1;
   position: absolute;
-  top: -60px;
+  top: -23px;
   right: 0;
 }
 
@@ -239,6 +240,7 @@ footer span {
 
 .county_list__header {
   border-radius: 4px;
+  position: relative;
 }
 
 .county_list__expand {
@@ -246,14 +248,13 @@ footer span {
   flex-direction: column;
   width: 180px;
   padding: 0 10px;
-  position: relative;
 }
 .county_list__expand span {
   font-size: 0.8rem;
   display: block;
   margin: 7px 0;
 }
-.county_list__expand span:nth-child(5) {
+.county_list__expand span:nth-child(4) {
   margin-bottom: 12px;
 }
 .county_list__expand:last-child {

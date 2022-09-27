@@ -7,7 +7,8 @@ let prevCards = [0,0]
 
 const CountiesView = (props) => {
 
-  const listHeaderRef = React.useRef([])
+  const listHeaderNameRef = React.useRef([])
+  const listHeaderNumberRef = React.useRef([])
   const listDetailsRef = React.useRef([])
 
   const showProjects = (index) => {
@@ -20,28 +21,32 @@ const CountiesView = (props) => {
     for(let i=0; i<prevCards.length; i++ ) {
       if(i===0) {
         listDetailsRef.current[prevCards[i]].style.display =  'none'
-        listHeaderRef.current[prevCards[i]].textContent = `0${prevCards[0]+1} | ${props.countyName[prevCards[0]]}`
-        listHeaderRef.current[prevCards[i]].style.color =  '#000'
-        listHeaderRef.current[prevCards[i]].style.fontSize =  '1rem'
-        listHeaderRef.current[prevCards[i]].style.fontWeight =  '400'
+        listHeaderNameRef.current[prevCards[i]].textContent = `0${prevCards[0]+1} | ${props.countyName[prevCards[0]]}`
+        listHeaderNameRef.current[prevCards[i]].style.color =  '#000'
+        listHeaderNameRef.current[prevCards[i]].style.width =  '100%'
+        listHeaderNameRef.current[prevCards[i]].style.fontSize =  '1rem'
+        listHeaderNameRef.current[prevCards[i]].style.fontWeight =  '400'
+        listHeaderNumberRef.current[prevCards[i]].style.display = 'none'
       }
       else {
         listDetailsRef.current[prevCards[i]].style.display = 'flex'
-        listHeaderRef.current[prevCards[i]].textContent = `${props.countyName[index]}`
-        listHeaderRef.current[prevCards[i]].style.color =  '#669FC3'
-        listHeaderRef.current[prevCards[i]].style.fontSize =  '1.4rem'
-        listHeaderRef.current[prevCards[i]].style.fontWeight =  '600'
+        listHeaderNameRef.current[prevCards[i]].textContent = `${props.countyName[index]}`
+        listHeaderNameRef.current[prevCards[i]].style.color =  '#669FC3'
+        listHeaderNameRef.current[prevCards[i]].style.width =  '60%'
+        listHeaderNameRef.current[prevCards[i]].style.fontSize =  '1.4rem'
+        listHeaderNameRef.current[prevCards[i]].style.fontWeight =  '600'
+        listHeaderNumberRef.current[prevCards[i]].style.display = 'block'
       }
     }
   }
 
   const countyList = props.countyNo.map((item, index) => 
     <li key={index} className='card_sm' onClick={() => showProjects(index)}>
-      <div className='county_list__header' ref={(item) => listHeaderRef.current[index] = item}>
-        <span>0{props.countyNo[index]} | {props.countyName[index]}</span>
+      <div className='county_list__header'>
+        <div ref={(item) => listHeaderNameRef.current[index] = item}><span>0{props.countyNo[index]} | {props.countyName[index]}</span></div>
+        <span className='card_sm_number_effect' ref={(item) => listHeaderNumberRef.current[index] = item}>{props.countyNo[index]}</span>
       </div>
       <div className='county_list__expand flex' ref={(item) => listDetailsRef.current[index] = item}>
-        <span className='card_sm_number_effect'>{props.countyNo[index]}</span>
         <span>All projects</span>
         <span>Ongoing</span>
         <span>Scheduled</span>

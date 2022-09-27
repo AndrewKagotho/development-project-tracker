@@ -27,6 +27,7 @@
 
 .county_list__header {
   border-radius: 4px;
+  position: relative;
 }
 
 .county_list__expand {
@@ -34,14 +35,13 @@
   flex-direction: column;
   width: 180px;
   padding: 0 10px;
-  position: relative;
   
   span {
     font-size: $small_font;
     display: block;
     margin: 7px 0;
 
-    &:nth-child(5) { margin-bottom: 12px; }
+    &:nth-child(4) { margin-bottom: 12px; }
   }
 
   &:last-child { margin: 5px 0;}
