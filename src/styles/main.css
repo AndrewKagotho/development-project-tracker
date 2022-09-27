@@ -16,7 +16,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 400;
   margin: 0;
   margin-bottom: 25px;
@@ -48,25 +48,76 @@ p {
   scale: 1.02;
 }
 
-.link, a {
+.card_sm {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #FFF;
+  border: 1px solid #669FC3;
+  transition: box-shadow 0.1s linear;
+}
+.card_sm:hover {
+  box-shadow: 0 0 5px #ABCADC;
+  cursor: pointer;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+a {
   text-decoration: none;
 }
 
-.link, a, button {
+a, button {
   padding: 5px 15px;
   border-radius: 5px;
   color: #669FC3;
   transition: background-color 0.1s linear;
 }
-.link:hover, a:hover, button:hover {
-  background-color: #669FC3;
-  color: #FFF;
+a:hover, button:hover {
+  background-color: #669FC3 !important;
+  color: #FFF !important;
+  cursor: pointer;
+}
+
+.card_a {
+  border: 1px solid #669FC3;
+}
+.card_a:hover {
+  width: calc(100% - 30px);
+  text-align: center;
+}
+
+.card_sm_number_effect {
+  font-size: 4rem !important;
+  font-weight: 700;
+  opacity: 0.03;
+  position: absolute;
+  top: -60px;
+  right: 0;
+}
+
+.card_lg_number_effect {
+  font-size: 6rem;
+  font-weight: 700;
+  opacity: 0.1;
+  position: absolute;
+  top: -17px;
+  right: 7px;
+}
+
+.brand {
+  transition: color 0.1s linear;
+}
+.brand:hover {
+  background-color: transparent !important;
+  color: #ABCADC !important;
 }
 
 nav {
-  padding: 10px 100px;
-  box-shadow: 0 2px 10px #CCC;
-  margin-bottom: 50px;
+  padding: 0px 50px;
 }
 nav ul {
   list-style-type: none;
@@ -78,12 +129,15 @@ nav ul li {
   position: relative;
   top: 50%;
   translate: 0 -50%;
-  padding-left: 15px;
+  padding-left: 5px;
+}
+
+.sec_nav {
+  border-bottom: 1px solid #669FC3;
 }
 
 footer {
-  height: 100px;
-  margin-top: 50px;
+  height: 75px;
   background-color: #669FC3;
 }
 footer span {
@@ -95,67 +149,72 @@ footer span {
   color: #FFF;
 }
 
-.intro {
-  margin-top: 30px;
-  justify-content: center;
-  align-items: center;
+.view_content {
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 0 50px 50px;
 }
-.intro img {
-  width: 70vw;
-}
-.intro section {
-  width: 20vw;
-}
-.intro section h2 {
-  font-size: 2rem;
+.view_content h2 {
+  margin-top: 25px;
 }
 
-.sdg {
-  width: 90%;
+.view_content__cards {
+  gap: 50px;
+}
+.view_content__cards > div {
+  width: 100%;
+}
+
+.banner {
+  height: 70vh;
+  background-image: url("../assets/images/banner.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+}
+.banner section {
+  width: 25vw;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  translate: 0 -50%;
+}
+.banner section > * {
+  color: #FFF;
+}
+
+.landing_section {
+  width: 60%;
   margin: 50px 0;
   position: relative;
   left: 50%;
   translate: -50% 0;
 }
-.sdg div {
-  justify-content: center;
-  gap: 75px;
+.landing_section h2, .landing_section > p {
+  text-align: center;
 }
-.sdg div section {
+
+.sdg__cards {
+  margin-top: 50px;
+  justify-content: center;
+  gap: 50px;
+}
+.sdg__cards hr {
+  margin: 0;
+  border: none;
+  border-left: 1px solid #669FC3;
+  rotate: -90deg;
+  z-index: 1;
+}
+.sdg__cards section {
   width: 250px;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+  z-index: 3;
 }
-.sdg div section h3 {
+.sdg__cards section h3 {
   font-size: 1.6rem;
-}
-.sdg div section span {
-  font-size: 6rem;
-  font-weight: 700;
-  opacity: 0.1;
-  position: absolute;
-  top: -17px;
-  right: 7px;
-}
-.sdg a {
-  border: 1px solid #669FC3;
-}
-.sdg a:hover {
-  width: calc(100% - 30px);
-  text-align: center;
-}
-
-.mid_section {
-  width: 90%;
-  position: relative;
-  left: 50%;
-  translate: -50% 0;
-}
-
-.counties {
-  justify-content: space-around;
-  align-items: flex-start;
 }
 
 .counties_svg path {
@@ -163,14 +222,40 @@ footer span {
   stroke-width: 1;
 }
 .counties_svg path:hover {
-  fill: #669FC3 !important;
-  stroke: #FFF;
+  fill: #669FC3;
   cursor: pointer;
 }
 
-.counties__list {
-  width: 400px;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20px;
+.counties_list {
+  width: 60%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.counties_list li {
+  display: inline-block;
+  margin: 5px;
+}
+
+.county_list__header {
+  border-radius: 4px;
+}
+
+.county_list__expand {
+  display: none;
+  flex-direction: column;
+  width: 180px;
+  padding: 0 10px;
+  position: relative;
+}
+.county_list__expand span {
+  font-size: 0.8rem;
+  display: block;
+  margin: 7px 0;
+}
+.county_list__expand span:nth-child(5) {
+  margin-bottom: 12px;
+}
+.county_list__expand:last-child {
+  margin: 5px 0;
 }/*# sourceMappingURL=main.css.map */

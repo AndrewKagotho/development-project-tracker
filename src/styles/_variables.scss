@@ -1,14 +1,19 @@
 $border_radius: 5px;
 
+$animation: 0.1s linear;
+
 // Colours
 $primary: #669FC3;
+$primary_hover: #ABCADC;
 $light_grey: #CCC;
 $neutral: #FFF;
 
 // Font
 $small_font: .8rem;
 $large_font: 1.6rem;
-$x1_large_font: 2rem;
+$large_font_x1: 2rem;
+$large_font_xl: 4rem;
+$large_font_xxl: 6rem;
 
 $bold_light: 300;
 $bold_default: 400;
@@ -18,8 +23,7 @@ $bold_x2: 700;
 // Padding
 $link_padding: 5px 15px;
 $card_padding: 30px;
-
-
+$card_padding_sm: 10px;
 
 // { background-color: #F89D2A; }
 // { background-color: #E01483; }

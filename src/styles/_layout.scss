@@ -1,7 +1,14 @@
+.brand {
+  transition: color $animation;
+
+  &:hover {
+    background-color: transparent !important;
+    color: $primary_hover !important;
+  }
+}
+
 nav {
-  padding: 10px 100px;
-  box-shadow: 0 2px 10px $light_grey;
-  margin-bottom: 50px;
+  padding: 0px 50px;
 
   ul {
     list-style-type: none;
@@ -11,14 +18,15 @@ nav {
     li {
       display: inline-block;
       @include v_center_content;
-      padding-left: 15px;
+      padding-left: 5px;
     }
   }
 }
 
+.sec_nav { border-bottom: 1px solid $primary; }
+
 footer {
-  height: 100px;
-  margin-top: 50px;
+  height: 75px;
   background-color: $primary;
 
   span {

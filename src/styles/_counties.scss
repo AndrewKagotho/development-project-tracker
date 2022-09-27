@@ -1,27 +1,48 @@
-.counties {
-  justify-content: space-around;
-  align-items: flex-start;
-
-  // & > * { border: 1px solid red; }
-}
-
 .counties_svg {
+  // @include border;
 
   path {
     stroke: #AAA;
     stroke-width: 1;
 
     &:hover {
-      fill: $primary !important;
-      stroke: $neutral;
+      fill: $primary;
       cursor: pointer;
     }
   }
 }
 
-.counties__list {
-  width: 400px;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20px;
+.counties_list {
+  width: 60%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    // min-width: 140px;
+    display: inline-block;
+    margin: 5px;
+  }
+}
+
+.county_list__header {
+  border-radius: 4px;
+}
+
+.county_list__expand {
+  display: none;
+  flex-direction: column;
+  width: 180px;
+  padding: 0 10px;
+  position: relative;
+  
+  span {
+    font-size: $small_font;
+    display: block;
+    margin: 7px 0;
+
+    &:nth-child(5) { margin-bottom: 12px; }
+  }
+
+  &:last-child { margin: 5px 0;}
 }
