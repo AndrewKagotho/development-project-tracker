@@ -75,7 +75,7 @@ p {
   border: 1px solid $primary;
   transition: scale $animation;
 
-  &:hover { scale: 1.02; }
+  &:hover { scale: $scale; }
 }
 
 .card_sm {
@@ -83,9 +83,10 @@ p {
   border-radius: $border_radius;
   background-color: $neutral;
   border: 1px solid $primary;
-  transition: box-shadow $animation;
+  transition: scale $animation, box-shadow $animation;
 
   &:hover {
+    // scale: $scale;
     box-shadow: 0 0 5px $primary_hover;
     cursor: pointer;
   }
@@ -94,7 +95,6 @@ p {
 button {
   padding: 0;
   margin: 0;
-  // border: 1px solid $primary;
   background-color: transparent;
 }
 
@@ -109,7 +109,7 @@ a, button {
   &:hover { @include hover; }
 }
 
-.card_a {
+.card__a {
   border: 1px solid $primary;
 
   &:hover {
@@ -135,4 +135,18 @@ a, button {
   position: absolute;
   top: -17px;
   right: 7px;
+}
+
+.badge {
+  font-weight: $bold_x1;
+  padding: 2px 10px;
+  color: $primary;
+  border-radius: $border_radius;
+  border: 1px solid $primary;
+  transition: background-color $animation;
+
+  &:hover {
+    color: $neutral;
+    background-color: $primary;
+  }
 }

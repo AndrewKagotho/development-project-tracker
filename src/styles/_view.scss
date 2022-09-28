@@ -4,12 +4,16 @@
   margin: 0 50px 50px;
   // @include border;
 
-  h2 { margin-top: 25px; }
-  // & > * { border: 1px solid red; }
-}
+  h2 {
+    color: $secondary;
+    font-weight: $bold_x1;
+    margin: 35px 0;
 
-.view_content__cards {
-  gap: 50px;
+    em {
+      font-size: $large_font;
+      font-style: normal;
+    }
+  }
 
-  & > div { width: 100%; }
+  // & > * { @include border; }
 }

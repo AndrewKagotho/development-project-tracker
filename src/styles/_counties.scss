@@ -1,4 +1,5 @@
 .counties_svg {
+  translate: -25px 0;
   // @include border;
 
   path {
@@ -6,7 +7,7 @@
     stroke-width: 1;
 
     &:hover {
-      fill: $primary;
+      fill: $primary !important;
       cursor: pointer;
     }
   }
@@ -17,9 +18,9 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  // @include border;
 
   li {
-    // min-width: 140px;
     display: inline-block;
     margin: 5px;
   }
@@ -33,7 +34,8 @@
 .county_list__expand {
   display: none;
   flex-direction: column;
-  width: 180px;
+  align-items: flex-start;
+  width: 160px;
   padding: 0 10px;
   
   span {

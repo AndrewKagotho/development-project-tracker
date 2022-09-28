@@ -19,6 +19,28 @@ const Landing = (props) => {
           <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
         </section>
       </div>
+      <section className='landing_section landing_section_lg'>
+        <h2>County Project Statistics</h2>
+        <p>A summary of the national project statistics:</p>
+        <div className='landing_section__cards flex'>
+          <div className='card flex'>
+            <span>All projects</span>
+            <span className='badge'>#</span>
+          </div>
+          <div className='card flex'>
+            <span>Ongoing</span>
+            <span className='badge'>#</span>
+          </div>
+          <div className='card flex'>
+            <span>Scheduled</span>
+            <span className='badge'>#</span>
+          </div>
+          <div className='card flex'>
+            <span>Delayed</span>
+            <span className='badge'>#</span>
+          </div>
+        </div>
+      </section>
       <section className='landing_section'>
         <h2>United Nations Sustainable Development Goals</h2>
         <p>This system seeks to contribute to the 17 outlined global goals in the achievement of peace and prosperity for the people and the planet. It does this through these goals:</p>
@@ -29,7 +51,7 @@ const Landing = (props) => {
               <span className='card_lg_number_effect'>10</span>
               <p>Reduce inequality within and among countries.</p>
             </div>
-            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal10'>View details</a>
+            <a className='card__a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal10'>View details</a>
           </section>
           <hr/>
           <section className='card flex'>
@@ -38,12 +60,12 @@ const Landing = (props) => {
               <span className='card_lg_number_effect'>11</span>
               <p>Make cities and human settlements inclusive, safe, resilient and sustainable.</p>
             </div>
-            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal11'>View details</a>
+            <a className='card__a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal11'>View details</a>
           </section>
         </div>
       </section>
       <section className='landing_section'>
-        <h2>Why You Should Consider This Platform</h2>
+        <h2>What This Platform Can Do</h2>
         <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
       </section>
       <Footer />

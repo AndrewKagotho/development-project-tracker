@@ -1,10 +1,9 @@
 $border_radius: 5px;
 
-$animation: 0.1s linear;
-
 // Colours
 $primary: #669FC3;
 $primary_hover: #ABCADC;
+$secondary: #555;
 $light_grey: #CCC;
 $neutral: #FFF;
 
@@ -25,5 +24,6 @@ $link_padding: 5px 15px;
 $card_padding: 30px;
 $card_padding_sm: 10px;
 
-// { background-color: #F89D2A; }
-// { background-color: #E01483; }
+// Transformations
+$animation: 0.1s linear;
+$scale: 1.02;
