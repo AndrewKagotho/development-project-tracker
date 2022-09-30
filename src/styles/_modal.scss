@@ -1,0 +1,28 @@
+.modal {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, .7);
+  position: fixed;
+  top: 0;
+}
+
+.modal__card {
+  width: 40vw;
+  height: 70vh;
+  @include center_content;
+
+  h2 {
+    font-weight: $bold_x1;
+    color: $primary;
+
+    em {
+      font-style: normal;
+      color: #000;
+    }
+  }
+
+  span {
+    display: block;
+  }
+}

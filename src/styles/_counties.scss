@@ -1,13 +1,15 @@
-.counties_svg {
+.counties_map {
   translate: -25px 0;
   // @include border;
 
   path {
     stroke: #AAA;
     stroke-width: 1;
+    transition: fill $animation;
 
     &:hover {
       fill: $primary !important;
+      stroke: #FFF !important;
       cursor: pointer;
     }
   }
@@ -18,7 +20,6 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  // @include border;
 
   li {
     display: inline-block;
@@ -26,12 +27,12 @@
   }
 }
 
-.county_list__header {
+.counties_list__header {
   border-radius: 4px;
   position: relative;
 }
 
-.county_list__expand {
+.counties_list__expand {
   display: none;
   flex-direction: column;
   align-items: flex-start;
@@ -48,3 +49,4 @@
 
   &:last-child { margin: 5px 0;}
 }
+
