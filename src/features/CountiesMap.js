@@ -1,17 +1,17 @@
 import React from 'react'
-import { CountyInFocus } from '../utils/context/countyInFocus'
+import { AppContext } from '../views/CountiesView'
 import { fillCounty } from '../utils/functions/fillCounty'
 import { dynamicFillCounty } from '../utils/functions/dynamicFillCounty'
 
 const CountiesMap = () => {
   // eslint-disable-next-line
-  const {countyInFocus, setCountyInFocus} = React.useContext(CountyInFocus)
+  const {countyFocus, modalState} = React.useContext(AppContext)
 
   const countyRefs = React.useRef([])
 
-  fillCounty(countyRefs, countyInFocus.number)
+  fillCounty(countyRefs, countyFocus.countyInFocus.number)
 
-  dynamicFillCounty(countyRefs, countyInFocus.number)
+  dynamicFillCounty(countyRefs, countyFocus.countyInFocus.number)
 
   return (
     <svg className='counties_map' xmlns="http://www.w3.org/2000/svg" width="600" height="500">

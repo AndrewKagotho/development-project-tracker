@@ -52,13 +52,13 @@ a, button {
   &:hover { scale: $scale; }
 }
 
-.card_sm_number_effect {
+.card_ex_number_effect {
   display: none;
   font-size: $large_font_xl;
   font-weight: $bold_x2;
   opacity: .1;
   position: absolute;
-  top: -23px;
+  top: -17px;
   right: 0;
 }
 
@@ -76,14 +76,23 @@ a, button {
   font-weight: $bold_x2;
   display: inline-block;
   opacity: .2;
-  translate: 5px 3px;
+  translate: 5px 0;
 }
 
-.card__a {
+.card_a {
   border: 1px solid $primary;
 
   &:hover {
     width: calc(100% - $card_padding);
     text-align: center;
+  }
+}
+
+.card_button {
+  border: 1px solid $primary;
+
+  &:hover {
+    width: 100%;
+    // text-align: center;
   }
 }

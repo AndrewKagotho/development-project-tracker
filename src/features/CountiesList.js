@@ -1,20 +1,18 @@
 import React from 'react'
-import { CountyInFocus } from '../utils/context/countyInFocus'
-import { fillCounty } from '../utils/functions/fillCounty'
+import { AppContext } from '../views/CountiesView'
 
 let prevCards = [0,0]
 
 const CountiesList = ({props}) => {
 
-  const {countyInFocus, setCountyInFocus} = React.useContext(CountyInFocus)
+  const {countyFocus, modalState} = React.useContext(AppContext)
 
   const listHeaderNameRef = React.useRef([])
   const listHeaderNumberRef = React.useRef([])
   const listDetailsRef = React.useRef([])
 
   const showProjects = (index) => {
-    setCountyInFocus({name: props.countyName[index], number: index})
-    fillCounty({current: []}, countyInFocus.number)
+    countyFocus.setCountyInFocus({name: props.countyName[index], number: index})
 
     for(let a=0; a<prevCards.length; a++) {
       prevCards[0] = prevCards[1]
@@ -44,17 +42,17 @@ const CountiesList = ({props}) => {
   }
 
   const countyList = props.countyNo.map((item, index) => 
-    <li key={index} className='card card_sm' onClick={() => showProjects(index)}>
-      <div className='counties_list__header'>
+    <li key={index} className='card card_sm'>
+      <div className='counties_list__header' onClick={() => showProjects(index)}>
         <div ref={(item) => listHeaderNameRef.current[index] = item}><span>0{props.countyNo[index]} | {props.countyName[index]}</span></div>
-        <span className='card_sm_number_effect' ref={(item) => listHeaderNumberRef.current[index] = item}>{props.countyNo[index]}</span>
+        <span className='card_ex_number_effect' ref={(item) => listHeaderNumberRef.current[index] = item}>{props.countyNo[index]}</span>
       </div>
       <div className='counties_list__expand flex' ref={(item) => listDetailsRef.current[index] = item}>
         <span>All projects</span>
         <span>Ongoing</span>
         <span>Scheduled</span>
         <span>Delayed</span>
-        <a className='card__a' rel="noreferrer" href='/'>View projects</a>
+        <button className='card_button' onClick={() => modalState.setModalToOpen(true)}>View projects</button>
       </div>
     </li>
   )

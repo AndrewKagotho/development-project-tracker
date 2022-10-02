@@ -8,21 +8,51 @@
 }
 
 .modal__card {
-  width: 40vw;
+  width: 70vw;
   height: 70vh;
+  overflow-y: auto;
   @include center_content;
+}
+
+.modal__card__header {
+  // @include border_red;
+  margin-bottom: 10px;
+
+  span {
+    font-size: $large_font;
+  }
+}
+
+.modal__card__top {
+  // @include border_red;
+  margin-bottom: 20px;
 
   h2 {
-    font-weight: $bold_x1;
+    font-size: $large_font_xl;
+    font-weight: $bold_default;
+    margin-left: 10px;
     color: $primary;
+    margin-bottom: 15px;
 
     em {
+      font-size: $large_font_xl;
+      font-weight: $bold_x1;
       font-style: normal;
       color: #000;
     }
   }
 
-  span {
-    display: block;
-  }
+  span { display: block; }
+}
+
+.pie_chart {
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+  @include border_blu;
+}
+
+.modal__card__bottom {
+  height: 200px;
+  @include border_blu;
 }

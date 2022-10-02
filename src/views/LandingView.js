@@ -51,7 +51,7 @@ const Landing = (props) => {
               <span className='card_md_number_effect'>10</span>
               <p>Reduce inequality within and among countries.</p>
             </div>
-            <a className='card__a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal10'>View details</a>
+            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal10'>View details</a>
           </section>
           <hr/>
           <section className='card card_md flex'>
@@ -60,7 +60,7 @@ const Landing = (props) => {
               <span className='card_md_number_effect'>11</span>
               <p>Make cities and human settlements inclusive, safe, resilient and sustainable.</p>
             </div>
-            <a className='card__a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal11'>View details</a>
+            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal11'>View details</a>
           </section>
         </div>
       </section>

@@ -1,28 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { CountyInFocus } from '../utils/context/countyInFocus'
 import CountiesList from '../features/CountiesList'
 import CountiesMap from '../features/CountiesMap'
 import ProjectModal from '../features/ProjectModal'
 
+export const AppContext = React.createContext()
+
 const CountiesView = (props) => {
 
   const [countyInFocus, setCountyInFocus] = React.useState({ name: '', number: 0 })
-  const county = {countyInFocus, setCountyInFocus}
+  const countyFocus = {countyInFocus, setCountyInFocus}
+
+  const [openModal, setModalToOpen] = React.useState(false)
+  const modalState = {openModal, setModalToOpen}
+
+  const value = {countyFocus, modalState}
 
   return (
-    <>
+    <AppContext.Provider value={value}>
       <section className='view_content'>
         <h2>Map of counties: <em>(click on any card to view project details)</em></h2>
         <div className='flex'>
-          <CountyInFocus.Provider value={county}>
             <CountiesMap />
             <CountiesList props={props} />
-          </CountyInFocus.Provider>
         </div>
       </section>
       <ProjectModal />
-    </>
+    </AppContext.Provider>
   )
 }
 
