@@ -33,7 +33,7 @@ const CountiesList = ({props}) => {
         listDetailsRef.current[prevCards[i]].style.display = 'flex'
         listHeaderNameRef.current[prevCards[i]].textContent = `${props.countyName[index]}`
         listHeaderNameRef.current[prevCards[i]].style.color =  '#669FC3'
-        listHeaderNameRef.current[prevCards[i]].style.width =  '70%'
+        listHeaderNameRef.current[prevCards[i]].style.width =  '60%'
         listHeaderNameRef.current[prevCards[i]].style.fontSize =  '1.4rem'
         listHeaderNameRef.current[prevCards[i]].style.fontWeight =  '600'
         listHeaderNumberRef.current[prevCards[i]].style.display = 'block'

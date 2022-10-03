@@ -1,17 +1,19 @@
 .modal {
-  display: none;
   width: 100vw;
   height: 100vh;
+  visibility: hidden;
+  opacity: 0;
   background-color: rgba(255, 255, 255, .7);
+  transition: visibility $animation, opacity $animation;
+  overflow-y: auto;
   position: fixed;
   top: 0;
 }
 
 .modal__card {
   width: 70vw;
-  height: 70vh;
-  overflow-y: auto;
-  @include center_content;
+  margin: 100px 0 50px;
+  @include h_center_content;
 }
 
 .modal__card__header {
@@ -20,12 +22,26 @@
 
   span {
     font-size: $large_font;
+    color: $secondary;
+  }
+
+  svg {
+    fill: $primary;
+    scale: .8;
+    z-index: 2;
+    transition: fill $animation;
+
+    &:hover {
+      fill: $primary_hover;
+      cursor: pointer;
+    }
   }
 }
 
 .modal__card__top {
-  // @include border_red;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+
+  // & > * { @include border_red; }
 
   h2 {
     font-size: $large_font_xl;
@@ -38,21 +54,45 @@
       font-size: $large_font_xl;
       font-weight: $bold_x1;
       font-style: normal;
-      color: #000;
+      color: $secondary;
     }
   }
 
-  span { display: block; }
+  h3 { color: $secondary; }
+
+  span {
+    display: block;
+    margin-top: 10px;
+    white-space: pre;
+  }
 }
 
 .pie_chart {
-  width: 200px;
-  height: 200px;
-  margin-right: 10px;
-  @include border_blu;
+  scale: 1.3;
+  z-index: 1;
+  // @include border_blu;
 }
 
 .modal__card__bottom {
-  height: 200px;
-  @include border_blu;
+  border: 1px solid $primary;
+  border-radius: $border_radius;
+
+  table {
+    width: 100%;
+    padding: 0 10px;
+
+    th {
+      font-size: $mid_font;
+      font-weight: $bold_default;
+      color: $primary;
+      text-align: left;
+      padding: 10px 0;
+      // @include border_red;
+    }
+
+    td {
+      // @include border_red;
+      padding: 10px 0;
+    }
+  }
 }

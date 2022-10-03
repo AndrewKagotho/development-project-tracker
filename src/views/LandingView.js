@@ -2,12 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../store/Action'
 import Footer from '../layout/Footer'
-import { getCounties } from '../utils/functions/getCounties'
+import { getCountyDetails } from '../utils/functions/getCountyDetails'
+import { getProjectDetails } from '../utils/functions/getProjectDetails'
+import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
+import { getLocationDetails } from '../utils/functions/getLocationDetails'
 
 const Landing = (props) => {
 
   React.useEffect(() => {
-    getCounties(props)
+    getCountyDetails(props)
+    getProjectDetails(props)
+    getImplementationDetails(props)
+    getLocationDetails(props)
     // eslint-disable-next-line
   }, [])
 
