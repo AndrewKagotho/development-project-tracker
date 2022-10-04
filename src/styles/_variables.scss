@@ -21,10 +21,15 @@ $bold_default: 400;
 $bold_x1: 600;
 $bold_x2: 700;
 
+// Margin 
+$margin: 30px;
+
 // Padding
 $link_padding: 5px 15px;
-$card_padding: 30px;
+$card_padding: $margin;
 $card_padding_sm: 10px;
+
+
 
 // Transformations
 $animation: 0.1s linear;

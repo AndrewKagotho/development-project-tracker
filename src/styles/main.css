@@ -171,11 +171,12 @@ a:hover, button:hover {
   text-align: center;
 }
 
-.card_button {
-  border: 1px solid #669FC3;
-}
 .card_button:hover {
   width: 100%;
+}
+
+button {
+  border: 1px solid #669FC3;
 }
 
 .view_content {
@@ -256,8 +257,29 @@ a:hover, button:hover {
   font-size: 1.6rem;
 }
 
+.tooltiptext {
+  display: none;
+  width: 0;
+  height: 0;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#Kwale:hover .tooltiptext {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 100;
+}
+
 .counties_map {
   translate: -25px 0;
+  background-color: transparent;
+  position: relative;
 }
 .counties_map path {
   stroke: #AAA;
@@ -266,7 +288,6 @@ a:hover, button:hover {
 }
 .counties_map path:hover {
   fill: #669FC3 !important;
-  stroke: #FFF !important;
   cursor: pointer;
 }
 
@@ -326,16 +347,24 @@ a:hover, button:hover {
 }
 
 .modal__card__header {
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 15px;
 }
-.modal__card__header span {
-  font-size: 1.6rem;
+.modal__card__header h2 {
+  font-size: 4rem;
+  font-weight: 400;
+  color: #669FC3;
+  margin: 0;
+}
+.modal__card__header h2 em {
+  font-size: 4rem;
+  font-weight: 600;
+  font-style: normal;
   color: #555;
 }
 .modal__card__header svg {
   fill: #669FC3;
-  scale: 0.8;
-  z-index: 2;
+  scale: 0.9;
   transition: fill 0.1s linear;
 }
 .modal__card__header svg:hover {
@@ -346,18 +375,8 @@ a:hover, button:hover {
 .modal__card__top {
   margin-bottom: 30px;
 }
-.modal__card__top h2 {
-  font-size: 4rem;
-  font-weight: 400;
-  margin-left: 10px;
-  color: #669FC3;
-  margin-bottom: 15px;
-}
-.modal__card__top h2 em {
-  font-size: 4rem;
-  font-weight: 600;
-  font-style: normal;
-  color: #555;
+.modal__card__top > section {
+  margin-left: 15px;
 }
 .modal__card__top h3 {
   color: #555;
@@ -366,11 +385,11 @@ a:hover, button:hover {
   display: block;
   margin-top: 10px;
   white-space: pre;
+  text-indent: 10px;
 }
 
 .pie_chart {
-  scale: 1.3;
-  z-index: 1;
+  gap: 30px;
 }
 
 .modal__card__bottom {

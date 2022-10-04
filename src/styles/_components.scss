@@ -88,11 +88,6 @@ a, button {
   }
 }
 
-.card_button {
-  border: 1px solid $primary;
+.card_button { &:hover { width: 100%; } }
 
-  &:hover {
-    width: 100%;
-    // text-align: center;
-  }
-}
+button { border: 1px solid $primary; }
