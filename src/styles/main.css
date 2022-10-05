@@ -46,19 +46,21 @@ p {
 }
 
 nav {
+  align-items: center;
   padding: 0px 50px;
 }
 nav ul {
   list-style-type: none;
-  margin: 0;
+  margin: 0 15px 0 auto;
   padding: 0;
 }
 nav ul li {
   display: inline-block;
-  position: relative;
-  top: 50%;
-  translate: 0 -50%;
   padding-left: 5px;
+}
+nav button {
+  font-size: 16px;
+  border: none;
 }
 
 .sec_nav {
@@ -176,6 +178,7 @@ a:hover, button:hover {
 }
 
 button {
+  font-family: "Source Sans Pro", sans-serif;
   border: 1px solid #669FC3;
 }
 
@@ -196,7 +199,7 @@ button {
 
 .banner {
   height: 70vh;
-  background-image: url("../assets/images/banner.jpg");
+  background-image: url("http://127.0.0.1:8887/banner.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -210,6 +213,27 @@ button {
 }
 .banner section > * {
   color: #FFF;
+}
+.banner svg {
+  padding: 10px;
+  border-radius: 50%;
+  opacity: 0.4;
+  transition: opacity 0.1s linear;
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+}
+.banner svg:hover {
+  opacity: 0.9;
+}
+
+.banner__next_icon {
+  rotate: 180deg;
+  right: 15px;
+}
+
+.banner__prev_icon {
+  left: 15px;
 }
 
 .landing_section {
@@ -345,22 +369,25 @@ button {
   left: 50%;
   translate: -50% 0;
 }
-
-.modal__card__header {
-  align-items: center;
-  margin-bottom: 15px;
-}
-.modal__card__header h2 {
+.modal__card h2 {
   font-size: 4rem;
   font-weight: 400;
   color: #669FC3;
-  margin: 0;
+  margin: 10px 0 15px;
+  text-indent: 15px;
 }
-.modal__card__header h2 em {
+.modal__card h2 em {
   font-size: 4rem;
   font-weight: 600;
   font-style: normal;
   color: #555;
+}
+
+.modal__card__header {
+  align-items: center;
+}
+.modal__card__header span {
+  font-size: 1.6rem;
 }
 .modal__card__header svg {
   fill: #669FC3;
@@ -375,9 +402,6 @@ button {
 .modal__card__top {
   margin-bottom: 30px;
 }
-.modal__card__top > section {
-  margin-left: 15px;
-}
 .modal__card__top h3 {
   color: #555;
 }
@@ -385,7 +409,6 @@ button {
   display: block;
   margin-top: 10px;
   white-space: pre;
-  text-indent: 10px;
 }
 
 .pie_chart {

@@ -7,7 +7,11 @@ import { getProjectDetails } from '../utils/functions/getProjectDetails'
 import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
 import { getLocationDetails } from '../utils/functions/getLocationDetails'
 
+const bannerArray = ['http://127.0.0.1:8887/banner.jpg', 'http://127.0.0.1:8887/image3.jpeg']
+
 const Landing = (props) => {
+
+  const bannerRef = React.useRef()
 
   React.useEffect(() => {
     getCountyDetails(props)
@@ -17,13 +21,31 @@ const Landing = (props) => {
     // eslint-disable-next-line
   }, [])
 
+  const changeBanner = (arg) => {
+    let arrayImage = 0
+    arrayImage += arg
+
+    // if(arg === 1) {
+      if(arrayImage > bannerArray.length-1)
+        arrayImage = 0
+      // bannerRef.current.style.backgroundImage = `url(${bannerArray[arrayImage]})`
+    // }
+    // else if(arg === -1) {
+      if(arrayImage < 0)
+        arrayImage = bannerArray.length-1
+      bannerRef.current.style.backgroundImage = `url(${bannerArray[arrayImage]})`
+    // }
+  }
+
   return (
     <>
-      <div className='banner'>
+      <div className='banner' ref={bannerRef}>
         <section>
           <h2>Project Management, Redefined.</h2>
           <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
         </section>
+        <svg className='banner__next_icon' onClick={() => changeBanner(-1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
+        <svg className='banner__prev_icon' onClick={() => changeBanner(1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
       </div>
       <section className='landing_section landing_section_lg'>
         <h2>County Project Statistics</h2>

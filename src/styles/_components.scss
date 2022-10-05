@@ -90,4 +90,7 @@ a, button {
 
 .card_button { &:hover { width: 100%; } }
 
-button { border: 1px solid $primary; }
+button {
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 1px solid $primary;
+}

@@ -8,6 +8,7 @@ const NavbarMain = () => {
         <ul>
           <li><Link to='/counties'>Counties</Link></li>
           <li><Link to='/stats'>Statistics</Link></li>
+          <li><button>Login</button></li>
         </ul>
       </nav>
       <Outlet />

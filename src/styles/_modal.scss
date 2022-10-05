@@ -14,17 +14,17 @@
   width: 70vw;
   margin: 100px 0 50px;
   @include h_center_content;
-}
-
-.modal__card__header {
-  align-items: center;
-  margin-bottom: calc($margin/2);
 
   h2 {
     font-size: $large_font_xl;
     font-weight: $bold_default;
     color: $primary;
-    margin: 0;
+    margin: calc($margin/3) 0 calc($margin/2);
+    text-indent: 15px;
+    // padding: 10px;
+    // border: 1px solid $primary;
+    // border-radius: $border_radius;
+
 
     em {
       font-size: $large_font_xl;
@@ -33,6 +33,12 @@
       color: $secondary;
     }
   }
+}
+
+.modal__card__header {
+  align-items: center;
+
+  span { font-size: $large_font; }
 
   svg {
     fill: $primary;
@@ -52,27 +58,30 @@
   // @include border_red;
   // & > * { @include border_blu; }
 
-  & > section {
-    margin-left: 15px;
-  }
-
   h3 { color: $secondary; }
+
+  // section {
+  //   padding: 10px;
+  //   border: 1px solid $primary;
+  //   border-radius: $border_radius;
+  // }
 
   span {
     display: block;
     margin-top: calc($margin/3);
-    white-space: pre;
-    text-indent: 10px;
+    white-space: pre;  
   }
 }
 
 .pie_chart {
   gap: $margin;
+
+  // & > * { @include border_red; }
   
   // section {
-    // padding: 10px;
-    // border: 1px solid $primary;
-    // border-radius: $border_radius;
+  //   padding: 10px;
+  //   border: 1px solid $primary;
+  //   border-radius: $border_radius;
   // }
 }
 

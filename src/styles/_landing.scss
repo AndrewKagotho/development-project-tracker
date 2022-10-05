@@ -1,6 +1,6 @@
 .banner {
   height: 70vh;
-  background-image: url('../assets/images/banner.jpg');
+  background-image: url('http://127.0.0.1:8887/banner.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -14,7 +14,26 @@
 
     & > * { color: $neutral; }
   }
+
+  svg {
+    padding: 10px;
+    border-radius: 50%;
+    opacity: .4;
+    transition: opacity $animation;
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+
+    &:hover { opacity: .9; }
+  }
 }
+
+.banner__next_icon {
+  rotate: 180deg;
+  right: 15px;
+}
+
+.banner__prev_icon { left: 15px; }
 
 .landing_section {
   width: 60%;
