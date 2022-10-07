@@ -6,9 +6,9 @@ const Navbar = () => {
       <nav className='sec_nav flex'>
         <h1><Link to='/' className='brand'>County Development Project Tracker</Link></h1>
         <ul>
-          <li><Link to='/'>Home</Link></li>
           <li><Link to='/counties'>Counties</Link></li>
           <li><Link to='/stats'>Statistics</Link></li>
+          <li><Link to='/'>Home</Link></li>
         </ul>
       </nav>
       <Outlet />

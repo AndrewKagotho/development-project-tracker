@@ -29,20 +29,50 @@
 
 
 
+// .tooltip:hover .tooltiptext {
+//   visibility: visible;
+//   position: relative;
+//   z-index: 1;
+// }
+
+////////////////////////////////////////////////
+
+.counties {
+  width: 90%;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  @include h_center_content;
+  
+  // @include border_red;
+  // & > * { @include border_blu; }
+
+  h2 {
+    color: $secondary;
+    font-weight: $bold_x1;
+    margin: 35px 0;
+
+    em {
+      font-size: $large_font;
+      font-style: normal;
+    }
+  }
+}
+
 .counties_map {
-  translate: -25px 0;
+  translate: -25px 25px;
   background-color: transparent;
   position: relative;
-  // @include border;
+  scale: 1.1;
 
   path {
-    stroke: #AAA;
+    stroke: #BBB;
     stroke-width: 1;
     transition: fill $animation;
 
     &:hover {
       fill: $primary !important;
-      // stroke: #FFF !important;
+      stroke: #FFF !important;
       cursor: pointer;
     }
 
@@ -54,14 +84,8 @@
   }
 }
 
-// .tooltip:hover .tooltiptext {
-//   visibility: visible;
-//   position: relative;
-//   z-index: 1;
-// }
-
 .counties_list {
-  width: 60%;
+  width: 55%;
   list-style-type: none;
   margin: 0;
   padding: 0;

@@ -1,19 +1,35 @@
-.view_content {
-  justify-content: space-around;
-  align-items: flex-start;
-  margin: 0 50px 50px;
-  // @include border;
+.page_section {
+  width: 55%;
+  margin: 50px 0;
+  @include h_center_content;
+  
+  // @include border_blu;
+  // & > * {@include border_blu;}
 
-  h2 {
-    color: $secondary;
-    font-weight: $bold_x1;
-    margin: 35px 0;
+  p { margin-bottom: $margin; }
 
-    em {
-      font-size: $large_font;
-      font-style: normal;
-    }
+  & > span {
+    display: block;
+    margin-bottom: calc($margin/2);
   }
 
-  // & > * { @include border; }
+  h2, & > p, & > span { text-align: center; }
+}
+
+.page_section_lg { width: 90%; }
+
+.page_section__features {
+  gap: $margin;
+
+  span {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+.page_section__stats {
+  gap: $margin;
+  
+  & > div { width: 100%; }
 }

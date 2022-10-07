@@ -1,12 +1,11 @@
 import React from 'react'
-import { AppContext } from '../views/CountiesView'
-import { fillCounty } from '../utils/functions/fillCounty'
-import { dynamicFillCounty } from '../utils/functions/dynamicFillCounty'
+import { CountyContext } from '../../views/CountiesView'
+import { fillCounty } from '../../utils/functions/map'
+import { dynamicFillCounty } from '../../utils/functions/map'
 
-const CountiesMap = () => {
+const Map = () => {
   // eslint-disable-next-line
-  const {countyFocus, modalState} = React.useContext(AppContext)
-
+  const {countyFocus, countyModalState} = React.useContext(CountyContext)
   const countyRefs = React.useRef([])
 
   fillCounty(countyRefs, countyFocus.countyInFocus.number)
@@ -74,4 +73,4 @@ const CountiesMap = () => {
   )
 }
 
-export default CountiesMap
+export default Map

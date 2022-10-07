@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../store/Action'
-import Footer from '../layout/Footer'
 import { getCountyDetails } from '../utils/functions/getCountyDetails'
 import { getProjectDetails } from '../utils/functions/getProjectDetails'
 import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
 import { getLocationDetails } from '../utils/functions/getLocationDetails'
+import LoginPanel from '../features/LoginPanel'
+import Footer from '../layout/Footer'
 
 const bannerArray = ['http://127.0.0.1:8887/banner.jpg', 'http://127.0.0.1:8887/image3.jpeg']
+let imageOnDisplay = 0
 
 const Landing = (props) => {
-
-  const bannerRef = React.useRef()
 
   React.useEffect(() => {
     getCountyDetails(props)
@@ -21,81 +21,65 @@ const Landing = (props) => {
     // eslint-disable-next-line
   }, [])
 
-  const changeBanner = (arg) => {
-    let arrayImage = 0
-    arrayImage += arg
+  const bannerRef = React.useRef()
 
-    // if(arg === 1) {
-      if(arrayImage > bannerArray.length-1)
-        arrayImage = 0
-      // bannerRef.current.style.backgroundImage = `url(${bannerArray[arrayImage]})`
-    // }
-    // else if(arg === -1) {
-      if(arrayImage < 0)
-        arrayImage = bannerArray.length-1
-      bannerRef.current.style.backgroundImage = `url(${bannerArray[arrayImage]})`
-    // }
+  const changeBanner = (arg) => {
+    imageOnDisplay += arg
+
+    if(imageOnDisplay > bannerArray.length-1)
+      imageOnDisplay = 0
+      
+    if(imageOnDisplay < 0)
+      imageOnDisplay = bannerArray.length-1
+
+    bannerRef.current.style.backgroundImage = `url(${bannerArray[imageOnDisplay]})`
   }
 
   return (
     <>
       <div className='banner' ref={bannerRef}>
         <section>
-          <h2>Project Management, Redefined.</h2>
-          <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+          <h2>Project Tracking, Redefined.</h2>
+          <p>The County Development Project Tracker is an online system that facilitates the measurement of project metrics, keeping records of progress for consumption by stakeholders.</p>
         </section>
-        <svg className='banner__next_icon' onClick={() => changeBanner(-1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
-        <svg className='banner__prev_icon' onClick={() => changeBanner(1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
+        <svg className='banner__next_icon' onClick={() => changeBanner(1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
+        <svg className='banner__prev_icon' onClick={() => changeBanner(-1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
       </div>
-      <section className='landing_section landing_section_lg'>
-        <h2>County Project Statistics</h2>
-        <p>A summary of the national project statistics:</p>
-        <div className='landing_section__cards flex'>
-          <div className='card card_md flex'>
-            <span>All projects</span>
-            <span className='badge'>#</span>
-          </div>
-          <div className='card card_md flex'>
-            <span>Ongoing</span>
-            <span className='badge'>#</span>
-          </div>
-          <div className='card card_md flex'>
-            <span>Scheduled</span>
-            <span className='badge'>#</span>
-          </div>
-          <div className='card card_md flex'>
-            <span>Delayed</span>
-            <span className='badge'>#</span>
-          </div>
+      <section className='page_section'>
+        <h2>Explore the feature-packed online platform!</h2>
+        <p>The CDPT is a tool that facilitates the logging of county projects - past, present and future - and tracks these projects for transparency and accountability. It seeks to address the static nature of most project tracking systems, offering itself as an easy-to-use platform that prioritizes public engagement and scrutiny.</p>
+        <span>Features included:</span>
+        <div className='page_section__features flex'>
+          <span className='card card_sm'>Project insights</span>
+          <span className='card card_sm'>Expenditure tracking</span>
+          <span className='card card_sm'>Data visualization</span>
+          <span className='card card_sm'>Active updates</span>
         </div>
       </section>
-      <section className='landing_section'>
+      <section className='page_section'>
         <h2>United Nations Sustainable Development Goals</h2>
-        <p>This system seeks to contribute to the 17 outlined global goals in the achievement of peace and prosperity for the people and the planet. It does this through these goals:</p>
+        <p>The CPDT seeks to contribute to the 17 outlined global goals through SDGs 10 & 11, in the achievement of peace and prosperity for the people and the planet. For more information, follow the links provided.</p>
         <div className='sdg__cards flex'>
-          <section className='card card_md flex'>
+          <section className='card card_lg flex'>
             <div>
               <h3>Reduce Inequalities</h3>
-              <span className='card_md_number_effect'>10</span>
+              <span className='card_number_effect_lg'>10</span>
               <p>Reduce inequality within and among countries.</p>
             </div>
-            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal10'>View details</a>
+            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal10'>More information</a>
           </section>
           <hr/>
-          <section className='card card_md flex'>
+          <section className='card card_lg flex'>
             <div>
               <h3>Sustainable Cities and Communities</h3>
-              <span className='card_md_number_effect'>11</span>
+              <span className='card_number_effect_lg'>11</span>
               <p>Make cities and human settlements inclusive, safe, resilient and sustainable.</p>
             </div>
-            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal11'>View details</a>
+            <a className='card_a' target='_blank' rel="noreferrer" href='https://sdgs.un.org/goals/goal11'>More information</a>
           </section>
         </div>
       </section>
-      <section className='landing_section'>
-        <h2>What This Platform Can Do</h2>
-        <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
-      </section>
+      <LoginPanel />
       <Footer />
     </>
   )

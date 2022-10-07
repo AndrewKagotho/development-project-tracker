@@ -1,6 +1,11 @@
+import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import { AppContext } from '../App'
 
 const NavbarMain = () => {
+  // eslint-disable-next-line
+  const {sideModal, setSideModalStatus} = React.useContext(AppContext)
+
   return (
     <div>
       <nav className='flex'>
@@ -8,7 +13,7 @@ const NavbarMain = () => {
         <ul>
           <li><Link to='/counties'>Counties</Link></li>
           <li><Link to='/stats'>Statistics</Link></li>
-          <li><button>Login</button></li>
+          <li><button onClick={() => setSideModalStatus(true)}>Login</button></li>
         </ul>
       </nav>
       <Outlet />

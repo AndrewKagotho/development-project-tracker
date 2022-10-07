@@ -48,10 +48,12 @@ h2 {
   font-size: $large_font_x1;
   font-weight: $bold_default;
   margin: 0;
-  margin-bottom: 25px;
+  margin-bottom: $margin;
 }
 
 h3 {
+  font-size: $large_font;
+  font-weight: $bold_x1;
   margin: 0;
   color: $primary;
 }

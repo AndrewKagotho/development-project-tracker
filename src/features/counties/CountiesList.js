@@ -1,12 +1,11 @@
 import React from 'react'
-import { AppContext } from '../views/CountiesView'
+import { CountyContext } from '../../views/CountiesView'
 
 let prevCards = [0,0]
 
 const CountiesList = ({props}) => {
 
-  const {countyFocus, modalState} = React.useContext(AppContext)
-
+  const {countyFocus, countyModalState} = React.useContext(CountyContext)
   const listHeaderNameRef = React.useRef([])
   const listHeaderNumberRef = React.useRef([])
   const listDetailsRef = React.useRef([])
@@ -45,14 +44,14 @@ const CountiesList = ({props}) => {
     <li key={index} className='card card_sm'>
       <div className='counties_list__header' onClick={() => showProjects(index)}>
         <div ref={(item) => listHeaderNameRef.current[index] = item}><span>0{props.countyNo[index]} | {props.countyName[index]}</span></div>
-        <span className='card_ex_number_effect' ref={(item) => listHeaderNumberRef.current[index] = item}>{props.countyNo[index]}</span>
+        <span className='card_number_effect_ex' ref={(item) => listHeaderNumberRef.current[index] = item}>{props.countyNo[index]}</span>
       </div>
       <div className='counties_list__expand flex' ref={(item) => listDetailsRef.current[index] = item}>
         <span>All projects</span>
         <span>Ongoing</span>
         <span>Scheduled</span>
         <span>Delayed</span>
-        <button className='card_button' onClick={() => modalState.setModalToOpen(true)}>View projects</button>
+        <button className='card_button' onClick={() => countyModalState.setCountyModalState(true)}>View projects</button>
       </div>
     </li>
   )

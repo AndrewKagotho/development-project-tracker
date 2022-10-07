@@ -1,7 +1,7 @@
 const StatsView = () => {
   return (
-    <section className='view_content'>
-      <h2>Insights: <em>(under construction)</em></h2>
+    <section className='page_section page_section_lg'>
+      <h2>About</h2>
     </section>
   )
 }

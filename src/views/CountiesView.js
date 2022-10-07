@@ -1,36 +1,38 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { getProjectDetails } from '../utils/functions/getProjectDetails'
 import { mapDispatchToProps } from '../store/Action'
-import CountiesList from '../features/CountiesList'
-import CountiesMap from '../features/CountiesMap'
+import Map from '../features/counties/Map'
+import CountiesList from '../features/counties/CountiesList'
+import Stats from '../features/counties/Stats'
 import ProjectModal from '../features/ProjectModal'
 
-export const AppContext = React.createContext()
+export const CountyContext = React.createContext()
 
 const CountiesView = (props) => {
-
-  // React.useEffect(() => {getProjectDetails(props)}, [])
 
   const [countyInFocus, setCountyInFocus] = React.useState({ name: '', number: 0 })
   const countyFocus = {countyInFocus, setCountyInFocus}
 
-  const [openModal, setModalToOpen] = React.useState(false)
-  const modalState = {openModal, setModalToOpen}
+  const [openCountyModal, setCountyModalState] = React.useState(false)
+  const countyModalState = {openCountyModal, setCountyModalState}
 
-  const value = {countyFocus, modalState}
+  const value = {countyFocus, countyModalState}
 
   return (
-    <AppContext.Provider value={value}>
-      <section className='view_content'>
-        <h2>Map of counties: <em>(click on any card to view project details)</em></h2>
-        <div className='flex'>
-            <CountiesMap />
-            <CountiesList props={props} />
-        </div>
-      </section>
+    <>
+    <section className='page_section'>
+      <h2>County Projects</h2>
+      <p>Projects by county. Click on any card to view county details. Select <b>View projects</b> to see projects in that county.</p>
+    </section>
+    <CountyContext.Provider value={value}>
+      <div className='counties flex'>
+        <Map />
+        <CountiesList props={props} />
+      </div>
+      <Stats />
       <ProjectModal props={props} />
-    </AppContext.Provider>
+    </CountyContext.Provider>
+    </>
   )
 }
 

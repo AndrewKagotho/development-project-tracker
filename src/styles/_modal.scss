@@ -10,6 +10,21 @@
   top: 0;
 }
 
+.sideModal {
+  width: 0;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, .95);
+  border-left: 1px solid $primary;
+  transition: width $animation, visibility $animation, opacity $animation;
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  & > svg { margin: 15px; }
+}
+
 .modal__card {
   width: 70vw;
   margin: 100px 0 50px;
@@ -39,17 +54,6 @@
   align-items: center;
 
   span { font-size: $large_font; }
-
-  svg {
-    fill: $primary;
-    scale: .9;
-    transition: fill $animation;
-
-    &:hover {
-      fill: $primary_hover;
-      cursor: pointer;
-    }
-  }
 }
 
 .modal__card__top {
