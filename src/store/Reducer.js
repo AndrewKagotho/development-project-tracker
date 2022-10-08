@@ -26,7 +26,7 @@ export const appReducer = (state = initialState, action) => {
       }
     case 'RESET_PROJECT_DETAILS':
       return {...state,
-        projects: { projectID: [], name: [], description: [], department: [] }
+        projects: { projectID: [], name: [], description: [], status: [] }
       }
     case 'ADD_TIMELINE_DETAILS':
       return {...state,

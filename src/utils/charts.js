@@ -24,5 +24,5 @@ export const barOptions = {
   bar: { groupWidth: '30%' },
   chartArea: { left: '15%', width: '80%', height: '55%'},
   tooltip: { textStyle: {color: '#4281A9'}, isHtml: false },
-  vAxis: { format: 'short', gridlines: {color: '#CCC', count: 3} }
+  vAxis: { format: 'short', gridlines: {color: '#CCC', count: 4} }
 }

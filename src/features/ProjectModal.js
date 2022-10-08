@@ -14,18 +14,20 @@ const ProjectModal = ({props}) => {
   openModal(countyModalState, modalRef)
 
   const barData = [
-    ['Conty', 'Expenditure', 'Budget'],
-    [countyFocus.countyInFocus.name, 15000000, 11700000]
+    ['Conty', 'Estimated cost', 'Budget'],
+    [countyFocus.countyInFocus.name, parseInt(props.estimatedCost), parseInt(props.budget)]
   ]
 
   const projectList = props.projectID.map((item, index) => 
     <tr key={index}>
       <td><button onClick={() => projectDetailsPanelState.setProjectDetailsPanelStatus(true)}>View</button></td>
       <td>{index+1}. {props.projectName[index]}</td>
-      <td>{props.subCounty[index]}</td>
+      <td>{props.constituency[index]}</td>
+      <td>{props.status[index]}</td>
+      <td>{props.duration[index]}</td>
+      <td>{props.sector[index]}</td>
+      <td>{props.estimatedCost[index]}</td>
       <td>{props.financialYear[index]}</td>
-      <td>{props.budget[index]}</td>
-      <td>{props.ministry[index]}</td>
     </tr>
   )
 
@@ -54,11 +56,13 @@ const ProjectModal = ({props}) => {
             <thead>
               <tr>
                 <th></th>
-                <th>Project</th>
-                <th>Department</th>
-                <th>Location</th>
-                <th>Ward</th>
-                <th>Financial year</th>
+                <th>Project name</th>
+                <th>Constituency</th>
+                <th>Status</th>
+                <th>Duration</th>
+                <th>Sector</th>
+                <th>Est. cost</th>
+                <th>FIN year</th>
               </tr>
             </thead>
             <tbody>
@@ -68,7 +72,7 @@ const ProjectModal = ({props}) => {
         </div>
       </div>
     </div>
-    <ProjectDetailsPanel />
+    <ProjectDetailsPanel props={props} />
     </>
   )
 }
