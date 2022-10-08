@@ -9,19 +9,31 @@ export const initialState = {
     projectID: [],
     name: [],
     description: [],
-    department: []
-  },
-  implementation: {
-    budget: [],
-    financialYear: [],
-    fundsSource: [],
     status: []
   },
-  location: {
+  timelines: {
+    approvalDate: [],
+    startDate: [],
+    endDate: [],
+    duration: []
+  },
+  implementation: {
+    sector: [],
+    ministry: [],
+    agency: [],
+    contractor: [],
+    contacts: [],
+    priority: []
+  },
+  finances: {
+    estimatedCost: [],
+    budget: [],
+    financialYear: [],
+    fundingSource: []
+  },
+  locations: {
     subCounty: [],
-    ward: [],
-    subWard: [],
-    location: [],
-    subLocation: []
+    constituency: [],
+    ward: []
   }
 }

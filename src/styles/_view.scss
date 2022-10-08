@@ -1,5 +1,5 @@
 .page_section {
-  width: 55%;
+  width: 90%;
   margin: 50px 0;
   @include h_center_content;
   
@@ -16,7 +16,7 @@
   h2, & > p, & > span { text-align: center; }
 }
 
-.page_section_lg { width: 90%; }
+.page_section_sm { width: 55%; }
 
 .page_section__features {
   gap: $margin;
@@ -32,4 +32,11 @@
   gap: $margin;
   
   & > div { width: 100%; }
+}
+
+.about {
+  width: 50vw;
+  text-align: center;
+  @include center_content;
+  position: absolute;
 }

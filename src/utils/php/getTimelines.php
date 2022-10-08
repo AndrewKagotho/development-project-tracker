@@ -4,7 +4,7 @@
 
   require 'dbconn.php';
 
-  $sql = "SELECT * FROM `locations`";
+  $sql = "SELECT * FROM `timelines`";
 
   $result = mysqli_query($conn, $sql);
 

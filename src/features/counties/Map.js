@@ -4,8 +4,8 @@ import { fillCounty } from '../../utils/functions/map'
 import { dynamicFillCounty } from '../../utils/functions/map'
 
 const Map = () => {
-  // eslint-disable-next-line
-  const {countyFocus, countyModalState} = React.useContext(CountyContext)
+
+  const {countyFocus} = React.useContext(CountyContext)
   const countyRefs = React.useRef([])
 
   fillCounty(countyRefs, countyFocus.countyInFocus.number)

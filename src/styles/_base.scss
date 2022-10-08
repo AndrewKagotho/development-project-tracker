@@ -63,8 +63,12 @@ p {
   margin-bottom: 25px;
 }
 
+em {
+  font-weight: $bold_x1;
+  font-style: normal;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
-  // border: 1px solid red;
 }

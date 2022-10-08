@@ -4,7 +4,7 @@ import { AppContext } from '../App'
 
 const NavbarMain = () => {
   // eslint-disable-next-line
-  const {sideModal, setSideModalStatus} = React.useContext(AppContext)
+  const {loginPanel, setLoginPanelStatus} = React.useContext(AppContext)
 
   return (
     <div>
@@ -12,8 +12,9 @@ const NavbarMain = () => {
         <h1><Link to='/' className='brand'>County Development Project Tracker</Link></h1>
         <ul>
           <li><Link to='/counties'>Counties</Link></li>
-          <li><Link to='/stats'>Statistics</Link></li>
-          <li><button onClick={() => setSideModalStatus(true)}>Login</button></li>
+          <li><Link to='/updates'>Updates</Link></li>
+          <li><Link to='/about'>About</Link></li>
+          <li><button onClick={() => setLoginPanelStatus(true)}>Login</button></li>
         </ul>
       </nav>
       <Outlet />

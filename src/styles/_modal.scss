@@ -3,26 +3,11 @@
   height: 100vh;
   visibility: hidden;
   opacity: 0;
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, .75);
   transition: visibility $animation, opacity $animation;
   overflow-y: auto;
   position: fixed;
   top: 0;
-}
-
-.sideModal {
-  width: 0;
-  height: 100vh;
-  visibility: hidden;
-  opacity: 0;
-  background-color: rgba(255, 255, 255, .95);
-  border-left: 1px solid $primary;
-  transition: width $animation, visibility $animation, opacity $animation;
-  position: fixed;
-  top: 0;
-  right: 0;
-
-  & > svg { margin: 15px; }
 }
 
 .modal__card {
@@ -36,15 +21,10 @@
     color: $primary;
     margin: calc($margin/3) 0 calc($margin/2);
     text-indent: 15px;
-    // padding: 10px;
-    // border: 1px solid $primary;
-    // border-radius: $border_radius;
-
 
     em {
       font-size: $large_font_xl;
       font-weight: $bold_x1;
-      font-style: normal;
       color: $secondary;
     }
   }
@@ -64,29 +44,11 @@
 
   h3 { color: $secondary; }
 
-  // section {
-  //   padding: 10px;
-  //   border: 1px solid $primary;
-  //   border-radius: $border_radius;
-  // }
-
   span {
     display: block;
     margin-top: calc($margin/3);
     white-space: pre;  
   }
-}
-
-.pie_chart {
-  gap: $margin;
-
-  // & > * { @include border_red; }
-  
-  // section {
-  //   padding: 10px;
-  //   border: 1px solid $primary;
-  //   border-radius: $border_radius;
-  // }
 }
 
 .modal__card__bottom {
@@ -103,12 +65,25 @@
       color: $primary;
       text-align: left;
       padding: 10px 0;
-      // @include border_red;
     }
 
-    td {
-      // @include border_red;
-      padding: 10px 0;
-    }
+    td { padding: 10px 0; }
+
+    // th, td { @include border_red; }
   }
+}
+
+.sidePanel {
+  width: 0;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, .95);
+  border-left: 1px solid $primary;
+  transition: width $animation, visibility $animation, opacity $animation;
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  & > svg { margin: 15px; }
 }

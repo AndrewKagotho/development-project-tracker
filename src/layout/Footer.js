@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer>
-      <span>Copyright Andrew Kagotho</span>
+      <span>County Development Project Tracker, 2022</span>
     </footer>
   )
 }

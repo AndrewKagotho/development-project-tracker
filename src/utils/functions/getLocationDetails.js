@@ -11,10 +11,8 @@ export const getLocationDetails = (props) => {
     while(recordIndex < resArray.length) {
       props.addLocationDetails(
         resArray[recordIndex]['sub county'],
-        resArray[recordIndex].ward,
-        resArray[recordIndex]['sub ward'],
-        resArray[recordIndex].location,
-        resArray[recordIndex]['sub location']
+        resArray[recordIndex].constituency,
+        resArray[recordIndex].ward
       )
       recordIndex++
     }

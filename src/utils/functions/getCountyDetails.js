@@ -3,7 +3,7 @@ import axios from 'axios'
 let getCountiesScript = 'http://localhost/development-project-tracker/src/utils/php/getCounties.php'
 
 export const getCountyDetails = (props) => {
-  props.resetCountiesDetails()
+  props.resetCountyDetails()
   axios.get(getCountiesScript)
   .then((response) => {
     let resArray = response.data

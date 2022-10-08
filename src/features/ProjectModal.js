@@ -3,23 +3,15 @@ import { Chart } from 'react-google-charts'
 import { CountyContext } from '../views/CountiesView'
 import { openModal } from '../utils/functions/modal'
 import { closeModal } from '../utils/functions/modal'
-import { piechartOptions } from '../utils/charts'
 import { barOptions } from '../utils/charts'
+import ProjectDetailsPanel from './ProjectDetailsPanel'
 
 const ProjectModal = ({props}) => {
 
-  const {countyFocus, countyModalState} = React.useContext(CountyContext)
+  const {countyFocus, countyModalState, projectDetailsPanelState} = React.useContext(CountyContext)
   const modalRef = React.useRef()
 
   openModal(countyModalState, modalRef)
-
-  const piechartData = [
-    ["Projects", "..."],
-    ['Completed', 6],
-    ['Ongoing', 8],
-    ['Scheduled', 4],
-    ['Delayed', 3]
-  ]
 
   const barData = [
     ['Conty', 'Expenditure', 'Budget'],
@@ -28,14 +20,12 @@ const ProjectModal = ({props}) => {
 
   const projectList = props.projectID.map((item, index) => 
     <tr key={index}>
-      <td><button>View</button></td>
+      <td><button onClick={() => projectDetailsPanelState.setProjectDetailsPanelStatus(true)}>View</button></td>
       <td>{index+1}. {props.projectName[index]}</td>
-      <td>{props.department[index]}</td>
-      <td>{props.location[index]}</td>
-      <td>{props.ward[index]}</td>
+      <td>{props.subCounty[index]}</td>
       <td>{props.financialYear[index]}</td>
       <td>{props.budget[index]}</td>
-      <td>{props.status[index]}</td>
+      <td>{props.ministry[index]}</td>
     </tr>
   )
 
@@ -54,16 +44,10 @@ const ProjectModal = ({props}) => {
             <span>Governor:  {props.governor[countyFocus.countyInFocus.number]}</span>
             <span>Senator:  {props.senator[countyFocus.countyInFocus.number]}</span>
           </section>
-          <div className='pie_chart flex'>
-            <section>
-              <h3>Finances (in KES)</h3>
-              <Chart chartType='ColumnChart' data={barData} options={barOptions} />
-            </section>
-            <section>
-              <h3>Projects (by status)</h3>
-              <Chart chartType='PieChart' data={piechartData} options={piechartOptions} />
-            </section>
-          </div>
+          <section>
+            <h3>Finances (in KES)</h3>
+            <Chart chartType='ColumnChart' data={barData} options={barOptions} />
+          </section>
         </div>
         <div className='modal__card__bottom'>
           <table>
@@ -75,8 +59,6 @@ const ProjectModal = ({props}) => {
                 <th>Location</th>
                 <th>Ward</th>
                 <th>Financial year</th>
-                <th>Budget</th>
-                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -86,6 +68,7 @@ const ProjectModal = ({props}) => {
         </div>
       </div>
     </div>
+    <ProjectDetailsPanel />
     </>
   )
 }

@@ -4,7 +4,7 @@
 
   require 'dbconn.php';
 
-  $sql = "SELECT * FROM `locations`";
+  $sql = "SELECT * FROM `finances`";
 
   $result = mysqli_query($conn, $sql);
 

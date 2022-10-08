@@ -1,6 +1,6 @@
 const Stats = () => {
   return (
-    <section className='page_section page_section_lg'>
+    <section className='page_section'>
       <h2>National Statistics</h2>
       <p>A summary of the national project statistics:</p>
       <div className='page_section__stats flex'>

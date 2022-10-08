@@ -10,10 +10,12 @@ export const getImplementationDetails = (props) => {
     let recordIndex = 0
     while(recordIndex < resArray.length) {
       props.addImplementationDetails(
-        resArray[recordIndex].budget,
-        resArray[recordIndex]['financial year'],
-        resArray[recordIndex]['source of funds'],
-        resArray[recordIndex].status
+        resArray[recordIndex].sector,
+        resArray[recordIndex].ministry,
+        resArray[recordIndex]['implementing agency'],
+        resArray[recordIndex].contractor,
+        resArray[recordIndex].contacts,
+        resArray[recordIndex].priority
       )
       recordIndex++
     }

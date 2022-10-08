@@ -13,7 +13,7 @@ export const getProjectDetails = (props) => {
         resArray[recordIndex].projectID,
         resArray[recordIndex].name,
         resArray[recordIndex].description,
-        resArray[recordIndex].department
+        resArray[recordIndex].status
       )
       recordIndex++
     }

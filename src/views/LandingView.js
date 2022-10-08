@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../store/Action'
 import { getCountyDetails } from '../utils/functions/getCountyDetails'
 import { getProjectDetails } from '../utils/functions/getProjectDetails'
+import { getTimelineDetails } from '../utils/functions/getTimelineDetails'
 import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
+import { getFinanceDetails } from '../utils/functions/getFinanceDetails'
 import { getLocationDetails } from '../utils/functions/getLocationDetails'
 import LoginPanel from '../features/LoginPanel'
 import Footer from '../layout/Footer'
@@ -16,7 +18,9 @@ const Landing = (props) => {
   React.useEffect(() => {
     getCountyDetails(props)
     getProjectDetails(props)
+    getTimelineDetails(props)
     getImplementationDetails(props)
+    getFinanceDetails(props)
     getLocationDetails(props)
     // eslint-disable-next-line
   }, [])
@@ -45,7 +49,7 @@ const Landing = (props) => {
         <svg className='banner__next_icon' onClick={() => changeBanner(1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
         <svg className='banner__prev_icon' onClick={() => changeBanner(-1)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M16.62 2.99c-.49-.49-1.28-.49-1.77 0L6.54 11.3c-.39.39-.39 1.02 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76z"/></svg>
       </div>
-      <section className='page_section'>
+      <section className='page_section page_section_sm'>
         <h2>Explore the feature-packed online platform!</h2>
         <p>The CDPT is a tool that facilitates the logging of county projects - past, present and future - and tracks these projects for transparency and accountability. It seeks to address the static nature of most project tracking systems, offering itself as an easy-to-use platform that prioritizes public engagement and scrutiny.</p>
         <span>Features included:</span>
@@ -56,7 +60,7 @@ const Landing = (props) => {
           <span className='card card_sm'>Active updates</span>
         </div>
       </section>
-      <section className='page_section'>
+      <section className='page_section page_section_sm'>
         <h2>United Nations Sustainable Development Goals</h2>
         <p>The CPDT seeks to contribute to the 17 outlined global goals through SDGs 10 & 11, in the achievement of peace and prosperity for the people and the planet. For more information, follow the links provided.</p>
         <div className='sdg__cards flex'>

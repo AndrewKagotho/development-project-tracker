@@ -4,7 +4,7 @@ export const piechartOptions = {
   fontName: 'Source Sans Pro',
   fontSize: 9,
   legend: { position: 'labeled', textStyle: { fontSize: 12, color: '#555' } },
-  colors: ['#4281A9', '#669FC3', '#91bAD4', '#BDD6E5'],
+  colors: ['#4281A9', '#669FC3', '#91BAD4', '#BDD6E5'],
   backgroundColor: 'none',
   pieSliceText: 'label',
   is3D: true,

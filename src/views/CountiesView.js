@@ -5,6 +5,7 @@ import Map from '../features/counties/Map'
 import CountiesList from '../features/counties/CountiesList'
 import Stats from '../features/counties/Stats'
 import ProjectModal from '../features/ProjectModal'
+import Footer from '../layout/Footer'
 
 export const CountyContext = React.createContext()
 
@@ -16,22 +17,26 @@ const CountiesView = (props) => {
   const [openCountyModal, setCountyModalState] = React.useState(false)
   const countyModalState = {openCountyModal, setCountyModalState}
 
-  const value = {countyFocus, countyModalState}
+  const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
+  const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
+
+  const value = {countyFocus, countyModalState, projectDetailsPanelState}
 
   return (
     <>
-    <section className='page_section'>
-      <h2>County Projects</h2>
-      <p>Projects by county. Click on any card to view county details. Select <b>View projects</b> to see projects in that county.</p>
-    </section>
-    <CountyContext.Provider value={value}>
-      <div className='counties flex'>
-        <Map />
-        <CountiesList props={props} />
-      </div>
-      <Stats />
-      <ProjectModal props={props} />
-    </CountyContext.Provider>
+      <section className='page_section'>
+        <h2>County Projects</h2>
+        <p>Projects by county. Click on any card to view project summaries  in that county, and <em>[View projects]</em> to see all tracked projects.</p>
+      </section>
+      <CountyContext.Provider value={value}>
+        <div className='counties flex'>
+          <Map />
+          <CountiesList props={props} />
+        </div>
+        <Stats />
+        <ProjectModal props={props} />
+      </CountyContext.Provider>
+      <Footer />
     </>
   )
 }
@@ -42,19 +47,32 @@ const mapStateToProps = (state) => {
     countyName: state.counties.name,
     governor: state.counties.governor,
     senator: state.counties.senator,
+    
     projectID: state.projects.projectID,
     projectName: state.projects.name,
     description: state.projects.description,
-    department: state.projects.department,
-    budget: state.implementation.budget,
-    financialYear: state.implementation.financialYear,
-    fundsSource: state.implementation.fundsSource,
-    status: state.implementation.status,
-    subCounty: state.location.subCounty,
-    ward: state.location.ward,
-    subWard: state.location.subWard,
-    location: state.location.location,
-    subLocation: state.location.subLocation
+    status: state.projects.status,
+
+    approvalDate: state.timelines.approvalDate,
+    startDate: state.timelines.startDate,
+    endDate: state.timelines.endDate,
+    duration: state.timelines.duration,
+
+    sector: state.implementation.sector,
+    ministry: state.implementation.ministry,
+    agency: state.implementation.agency,
+    contractor: state.implementation.contractor,
+    contacts: state.implementation.contacts,
+    priority: state.implementation.priority,
+
+    estimatedCost: state.finances.estimatedCost,
+    budget: state.finances.budget,
+    financialYear: state.finances.financialYear,
+    fundingSource: state.finances.fundingSource,
+
+    subCounty: state.locations.subCounty,
+    constituency: state.locations.constituency,
+    ward: state.locations.ward
   }
 }
 
