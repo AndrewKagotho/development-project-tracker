@@ -96,15 +96,13 @@ button {
 }
 
 .form_container {
-  width: 75%;
+  width: 70%;
   padding: 20px;
   padding-bottom: 25px;
   border: 1px solid $primary;
   border-radius: $border_radius;
+  @include center_content;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
 }
 
 form {
@@ -136,6 +134,8 @@ form {
   fill: $primary;
   scale: .9;
   transition: fill $animation;
+  border-radius: 50%;
+  background-color: transparent;
 
   &:hover {
     fill: $primary_hover;

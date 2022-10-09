@@ -1,0 +1,85 @@
+.sidePanel {
+  width: 0;
+  height: calc(100vh - $card_padding * 2);
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, .95);
+  border-left: 1px solid $primary;
+  overflow-y: auto;
+  z-index: 3;
+  padding: $card_padding;
+  transition: width $animation, visibility $animation, opacity $animation;
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  h3 {
+    margin-bottom: 10px;
+    font-weight: $bold_light;
+    grid-column: 1/3;
+  }
+}
+
+.sidePanel::-webkit-scrollbar { width: 0; }
+
+.sidePanel__info {
+  width: 100%;
+  margin-top: 10px;
+  flex-direction: column;
+  gap: calc($margin/3);
+  @include h_center_content;
+}
+
+.sidePanel__info__grid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+
+  & > * {
+    padding: 5px 0;
+    // @include border_red;
+  }
+
+  & > span { margin-left: 10px; }
+}
+
+.admin_view {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  menu, & > div {
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+  }
+  
+  menu {
+    width: 15%;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid $primary;
+  
+    h3 {
+      margin: 20px 0 10px 10px;
+      font-weight: $bold_default;
+      grid-column: 1/3;
+    }
+  
+    button {
+      width: 100%;
+      font-size: 1rem;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border: none;
+      border-radius: 0;
+      text-align: left;
+    }
+  }
+
+  & > div {
+    width: 85%;
+    right: 0;
+  }
+
+  h2 { text-align: left; }
+}

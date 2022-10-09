@@ -51,8 +51,8 @@ const ProjectModal = ({props}) => {
             <Chart chartType='ColumnChart' data={barData} options={barOptions} />
           </section>
         </div>
-        <div className='modal__card__bottom'>
-          <table>
+        <div className='table_container'>
+          <table className='table_wd'>
             <thead>
               <tr>
                 <th></th>

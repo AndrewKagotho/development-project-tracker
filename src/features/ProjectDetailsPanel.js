@@ -14,9 +14,9 @@ const ProjectDetailsPanel = ({props}) => {
     <div className='sidePanel' ref={projectDetailsPanelRef}>
       <svg className='close_modal_svg' onClick={() => closeLoginPanel(projectDetailsPanelRef, projectDetailsPanelState.setProjectDetailsPanelStatus)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000"><path d="M0 0h24v24H0V0z" fill="#FFF"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
       <div className='sidePanel__info flex'>
-        <aside className='card card_sm'>
+        <aside>
           <h3>Project details</h3>
-          <div className='aside_grid'>
+          <div className='sidePanel__info__grid'>
             <span>Project ID:</span>
             <span>{props.projectID[1]}</span>
             <span>Name:</span>
@@ -27,9 +27,9 @@ const ProjectDetailsPanel = ({props}) => {
             <span>{props.status[1]}</span>
           </div>
         </aside>
-        <aside className='card card_sm'>
+        <aside>
           <h3>Timelines</h3>
-          <div className='aside_grid'>
+          <div className='sidePanel__info__grid'>
             <span>Approval date:</span>
             <span>{props.approvalDate[1]}</span>
             <span>Start date:</span>
@@ -40,9 +40,9 @@ const ProjectDetailsPanel = ({props}) => {
             <span>{props.duration[1]}</span>
           </div>
         </aside>
-        <aside className='card card_sm'>
+        <aside>
           <h3>Implementation</h3>
-          <div className='aside_grid'>
+          <div className='sidePanel__info__grid'>
             <span>Sector:</span>
             <span>{props.sector[1]}</span>
             <span>Ministry:</span>
@@ -55,6 +55,32 @@ const ProjectDetailsPanel = ({props}) => {
             <span>{props.contacts[1]}</span>
             <span>Priority:</span>
             <span>{props.priority[1]}</span>
+          </div>
+        </aside>
+        <aside>
+          <h3>Financials</h3>
+          <div className='sidePanel__info__grid'>
+            <span>Estimated cost:</span>
+            <span>{props.estimatedCost[1]}</span>
+            <span>Budget:</span>
+            <span>{props.budget[1]}</span>
+            <span>Financial year:</span>
+            <span>{props.financialYear[1]}</span>
+            <span>Source of funding:</span>
+            <span>{props.fundingSource[1]}</span>
+          </div>
+        </aside>
+        <aside>
+          <h3>Location</h3>
+          <div className='sidePanel__info__grid'>
+          <span>County:</span>
+            <span>{props.countyName[1]}</span>
+            <span>Sub-county:</span>
+            <span>{props.subCounty[1]}</span>
+            <span>Constituency:</span>
+            <span>{props.constituency[1]}</span>
+            <span>Ward:</span>
+            <span>{props.ward[1]}</span>
           </div>
         </aside>
       </div>

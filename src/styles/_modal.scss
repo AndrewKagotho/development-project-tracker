@@ -4,8 +4,9 @@
   visibility: hidden;
   opacity: 0;
   background-color: rgba(255, 255, 255, .75);
-  transition: visibility $animation, opacity $animation;
   overflow-y: auto;
+  z-index: 2;
+  transition: visibility $animation, opacity $animation;
   position: fixed;
   top: 0;
 }
@@ -48,71 +49,5 @@
     display: block;
     margin-top: calc($margin/3);
     white-space: pre;  
-  }
-}
-
-.modal__card__bottom {
-  border: 1px solid $primary;
-  border-radius: $border_radius;
-
-  table {
-    width: 100%;
-    padding: 0 10px;
-
-    th {
-      font-size: $mid_font;
-      font-weight: $bold_default;
-      color: $primary;
-      text-align: left;
-      padding: 10px 0;
-    }
-
-    td { padding: 10px 0; }
-
-    // th, td { @include border_red; }
-  }
-}
-
-.sidePanel {
-  width: 0;
-  height: 100vh;
-  visibility: hidden;
-  opacity: 0;
-  background-color: rgba(255, 255, 255, .95);
-  border-left: 1px solid $primary;
-  transition: width $animation, visibility $animation, opacity $animation;
-  position: fixed;
-  top: 0;
-  right: 0;
-
-  & > svg { margin: 15px; }
-
-  h3 {
-    margin-bottom: 15px;
-    font-weight: $bold_light;
-    grid-column: 1/3;
-  }
-}
-
-.sidePanel__info {
-  width: 80%;
-  flex-direction: column;
-  gap: calc($margin/2);
-  overflow-y: auto;
-  @include h_center_content;
-  // z-index: 5;
-  // translate: -55% 0;
-
-  aside { width: 100%; }
-}
-
-.aside_grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40% 60%;
-
-  & > * {
-    padding: 5px 0;
-    // @include border_red;
   }
 }
