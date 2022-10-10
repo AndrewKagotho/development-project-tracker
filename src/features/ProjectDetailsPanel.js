@@ -22,7 +22,7 @@ const ProjectDetailsPanel = ({props}) => {
             <span>Name:</span>
             <span>{props.projectName[1]}</span>
             <span>Description:</span>
-            <span>{props.description[1]}</span>
+            <span>{props.description[0]}</span>
             <span>Status:</span>
             <span>{props.status[1]}</span>
           </div>

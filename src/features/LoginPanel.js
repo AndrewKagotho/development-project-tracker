@@ -33,13 +33,3 @@ const LoginPanel = () => {
 }
 
 export default LoginPanel
-
-// const handleSubmit = (e) => {
-//   axios.post(loginScript, formData)
-//   .then((response) => {
-//     if(response.data !== 'Access granted!') 
-//       alert(response.data)
-//   })
-
-//   e.preventDefault()
-// }

@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #669FC3;
 }
@@ -23,7 +23,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
   color: #669FC3;
@@ -40,26 +40,85 @@ em {
 }
 
 .table_container {
+  max-height: 385px;
+  overflow-y: auto;
   border: 1px solid #669FC3;
   border-radius: 5px;
+  padding-bottom: 7px;
+}
+
+.table_container::-webkit-scrollbar {
+  width: 0;
+}
+
+.table_container_sm {
+  display: inline-block;
 }
 
 table {
+  width: 100%;
   padding: 0 10px;
+  border-collapse: collapse;
 }
 table th {
   font-size: 1.2rem;
   font-weight: 400;
   color: #669FC3;
   text-align: left;
-  padding: 10px 0;
+}
+table th, table td {
+  padding: 5px 15px;
 }
 table td {
-  padding: 10px 0;
+  vertical-align: top;
+}
+table td:last-child {
+  padding-left: 0;
+  position: relative;
+}
+table tr {
+  transition: background-color 0.1s linear;
+}
+table tbody tr:hover {
+  background-color: #F6F6F6 !important;
+}
+table tbody tr:hover .td_more_options_svg {
+  opacity: 1 !important;
 }
 
-.table_wd {
-  width: 100%;
+.td_more_options_svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  fill: #CCC;
+  transition: opacity 0.1s linear, fill 0.1s linear;
+  border-radius: 50%;
+  background-color: transparent;
+}
+.td_more_options_svg:hover {
+  fill: #669FC3 !important;
+  cursor: pointer;
+}
+
+.td_more_options {
+  visibility: hidden;
+  opacity: 0;
+  padding: 5px 0;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #669FC3;
+  background-color: #FFF;
+  transition: visibility 0.1s linear, opacity 0.1s linear;
+  position: absolute;
+  top: -30px;
+  left: -80px;
+  z-index: 3;
+}
+.td_more_options button {
+  border-radius: 0;
+  border: none;
+  text-align: left;
 }
 
 .flex {
@@ -76,6 +135,7 @@ table td {
 }
 
 nav {
+  height: 75px;
   align-items: center;
   padding: 0px 50px;
 }
@@ -95,6 +155,7 @@ nav button {
 
 .secondary_nav {
   border-bottom: 1px solid #669FC3;
+  box-sizing: border-box;
 }
 
 footer {
@@ -212,6 +273,11 @@ button {
   border: 1px solid #669FC3;
 }
 
+input {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 0.9rem;
+}
+
 .form_container {
   width: 70%;
   padding: 20px;
@@ -225,23 +291,20 @@ button {
   position: absolute;
 }
 
-form {
-  display: grid;
-  grid-template-columns: 35% 65%;
-  grid-auto-rows: 30px;
-  grid-row-gap: 15px;
-  align-items: center;
+form > div {
+  margin-bottom: 15px;
 }
 form input {
-  width: 75%;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #669FC3;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #669FC3;
 }
 form input:focus {
   outline: none;
 }
 form button {
+  width: 100%;
+  font-size: 0.9rem;
   grid-column: 1/3;
   padding: 7px 0;
   margin-top: 10px;
@@ -400,7 +463,7 @@ form button {
   margin: 35px 0;
 }
 .counties h2 em {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-style: normal;
 }
 
@@ -493,7 +556,7 @@ form button {
   align-items: center;
 }
 .modal__card__header span {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .modal__card__top {
@@ -513,7 +576,7 @@ form button {
   height: calc(100vh - 60px);
   visibility: hidden;
   opacity: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.99);
   border-left: 1px solid #669FC3;
   overflow-y: auto;
   z-index: 3;
@@ -548,7 +611,9 @@ form button {
   grid-template-columns: 40% 60%;
 }
 .sidePanel__info__grid > * {
-  padding: 5px 0;
+  padding: 3px;
+  margin: 3px 0;
+  box-sizing: border-box;
 }
 .sidePanel__info__grid > span {
   margin-left: 10px;
@@ -556,19 +621,24 @@ form button {
 
 .admin_view {
   width: 100%;
-  height: 100vh;
-  position: relative;
+  height: 100%;
 }
 .admin_view menu, .admin_view > div {
-  height: 100%;
+  height: calc(100% - 75px);
   box-sizing: border-box;
   position: absolute;
 }
 .admin_view menu {
   width: 15%;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
   border-right: 1px solid #669FC3;
+}
+.admin_view menu > section:nth-child(3) {
+  margin-top: 0;
+  margin-bottom: auto;
 }
 .admin_view menu h3 {
   margin: 20px 0 10px 10px;
@@ -584,10 +654,14 @@ form button {
   border-radius: 0;
   text-align: left;
 }
+.admin_view menu > button:last-child {
+  padding-top: 12px;
+  padding-bottom: 20px;
+}
 .admin_view > div {
   width: 85%;
   right: 0;
 }
-.admin_view h2 {
+.admin_view h2, .admin_view p {
   text-align: left;
 }/*# sourceMappingURL=main.css.map */

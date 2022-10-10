@@ -7,7 +7,10 @@ import { getTimelineDetails } from '../utils/functions/getTimelineDetails'
 import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
 import { getFinanceDetails } from '../utils/functions/getFinanceDetails'
 import { getLocationDetails } from '../utils/functions/getLocationDetails'
-import Table from '../features/admin/Table'
+import AdminTable from '../features/admin/AdminTable'
+import ProjectInfoPanel from '../features/admin/ProjectInfoPanel'
+
+export const DashboardContext = React.createContext()
 
 const Dashboard = (props) => {
 
@@ -21,24 +24,45 @@ const Dashboard = (props) => {
     // eslint-disable-next-line
   }, [])
 
-  const [tableInFocus, setTableInFocus] = React.useState('')
-  const value = {tableInFocus, setTableInFocus}
+  const [tableInFocus, setTableInFocus] = React.useState('Counties')
+  const tableFocus = {tableInFocus, setTableInFocus}
 
+  const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
+  const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
+
+  const value = {tableFocus, projectDetailsPanelState}
+
+  
   return (
+    <>
     <div className='admin_view'>
-      <menu>
-        <h3>Tables</h3>
-        <button onClick={() => setTableInFocus('Counties')}>Counties</button>
-        <button onClick={() => setTableInFocus('Projects')}>Projects</button>
-        <button onClick={() => setTableInFocus('Timelines')}>Timelines</button>
-        <button onClick={() => setTableInFocus('Implementation')}>Implementation</button>
-        <button onClick={() => setTableInFocus('Financials')}>Financials</button>
-        <button onClick={() => setTableInFocus('Location')}>Location</button>
+      <menu className='flex'>
+        <section>
+          <h3>County data</h3>
+          <button onClick={() => setTableInFocus('Counties')}>Counties</button>
+        </section>
+        <section>
+          <h3>Project data</h3>
+          <button onClick={() => setTableInFocus('Projects')}>Projects</button>
+          <button onClick={() => setTableInFocus('Timelines')}>Timelines</button>
+          <button onClick={() => setTableInFocus('Implementation')}>Implementation</button>
+          <button onClick={() => setTableInFocus('Financials')}>Financials</button>
+          <button onClick={() => setTableInFocus('Location')}>Location</button>
+        </section>
+        <section>
+          <h3>Admin data</h3>
+          <button>Administrators</button>
+        </section>
+        <button onClick={() => setProjectDetailsPanelStatus(true)}>New project</button>
       </menu>
       <div>
-        <Table props={props} value={value} />
+        <DashboardContext.Provider value={value}>
+          <AdminTable props={props} />
+          <ProjectInfoPanel props={props} />
+        </DashboardContext.Provider>
       </div>
     </div>
+    </>
   )
 }
 

@@ -69,28 +69,88 @@ em {
 }
 
 .table_container {
-  min-width: 50%;
+  max-height: 385px;
+  overflow-y: auto;
   border: 1px solid $primary;
   border-radius: $border_radius;
+  padding-bottom: 7px;
 }
 
+.table_container::-webkit-scrollbar { width: 0; }
+
+.table_container_sm { display: inline-block; }
+
 table {
+  width: 100%;
   padding: 0 10px;
+  border-collapse: collapse;
 
   th {
     font-size: $mid_font;
     font-weight: $bold_default;
     color: $primary;
     text-align: left;
-    padding: 10px 0;
+  }
+  
+  th, td {
+    padding: 5px calc($margin/2);
+    // @include border_red;
   }
 
-  td { padding: 10px 0; }
+  td { vertical-align: top; }
 
-  th, td { @include border_red; }
+  td:last-child {
+    padding-left: 0;
+    position: relative;
+  }
+
+  tr { transition: background-color $animation; }
+
+  tbody {
+    tr:hover {
+      background-color: $secondary_hover !important;
+
+      .td_more_options_svg { opacity: 1 !important; }
+    }
+  }
 }
 
-.table_wd { width: 100%; }
+.td_more_options_svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  fill: $light_grey;
+  transition: opacity $animation, fill $animation;
+  border-radius: 50%;
+  background-color: transparent;
+
+  &:hover {
+    fill: $primary !important;
+    cursor: pointer;
+  }
+}
+
+.td_more_options {
+  visibility: hidden;
+  opacity: 0;
+  padding: 5px 0;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: $border_radius;
+  border: 1px solid $primary;
+  background-color: $neutral;
+  transition: visibility $animation, opacity $animation;
+  position: absolute;
+  top: -30px;
+  left: -80px;
+  z-index: 3;
+
+  button {
+    border-radius: 0;
+    border: none;
+    text-align: left;
+  }
+}
 
 .flex {
   display: flex;

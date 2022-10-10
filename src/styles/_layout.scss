@@ -8,6 +8,7 @@
 }
 
 nav {
+  height: 75px;
   align-items: center;
   padding: 0px 50px;
 
@@ -28,7 +29,10 @@ nav {
   }
 }
 
-.secondary_nav { border-bottom: 1px solid $primary; }
+.secondary_nav {
+  border-bottom: 1px solid $primary;
+  box-sizing: border-box;
+}
 
 footer {
   height: 85px;
