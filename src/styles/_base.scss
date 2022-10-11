@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
+// Mixins
 @mixin h_center_content {
   position: relative;
   left: 50%;
@@ -28,6 +29,7 @@
   cursor: pointer;
 }
 
+// Tags
 html {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
@@ -68,90 +70,21 @@ em {
   font-style: normal;
 }
 
-.table_container {
-  max-height: 385px;
-  overflow-y: auto;
-  border: 1px solid $primary;
-  border-radius: $border_radius;
-  padding-bottom: 7px;
-}
-
-.table_container::-webkit-scrollbar { width: 0; }
-
-.table_container_sm { display: inline-block; }
-
-table {
-  width: 100%;
-  padding: 0 10px;
-  border-collapse: collapse;
-
-  th {
-    font-size: $mid_font;
-    font-weight: $bold_default;
-    color: $primary;
-    text-align: left;
-  }
-  
-  th, td {
-    padding: 5px calc($margin/2);
-    // @include border_red;
-  }
-
-  td { vertical-align: top; }
-
-  td:last-child {
-    padding-left: 0;
-    position: relative;
-  }
-
-  tr { transition: background-color $animation; }
-
-  tbody {
-    tr:hover {
-      background-color: $secondary_hover !important;
-
-      .td_more_options_svg { opacity: 1 !important; }
-    }
-  }
-}
-
-.td_more_options_svg {
-  width: 20px;
-  height: 20px;
-  opacity: 0;
-  fill: $light_grey;
-  transition: opacity $animation, fill $animation;
+// Icons
+.close_modal_svg {
+  fill: $primary;
+  scale: .9;
+  transition: fill $animation;
   border-radius: 50%;
   background-color: transparent;
 
   &:hover {
-    fill: $primary !important;
+    fill: $primary_hover;
     cursor: pointer;
   }
 }
 
-.td_more_options {
-  visibility: hidden;
-  opacity: 0;
-  padding: 5px 0;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: $border_radius;
-  border: 1px solid $primary;
-  background-color: $neutral;
-  transition: visibility $animation, opacity $animation;
-  position: absolute;
-  top: -30px;
-  left: -80px;
-  z-index: 3;
-
-  button {
-    border-radius: 0;
-    border: none;
-    text-align: left;
-  }
-}
-
+// Other
 .flex {
   display: flex;
   justify-content: space-between;

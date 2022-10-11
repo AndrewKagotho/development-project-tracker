@@ -40,3 +40,23 @@
   @include center_content;
   position: absolute;
 }
+
+.admin_view {
+  width: 100%;
+  height: 100%;
+
+  menu, & > div {
+    height: calc(100% - 75px);
+    box-sizing: border-box;
+    position: absolute;
+  }
+  
+  & > div {
+    width: 85%;
+    right: 0;
+  }
+
+  h2, p { text-align: left; }
+}
+
+  

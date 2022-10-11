@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NavbarMain from './layout/NavbarMain'
-import Navbar from './layout/Navbar'
+import PublicNavbarLanding from './layout/public/NavbarLanding'
+import PublicNavbar from './layout/public/Navbar'
 import AdminNavbar from './layout/admin/Navbar'
-import LandingView from './views/LandingView'
-import CountiesView from './views/CountiesView'
-import UpdatesView from './views/UpdatesView'
-import AboutView from './views/AboutView'
-import Dashboard from './views/Dashboard'
+import Landing from './views/public/Landing'
+import Counties from './views/public/Counties'
+import Updates from './views/public/Updates'
+import About from './views/public/About'
+import Dashboard from './views/admin/Dashboard'
 import './styles/main.css'
 
 export const AppContext = React.createContext()
@@ -21,13 +21,13 @@ function App() {
     <AppContext.Provider value={value} >
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<NavbarMain />}>
-            <Route index element={<LandingView />} />
+          <Route path='/' element={<PublicNavbarLanding />}>
+            <Route index element={<Landing />} />
           </Route>
-          <Route path='/' element={<Navbar />}>
-            <Route path='/counties' element={<CountiesView />} />
-            <Route path='/updates' element={<UpdatesView />} />
-            <Route path='/about' element={<AboutView />} />
+          <Route path='/' element={<PublicNavbar />}>
+            <Route path='/counties' element={<Counties />} />
+            <Route path='/updates' element={<Updates />} />
+            <Route path='/about' element={<About />} />
           </Route>
           <Route path='/admin' element={<AdminNavbar />}>
             <Route index element={<Dashboard />} />

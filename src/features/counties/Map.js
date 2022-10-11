@@ -1,5 +1,5 @@
 import React from 'react'
-import { CountyContext } from '../../views/CountiesView'
+import { CountyContext } from '../../views/public/Counties'
 import { fillCounty } from '../../utils/functions/map'
 import { dynamicFillCounty } from '../../utils/functions/map'
 

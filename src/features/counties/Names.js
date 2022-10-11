@@ -1,9 +1,9 @@
 import React from 'react'
-import { CountyContext } from '../../views/CountiesView'
+import { CountyContext } from '../../views/public/Counties'
 
 let prevCards = [0,0]
 
-const CountiesList = ({props}) => {
+const Names = ({props}) => {
 
   const {countyFocus, countyModalState} = React.useContext(CountyContext)
   const listHeaderNameRef = React.useRef([])
@@ -59,4 +59,4 @@ const CountiesList = ({props}) => {
   return <ul className='counties_list'>{countyList}</ul>
 }
 
-export default CountiesList
+export default Names

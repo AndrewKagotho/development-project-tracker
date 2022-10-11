@@ -1,12 +1,12 @@
 import React from 'react'
 import { Chart } from 'react-google-charts'
-import { CountyContext } from '../views/CountiesView'
-import { openModal } from '../utils/functions/modal'
-import { closeModal } from '../utils/functions/modal'
-import { barOptions } from '../utils/charts'
-import ProjectDetailsPanel from './ProjectDetailsPanel'
+import { CountyContext } from '../../views/public/Counties'
+import { openModal } from '../../utils/functions/modal'
+import { closeModal } from '../../utils/functions/modal'
+import { barOptions } from '../../utils/charts'
+import ProjectDetailsPanel from '../../layout/public/ProjectDetailsPanel'
 
-const ProjectModal = ({props}) => {
+const Modal = ({props}) => {
 
   const {countyFocus, countyModalState, projectDetailsPanelState} = React.useContext(CountyContext)
   const modalRef = React.useRef()
@@ -77,4 +77,4 @@ const ProjectModal = ({props}) => {
   )
 }
 
-export default ProjectModal
+export default Modal

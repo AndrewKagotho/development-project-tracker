@@ -1,5 +1,5 @@
 import React from 'react'
-import { DashboardContext } from '../../views/Dashboard'
+import { DashboardContext } from '../../views/admin/Dashboard'
 import { dynamicShowMoreOptions } from '../../utils/functions/map'
 import { dynamicShowMoreOptionsSVG } from '../../utils/functions/map'
 

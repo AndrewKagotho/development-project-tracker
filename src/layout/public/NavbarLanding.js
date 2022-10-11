@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import { AppContext } from '../App'
+import { AppContext } from '../../App'
 
-const NavbarMain = () => {
-  // eslint-disable-next-line
-  const {loginPanel, setLoginPanelStatus} = React.useContext(AppContext)
+const NavbarLanding = () => {
+  
+  const {setLoginPanelStatus} = React.useContext(AppContext)
 
   return (
     <div>
@@ -22,4 +22,4 @@ const NavbarMain = () => {
   )
 }
 
-export default NavbarMain
+export default NavbarLanding

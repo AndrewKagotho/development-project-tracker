@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { mapDispatchToProps } from '../store/Action'
-import Map from '../features/counties/Map'
-import CountiesList from '../features/counties/CountiesList'
-import Stats from '../features/counties/Stats'
-import ProjectModal from '../features/ProjectModal'
-import Footer from '../layout/Footer'
+import { mapDispatchToProps } from '../../store/Action'
+import Map from '../../features/counties/Map'
+import CountiesList from '../../features/counties/Names'
+import Stats from '../../features/counties/Stats'
+import Modal from '../../features/counties/Modal'
+import Footer from '../../layout/Footer'
 
 export const CountyContext = React.createContext()
 
-const CountiesView = (props) => {
+const Counties = (props) => {
 
   const [countyInFocus, setCountyInFocus] = React.useState({ name: '', number: 0 })
   const countyFocus = {countyInFocus, setCountyInFocus}
@@ -34,7 +34,7 @@ const CountiesView = (props) => {
           <CountiesList props={props} />
         </div>
         <Stats />
-        <ProjectModal props={props} />
+        <Modal props={props} />
       </CountyContext.Provider>
       <Footer />
     </>
@@ -76,4 +76,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountiesView)
+export default connect(mapStateToProps, mapDispatchToProps)(Counties)

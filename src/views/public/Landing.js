@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { mapDispatchToProps } from '../store/Action'
-import { getCountyDetails } from '../utils/functions/getCountyDetails'
-import { getProjectDetails } from '../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../utils/functions/getLocationDetails'
-import LoginPanel from '../features/LoginPanel'
-import Footer from '../layout/Footer'
+import { mapDispatchToProps } from '../../store/Action'
+import { getCountyDetails } from '../../utils/functions/getCountyDetails'
+import { getProjectDetails } from '../../utils/functions/getProjectDetails'
+import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
+import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
+import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
+import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import LoginPanel from '../../layout/public/LoginPanel'
+import Footer from '../../layout/Footer'
 
 const bannerArray = ['http://127.0.0.1:8887/banner.jpg', 'http://127.0.0.1:8887/image3.jpeg']
 let imageOnDisplay = 0

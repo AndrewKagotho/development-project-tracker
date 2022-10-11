@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { mapDispatchToProps } from '../store/Action'
-import { getCountyDetails } from '../utils/functions/getCountyDetails'
-import { getProjectDetails } from '../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../utils/functions/getLocationDetails'
-import AdminTable from '../features/admin/AdminTable'
-import ProjectInfoPanel from '../features/admin/ProjectInfoPanel'
+import { mapDispatchToProps } from '../../store/Action'
+import { getCountyDetails } from '../../utils/functions/getCountyDetails'
+import { getProjectDetails } from '../../utils/functions/getProjectDetails'
+import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
+import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
+import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
+import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import AdminTable from '../../features/admin/AdminTable'
+import ProjectDetailsPanel from '../../layout/admin/ProjectDetailsPanel'
 
 export const DashboardContext = React.createContext()
 
@@ -58,7 +58,7 @@ const Dashboard = (props) => {
       <div>
         <DashboardContext.Provider value={value}>
           <AdminTable props={props} />
-          <ProjectInfoPanel props={props} />
+          <ProjectDetailsPanel props={props} />
         </DashboardContext.Provider>
       </div>
     </div>
