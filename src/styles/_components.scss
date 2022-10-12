@@ -97,18 +97,22 @@ a, button {
 
 .card_button { &:hover { width: 100%; } }
 
-input {
+input, select, option {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: .9rem;
 }
 
 // Forms
 form {
-  input {
+  input, select {
     border-radius: $border_radius;
     border: 1px solid $primary;
+    transition: box-shadow $animation;
 
-    &:focus { outline: none; }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px $primary_hover;
+    }
   }
   
   button {

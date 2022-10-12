@@ -1,12 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 import { DashboardContext } from '../../views/admin/Dashboard'
+import { projectTemplate } from '../../views/admin/Dashboard'
 import { openLoginPanel } from '../../utils/functions/panels'
 import { closeLoginPanel } from '../../utils/functions/panels'
 
 let addProjectScript = 'http://localhost/development-project-tracker/src/utils/php/addProject.php'
 
-const ProjectDetailsPanel = ({props}) => {
+const ProjectDetailsPanel = () => {
 
   const {projectDetailsPanelState} = React.useContext(DashboardContext)
   const [projectData, setProjectData] = React.useState(projectTemplate)
@@ -33,23 +34,29 @@ const ProjectDetailsPanel = ({props}) => {
           <h3>Project details</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='projectID'>Project ID:</label>
-            <input type='text' id='projectID' name='projectID' onChange={handleChange} />
+            <input type='text' id='projectID' name='projectID' onChange={handleChange} required autoComplete='off' />
             <label htmlFor='name'>Name:</label>
-            <input type='text' id='name' name='name' onChange={handleChange} />
+            <input type='text' id='name' name='name' onChange={handleChange} required />
             <label htmlFor='description'>Description:</label>
             <input type='text' id='description' name='description' onChange={handleChange} />
             <label htmlFor='status'>Status:</label>
-            <input type='text' id='status' name='status' onChange={handleChange} />
+            <select id='status' name='status' onChange={handleChange} >
+              <option>Completed</option>
+              <option>In progress</option>
+              <option>Not started</option>
+              <option>Approved</option>
+              <option>Delayed</option>
+            </select>
           </div>
           <h3>Timelines</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='approvalDate'>Approval date:</label>
-            <input type='text' id='approvalDate' name='approvalDate' onChange={handleChange} />
+            <input type='text' id='approvalDate' name='approvalDate' placeholder='YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='startDate'>Start date:</label>
-            <input type='text' id='startDate' name='startDate' onChange={handleChange} />
+            <input type='text' id='startDate' name='startDate' placeholder='YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='endDate'>End date:</label>
-            <input type='text' id='endDate' name='endDate' onChange={handleChange} />
-            <label htmlFor='duration'>Duration:</label>
+            <input type='text' id='endDate' name='endDate' placeholder='YYYY-MM-DD' onChange={handleChange} />
+            <label htmlFor='duration'>Duration (months):</label>
             <input type='text' id='duration' name='duration' onChange={handleChange} />
           </div>
           <h3>Implementation</h3>
@@ -62,19 +69,21 @@ const ProjectDetailsPanel = ({props}) => {
             <input type='text' id='agency' name='agency' onChange={handleChange} />
             <label htmlFor='contractor'>Contractor:</label>
             <input type='text' id='contractor' name='contractor' onChange={handleChange} />
-            <label htmlFor='contacts'>Contacts:</label>
-            <input type='text' id='contacts' name='contacts' onChange={handleChange} />
             <label htmlFor='priority'>Priority:</label>
-            <input type='text' id='priority' name='priority' onChange={handleChange} />
+            <select id='priority' name='priority' onChange={handleChange} >
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
           </div>
           <h3>Financials</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='estimatedCost'>Estimated cost:</label>
-            <input type='text' id='estimatedCost' name='estimatedCost' onChange={handleChange} />
+            <input type='text' id='estimatedCost' name='estimatedCost' placeholder='KSH' onChange={handleChange} />
             <label htmlFor='budget'>Budget:</label>
-            <input type='text' id='budget' name='budget' onChange={handleChange} />
+            <input type='text' id='budget' name='budget' placeholder='KSH' onChange={handleChange} />
             <label htmlFor='financialYear'>Financial year:</label>
-            <input type='text' id='financialYear' name='financialYear' onChange={handleChange} />
+            <input type='text' id='financialYear' name='financialYear' placeholder='KSH' onChange={handleChange} />
             <label htmlFor='fundingSource'>Source of funding:</label>
             <input type='text' id='fundingSource' name='fundingSource' onChange={handleChange} />
           </div>
@@ -97,28 +106,3 @@ const ProjectDetailsPanel = ({props}) => {
 }
 
 export default ProjectDetailsPanel
-
-const projectTemplate = {
-  projectID: '',
-  name: '',
-  description: '',
-  status: '',
-  approvalDate: '',
-  startDate: '',
-  endDate: '',
-  duration: '',
-  sector: '',
-  ministry: '',
-  agency: '',
-  contractor: '',
-  contacts: '',
-  priority: '',
-  estimatedCost: '',
-  budget: '',
-  financialYear: '',
-  fundingSource: '',
-  countyNo: '',
-  subCounty: '',
-  constituency: '',
-  ward: ''
-}

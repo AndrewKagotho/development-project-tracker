@@ -1,8 +1,10 @@
 export const openLoginPanel = (ref, contextValue) => {
   if(contextValue === true) {
-    ref.current.style.width = '25vw'
-    ref.current.style.visibility = 'visible'
-    ref.current.style.opacity = '1'
+    if(ref.current !== undefined) {
+      ref.current.style.width = '25vw'
+      ref.current.style.visibility = 'visible'
+      ref.current.style.opacity = '1'
+    }
   }
 }
 

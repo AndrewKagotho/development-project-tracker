@@ -9,6 +9,7 @@ import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
 import { getLocationDetails } from '../../utils/functions/getLocationDetails'
 import AdminTable from '../../features/admin/AdminTable'
 import ProjectDetailsPanel from '../../layout/admin/ProjectDetailsPanel'
+import UpdateProjectPanel from '../../layout/admin/UpdateProjectPanel'
 
 export const DashboardContext = React.createContext()
 
@@ -27,10 +28,16 @@ const Dashboard = (props) => {
   const [tableInFocus, setTableInFocus] = React.useState('Counties')
   const tableFocus = {tableInFocus, setTableInFocus}
 
+  const [recordInFocus, setRecordInFocus] = React.useState(projectTemplate)
+  const recordFocus = {recordInFocus, setRecordInFocus}
+
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
-  const value = {tableFocus, projectDetailsPanelState}
+  const [updateProjectPanel, setUpdateProjectPanelStatus] = React.useState(false)
+  const updateProjectPanelState = {updateProjectPanel, setUpdateProjectPanelStatus}
+
+  const value = {tableFocus, recordFocus, projectDetailsPanelState, updateProjectPanelState}
 
   
   return (
@@ -58,7 +65,8 @@ const Dashboard = (props) => {
       <div>
         <DashboardContext.Provider value={value}>
           <AdminTable props={props} />
-          <ProjectDetailsPanel props={props} />
+          <ProjectDetailsPanel />
+          <UpdateProjectPanel props={props} />
         </DashboardContext.Provider>
       </div>
     </div>
@@ -102,3 +110,29 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+
+export const projectTemplate = {
+  recordIndex: '',
+  projectID: '',
+  name: '',
+  description: '',
+  status: '',
+  approvalDate: '',
+  startDate: '',
+  endDate: '',
+  duration: '',
+  sector: '',
+  ministry: '',
+  agency: '',
+  contractor: '',
+  contacts: '',
+  priority: '',
+  estimatedCost: '',
+  budget: '',
+  financialYear: '',
+  fundingSource: '',
+  countyNo: '',
+  subCounty: '',
+  constituency: '',
+  ward: ''
+}
