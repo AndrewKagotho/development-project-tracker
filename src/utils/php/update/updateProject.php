@@ -1,5 +1,5 @@
 <?php
-  require 'dbconn.php';
+  require '../dbconn.php';
 
   $data = json_decode(file_get_contents('php://input'));
   $projectID = $data->projectID;

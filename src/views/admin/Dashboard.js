@@ -50,11 +50,11 @@ const Dashboard = (props) => {
         </section>
         <section>
           <h3>Project data</h3>
-          <button onClick={() => setTableInFocus('Projects')}>Projects</button>
-          <button onClick={() => setTableInFocus('Timelines')}>Timelines</button>
-          <button onClick={() => setTableInFocus('Implementation')}>Implementation</button>
-          <button onClick={() => setTableInFocus('Financials')}>Financials</button>
-          <button onClick={() => setTableInFocus('Location')}>Location</button>
+          <button onClick={() => setTableInFocus('projects')}>Projects</button>
+          <button onClick={() => setTableInFocus('timelines')}>Timelines</button>
+          <button onClick={() => setTableInFocus('implementation')}>Implementation</button>
+          <button onClick={() => setTableInFocus('finances')}>Finances</button>
+          <button onClick={() => setTableInFocus('locations')}>Locations</button>
         </section>
         <section>
           <h3>Admin data</h3>
@@ -68,6 +68,11 @@ const Dashboard = (props) => {
           <ProjectDetailsPanel />
           <UpdateProjectPanel props={props} />
         </DashboardContext.Provider>
+      </div>
+      <div className='modal'>
+        <div className='modal__card card'>
+          <span>Currently viewing...</span>
+        </div>
       </div>
     </div>
     </>
@@ -95,7 +100,6 @@ const mapStateToProps = (state) => {
     ministry: state.implementation.ministry,
     agency: state.implementation.agency,
     contractor: state.implementation.contractor,
-    contacts: state.implementation.contacts,
     priority: state.implementation.priority,
 
     estimatedCost: state.finances.estimatedCost,
@@ -125,7 +129,6 @@ export const projectTemplate = {
   ministry: '',
   agency: '',
   contractor: '',
-  contacts: '',
   priority: '',
   estimatedCost: '',
   budget: '',

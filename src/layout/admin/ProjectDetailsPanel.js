@@ -51,11 +51,11 @@ const ProjectDetailsPanel = () => {
           <h3>Timelines</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='approvalDate'>Approval date:</label>
-            <input type='text' id='approvalDate' name='approvalDate' placeholder='YYYY-MM-DD' onChange={handleChange} />
+            <input type='text' id='approvalDate' name='approvalDate' placeholder='i.e. YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='startDate'>Start date:</label>
-            <input type='text' id='startDate' name='startDate' placeholder='YYYY-MM-DD' onChange={handleChange} />
+            <input type='text' id='startDate' name='startDate' placeholder='i.e. YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='endDate'>End date:</label>
-            <input type='text' id='endDate' name='endDate' placeholder='YYYY-MM-DD' onChange={handleChange} />
+            <input type='text' id='endDate' name='endDate' placeholder='i.e. YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='duration'>Duration (months):</label>
             <input type='text' id='duration' name='duration' onChange={handleChange} />
           </div>
