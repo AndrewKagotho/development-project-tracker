@@ -4,27 +4,44 @@ import { DashboardContext } from '../../views/admin/Dashboard'
 import { projectTemplate } from '../../views/admin/Dashboard'
 import { openLoginPanel } from '../../utils/functions/panels'
 import { closeLoginPanel } from '../../utils/functions/panels'
+import { getProjectDetails } from '../../utils/functions/getProjectDetails'
+import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
+import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
+import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
+import { getLocationDetails } from '../../utils/functions/getLocationDetails'
 
-let addProjectScript = 'http://localhost/development-project-tracker/src/utils/php/addProject.php'
+let addProjectScript = 'http://localhost/development-project-tracker/src/utils/php/add/addProject.php'
+let addProjectDetailsScript = 'http://localhost/development-project-tracker/src/utils/php/add/addProjectDetails.php'
 
-const ProjectDetailsPanel = () => {
+const ProjectDetailsPanel = ({props}) => {
 
-  const {projectDetailsPanelState} = React.useContext(DashboardContext)
+  const {projectDetailsPanelState, infoModal} = React.useContext(DashboardContext)
   const [projectData, setProjectData] = React.useState(projectTemplate)
   const projectDetailsPanelRef = React.useRef()
+
+  openLoginPanel(projectDetailsPanelRef, projectDetailsPanelState.projectDetailsPanel)
 
   const handleChange = (e) => setProjectData({...projectData, [e.target.name]: e.target.value})
 
   const handleSubmit = (e) => {
     axios.post(addProjectScript, projectData)
     .then((response) => {
-      console.log(response)
+      if(response.data) {
+        axios.post(addProjectDetailsScript, projectData)
+        .then((response) => {
+          infoModal.setInfoModalProps({state: true, text:'Successfully added!'})
+          getProjectDetails(props)
+          getTimelineDetails(props)
+          getImplementationDetails(props)
+          getFinanceDetails(props)
+          getLocationDetails(props)
+        })
+      }
     })
 
+    closeLoginPanel(projectDetailsPanelRef, projectDetailsPanelState.setProjectDetailsPanelStatus)
     e.preventDefault()
   }
-
-  openLoginPanel(projectDetailsPanelRef, projectDetailsPanelState.projectDetailsPanel)
 
   return (
     <div className='sidePanel' ref={projectDetailsPanelRef}>

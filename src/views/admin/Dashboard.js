@@ -10,6 +10,8 @@ import { getLocationDetails } from '../../utils/functions/getLocationDetails'
 import AdminTable from '../../features/admin/AdminTable'
 import ProjectDetailsPanel from '../../layout/admin/ProjectDetailsPanel'
 import UpdateProjectPanel from '../../layout/admin/UpdateProjectPanel'
+import DeleteProjectModal from '../../features/admin/DeleteProjectModal'
+import InfoModal from '../../features/admin/InfoModal'
 
 export const DashboardContext = React.createContext()
 
@@ -37,45 +39,52 @@ const Dashboard = (props) => {
   const [updateProjectPanel, setUpdateProjectPanelStatus] = React.useState(false)
   const updateProjectPanelState = {updateProjectPanel, setUpdateProjectPanelStatus}
 
-  const value = {tableFocus, recordFocus, projectDetailsPanelState, updateProjectPanelState}
+  const [deleteProjectModal, setDeleteProjectModalStatus] = React.useState(false)
+  const deleteProjectModalState = {deleteProjectModal, setDeleteProjectModalStatus}
 
-  
+  const [infoModalProps, setInfoModalProps] = React.useState({state: false, text:''})
+  const infoModal = {infoModalProps, setInfoModalProps}
+
+  const value = {
+    tableFocus,
+    recordFocus,
+    projectDetailsPanelState,
+    updateProjectPanelState,
+    deleteProjectModalState,
+    infoModal
+  }
+
   return (
-    <>
-    <div className='admin_view'>
-      <menu className='flex'>
-        <section>
-          <h3>County data</h3>
-          <button onClick={() => setTableInFocus('Counties')}>Counties</button>
-        </section>
-        <section>
-          <h3>Project data</h3>
-          <button onClick={() => setTableInFocus('projects')}>Projects</button>
-          <button onClick={() => setTableInFocus('timelines')}>Timelines</button>
-          <button onClick={() => setTableInFocus('implementation')}>Implementation</button>
-          <button onClick={() => setTableInFocus('finances')}>Finances</button>
-          <button onClick={() => setTableInFocus('locations')}>Locations</button>
-        </section>
-        <section>
-          <h3>Admin data</h3>
-          <button>Administrators</button>
-        </section>
-        <button onClick={() => setProjectDetailsPanelStatus(true)}>New project</button>
-      </menu>
-      <div>
-        <DashboardContext.Provider value={value}>
+    <DashboardContext.Provider value={value}>
+      <div className='admin_view'>
+        <menu className='flex'>
+          <section>
+            <h3>County data</h3>
+            <button onClick={() => setTableInFocus('Counties')}>Counties</button>
+          </section>
+          <section>
+            <h3>Project data</h3>
+            <button onClick={() => setTableInFocus('projects')}>Projects</button>
+            <button onClick={() => setTableInFocus('timelines')}>Timelines</button>
+            <button onClick={() => setTableInFocus('implementation')}>Implementation</button>
+            <button onClick={() => setTableInFocus('finances')}>Finances</button>
+            <button onClick={() => setTableInFocus('locations')}>Locations</button>
+          </section>
+          <section>
+            <h3>Admin data</h3>
+            <button>Administrators</button>
+          </section>
+          <button onClick={() => setProjectDetailsPanelStatus(true)}>New project</button>
+        </menu>
+        <div className='admin_view__content'>
           <AdminTable props={props} />
-          <ProjectDetailsPanel />
+          <ProjectDetailsPanel props={props} />
           <UpdateProjectPanel props={props} />
-        </DashboardContext.Provider>
-      </div>
-      <div className='modal'>
-        <div className='modal__card card'>
-          <span>Currently viewing...</span>
         </div>
       </div>
-    </div>
-    </>
+      <DeleteProjectModal props={props} />
+      <InfoModal />
+    </DashboardContext.Provider>
   )
 }
 

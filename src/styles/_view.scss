@@ -50,13 +50,11 @@
     box-sizing: border-box;
     position: absolute;
   }
-  
-  & > div {
-    width: 85%;
-    right: 0;
-  }
 
   h2, p { text-align: left; }
 }
 
-  
+.admin_view__content {
+  width: 85%;
+  right: 0;
+}

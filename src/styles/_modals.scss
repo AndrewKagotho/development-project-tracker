@@ -31,6 +31,29 @@
   }
 }
 
+.modal__card_sm {
+  max-width: 300px;
+  margin: 0;
+  @include center_content;
+
+  // & > * { @include border_blu; }
+
+  h3 {
+    font-weight: $bold_default;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  & > div {
+    justify-content: center;
+    gap: $margin;
+    
+    button { width: 80px; }
+  }
+
+  & > button { @include h_center_content; }
+}
+
 .modal__card__header {
   align-items: center;
 

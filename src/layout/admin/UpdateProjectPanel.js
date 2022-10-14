@@ -18,7 +18,7 @@ let formFields
 
 const UpdateProjectPanel = ({props}) => {
 
-  const {tableFocus, recordFocus, updateProjectPanelState} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, updateProjectPanelState, infoModal} = React.useContext(DashboardContext)
   const updateProjectPanelRef = React.useRef()
 
   openLoginPanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
@@ -27,7 +27,7 @@ const UpdateProjectPanel = ({props}) => {
 
   const handleSubmit = (e, table) => {
     let sendMeta = {script: '', action: ''}
-
+    
     if(table === 'projects') { sendMeta = { script: updateProjectScript, action: getProjectDetails }}
     if(table === 'timelines') { sendMeta = { script: updateTimelineScript, action: getTimelineDetails }}
     if(table === 'implementation') { sendMeta = { script: updateImplementationScript, action: getImplementationDetails }}
@@ -36,10 +36,12 @@ const UpdateProjectPanel = ({props}) => {
 
     axios.post(sendMeta.script, recordFocus.recordInFocus)
     .then((response) => {
-      if(response.data)
+      if(response.data) {
+        infoModal.setInfoModalProps({state: true, text:'Successfully updated!'})
         sendMeta.action(props)
+      }
       else
-        alert('Error. Try again.')
+        infoModal.setInfoModalProps({state: true, text:'Error!'})
     })
 
     closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
