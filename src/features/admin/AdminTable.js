@@ -23,11 +23,11 @@ const AdminTable = ({props}) => {
 
   const showSidePanel = (table, index) => {
     updateProjectPanelState.setUpdateProjectPanelStatus(true)
-    recordFocus.setRecordInFocus({...recordFocus.recordInFocus, projectID: props.projectID[index]})
 
     if(table === 'projects') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
-        // projectID: props.projectID[index],
+        recordIndex: index,
+        projectID: props.projectID[index],
         name: props.projectName[index],
         description: props.description[index],
         status: props.status[index]
@@ -35,6 +35,8 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'timelines') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
+        recordIndex: index,
+        projectID: props.projectID[index],
         approvalDate: props.approvalDate[index],
         startDate: props.startDate[index],
         endDate: props.endDate[index],
@@ -43,6 +45,8 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'implementation') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
+        recordIndex: index,
+        projectID: props.projectID[index],
         sector: props.sector[index],
         ministry: props.ministry[index],
         agency: props.agency[index],
@@ -52,6 +56,8 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'finances') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
+        recordIndex: index,
+        projectID: props.projectID[index],
         estimatedCost: props.estimatedCost[index],
         budget: props.budget[index],
         financialYear: props.financialYear[index],
@@ -60,6 +66,8 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'locations') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
+        recordIndex: index,
+        projectID: props.projectID[index],
         countyNo: props.countyNo[index],
         subCounty: props.subCounty[index],
         constituency: props.constituency[index],

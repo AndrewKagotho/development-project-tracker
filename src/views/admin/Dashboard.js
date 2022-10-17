@@ -125,6 +125,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 
 export const projectTemplate = {
+  recordIndex: '',
   projectID: '',
   name: '',
   description: '',
