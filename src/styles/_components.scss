@@ -97,14 +97,15 @@ a, button {
 
 .card_button { &:hover { width: 100%; } }
 
-input, select, option {
+input, textarea, select, option {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: .9rem;
 }
 
+
 // Forms
 form {
-  input, select {
+  input, textarea, select {
     border-radius: $border_radius;
     border: 1px solid $primary;
     transition: box-shadow $animation;
@@ -113,6 +114,13 @@ form {
       outline: none;
       box-shadow: 0 0 5px $primary_hover;
     }
+  }
+
+  textarea {
+    min-width: 40%;
+    max-width: calc(100% - 10px);
+    min-height: 40px;
+    max-height: 150px;
   }
   
   button {

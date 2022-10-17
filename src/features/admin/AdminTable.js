@@ -23,11 +23,11 @@ const AdminTable = ({props}) => {
 
   const showSidePanel = (table, index) => {
     updateProjectPanelState.setUpdateProjectPanelStatus(true)
+    recordFocus.setRecordInFocus({...recordFocus.recordInFocus, projectID: props.projectID[index]})
 
     if(table === 'projects') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
-        recordIndex: index,
-        projectID: props.projectID[index],
+        // projectID: props.projectID[index],
         name: props.projectName[index],
         description: props.description[index],
         status: props.status[index]
@@ -35,8 +35,6 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'timelines') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
-        recordIndex: index,
-        projectID: props.projectID[index],
         approvalDate: props.approvalDate[index],
         startDate: props.startDate[index],
         endDate: props.endDate[index],
@@ -45,8 +43,6 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'implementation') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
-        recordIndex: index,
-        projectID: props.projectID[index],
         sector: props.sector[index],
         ministry: props.ministry[index],
         agency: props.agency[index],
@@ -56,8 +52,6 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'finances') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
-        recordIndex: index,
-        projectID: props.projectID[index],
         estimatedCost: props.estimatedCost[index],
         budget: props.budget[index],
         financialYear: props.financialYear[index],
@@ -66,8 +60,6 @@ const AdminTable = ({props}) => {
     }
     else if(table === 'locations') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
-        recordIndex: index,
-        projectID: props.projectID[index],
         countyNo: props.countyNo[index],
         subCounty: props.subCounty[index],
         constituency: props.constituency[index],
@@ -94,7 +86,7 @@ const AdminTable = ({props}) => {
           <td>{props.senator[index]}</td>
           <td>
             <div>
-              <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+              <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
               <div className='td_more_options' ref={(item) => moreOptionsRef.current[index] = item}>
                 <button>Update</button>
                 <button>Delete</button>
@@ -123,7 +115,7 @@ const AdminTable = ({props}) => {
           <td>{props.description[index]}</td>
           <td>{props.status[index]}</td>
           <td>
-            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <div className='td_more_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
               <button onClick={() => showSidePanel(tableFocus.tableInFocus, index)}>Update</button>
               <button onClick={() => showDeleteModal(index)}>Delete</button>
@@ -153,10 +145,9 @@ const AdminTable = ({props}) => {
           <td>{props.endDate[index]}</td>
           <td>{props.duration[index]} months</td>
           <td>
-            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <div className='td_more_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
               <button onClick={() => showSidePanel(tableFocus.tableInFocus, index)}>Update</button>
-              <button>Delete</button>
             </div>
           </td>
         </tr>
@@ -185,10 +176,9 @@ const AdminTable = ({props}) => {
           <td>{props.contractor[index]}</td>
           <td>{props.priority[index]}</td>
           <td>
-            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <div className='td_more_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
               <button onClick={() => showSidePanel(tableFocus.tableInFocus, index)}>Update</button>
-              <button>Delete</button>
             </div>
           </td>
         </tr>
@@ -215,10 +205,9 @@ const AdminTable = ({props}) => {
           <td>{props.financialYear[index]}</td>
           <td>{props.fundingSource[index]}</td>
           <td>
-            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <div className='td_more_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
               <button onClick={() => showSidePanel(tableFocus.tableInFocus, index)}>Update</button>
-              <button>Delete</button>
             </div>
           </td>
         </tr>
@@ -245,10 +234,9 @@ const AdminTable = ({props}) => {
           <td>{props.constituency[index]}</td>
           <td>{props.ward[index]}</td>
           <td>
-            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+            <svg className='td_more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <div className='td_more_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
               <button onClick={() => showSidePanel(tableFocus.tableInFocus, index)}>Update</button>
-              <button>Delete</button>
             </div>
           </td>
         </tr>

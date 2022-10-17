@@ -55,14 +55,14 @@ const ProjectDetailsPanel = ({props}) => {
             <label htmlFor='name'>Name:</label>
             <input type='text' id='name' name='name' onChange={handleChange} required />
             <label htmlFor='description'>Description:</label>
-            <input type='text' id='description' name='description' onChange={handleChange} />
+            <textarea type='text' id='description' name='description' onChange={handleChange} />
             <label htmlFor='status'>Status:</label>
             <select id='status' name='status' onChange={handleChange} >
-              <option>Completed</option>
-              <option>In progress</option>
-              <option>Not started</option>
-              <option>Approved</option>
-              <option>Delayed</option>
+              <option value='Completed'>Completed</option>
+              <option value='In progress'>In progress</option>
+              <option value='Not started'>Not started</option>
+              <option value='Approved'>Approved</option>
+              <option value='Delayed'>Delayed</option>
             </select>
           </div>
           <h3>Timelines</h3>
