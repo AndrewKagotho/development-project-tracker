@@ -31,6 +31,7 @@ export const appReducer = (state = initialState, action) => {
     case 'ADD_TIMELINE_DETAILS':
       return {...state,
         timelines: {
+          projectID: [...state.timelines.projectID, action.projectID],
           approvalDate: [...state.timelines.approvalDate, action.approvalDate],
           startDate: [...state.timelines.startDate, action.startDate],
           endDate: [...state.timelines.endDate, action.endDate],
@@ -39,11 +40,12 @@ export const appReducer = (state = initialState, action) => {
       }
     case 'RESET_TIMELINE_DETAILS':
       return {...state,
-        timelines: { approvalDate: [], startDate: [], endDate: [], duration: [] }
+        timelines: { projectID: [], approvalDate: [], startDate: [], endDate: [], duration: [] }
       }
     case 'ADD_IMPLEMENTATION_DETAILS':
       return {...state,
         implementation: {
+          projectID: [...state.implementation.projectID, action.projectID],
           sector: [...state.implementation.sector, action.sector],
           ministry: [...state.implementation.ministry, action.ministry],
           agency: [...state.implementation.agency, action.agency],
@@ -54,11 +56,12 @@ export const appReducer = (state = initialState, action) => {
       }
     case 'RESET_IMPLEMENTATION_DETAILS':
       return {...state,
-        implementation: { sector: [], ministry: [], agency: [], contractor: [], contacts: [], priority: [] }
+        implementation: { projectID: [], sector: [], ministry: [], agency: [], contractor: [], contacts: [], priority: [] }
       }
     case 'ADD_FINANCE_DETAILS':
       return {...state,
         finances: {
+          projectID: [...state.finances.projectID, action.projectID],
           estimatedCost: [...state.finances.estimatedCost, action.estimatedCost],
           budget: [...state.finances.budget, action.budget],
           financialYear: [...state.finances.financialYear, action.financialYear],
@@ -67,11 +70,13 @@ export const appReducer = (state = initialState, action) => {
       }
     case 'RESET_FINANCE_DETAILS':
       return {...state,
-        finances: { estimatedCost: [], budget: [], financialYear: [], fundingSource: [] }
+        finances: { projectID: [], estimatedCost: [], budget: [], financialYear: [], fundingSource: [] }
       }
     case 'ADD_LOCATION_DETAILS':
       return {...state,
         locations: {
+          projectID: [...state.locations.projectID, action.projectID],
+          countyNo: [...state.locations.countyNo, action.countyNo],
           subCounty: [...state.locations.subCounty, action.subCounty],
           constituency: [...state.locations.constituency, action.constituency],
           ward: [...state.locations.ward, action.ward]
@@ -79,7 +84,7 @@ export const appReducer = (state = initialState, action) => {
       }
     case 'RESET_LOCATION_DETAILS':
       return {...state,
-        locations: { subCounty: [], constituency: [], ward: [] }  
+        locations: { projectID: [], countyNo: [], subCounty: [], constituency: [], ward: [] }  
       }
     default:
       return state

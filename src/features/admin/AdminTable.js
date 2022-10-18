@@ -36,7 +36,7 @@ const AdminTable = ({props}) => {
     else if(table === 'timelines') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
         recordIndex: index,
-        projectID: props.projectID[index],
+        projectID: props.timeProjectID[index],
         approvalDate: props.approvalDate[index],
         startDate: props.startDate[index],
         endDate: props.endDate[index],
@@ -46,7 +46,7 @@ const AdminTable = ({props}) => {
     else if(table === 'implementation') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
         recordIndex: index,
-        projectID: props.projectID[index],
+        projectID: props.impProjectID[index],
         sector: props.sector[index],
         ministry: props.ministry[index],
         agency: props.agency[index],
@@ -57,7 +57,7 @@ const AdminTable = ({props}) => {
     else if(table === 'finances') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
         recordIndex: index,
-        projectID: props.projectID[index],
+        projectID: props.finProjectID[index],
         estimatedCost: props.estimatedCost[index],
         budget: props.budget[index],
         financialYear: props.financialYear[index],
@@ -67,7 +67,7 @@ const AdminTable = ({props}) => {
     else if(table === 'locations') {
       recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
         recordIndex: index,
-        projectID: props.projectID[index],
+        projectID: props.locProjectID[index],
         countyNo: props.countyNo[index],
         subCounty: props.subCounty[index],
         constituency: props.constituency[index],
@@ -144,10 +144,10 @@ const AdminTable = ({props}) => {
         <th colSpan='2'>Duration</th>
       </tr>
     )
-    tableRows = props.projectID.map((item, index) => {
+    tableRows = props.timeProjectID.map((item, index) => {
       return (
         <tr key={index} ref={(item) => trRef.current[index] = item}>
-          <td>{props.projectID[index]}</td>
+          <td>{props.timeProjectID[index]}</td>
           <td>{props.approvalDate[index]}</td>
           <td>{props.startDate[index]}</td>
           <td>{props.endDate[index]}</td>
@@ -174,10 +174,10 @@ const AdminTable = ({props}) => {
         <th colSpan='2'>Priority</th>
       </tr>
     )
-    tableRows = props.projectID.map((item, index) => {
+    tableRows = props.impProjectID.map((item, index) => {
       return (
         <tr key={index} ref={(item) => trRef.current[index] = item}>
-          <td>{props.projectID[index]}</td>
+          <td>{props.impProjectID[index]}</td>
           <td>{props.sector[index]}</td>
           <td>{props.ministry[index]}</td>
           <td>{props.agency[index]}</td>
@@ -204,10 +204,10 @@ const AdminTable = ({props}) => {
         <th colSpan='2'>Funding source</th>
       </tr>
     )
-    tableRows = props.projectID.map((item, index) => {
+    tableRows = props.finProjectID.map((item, index) => {
       return (
         <tr key={index} ref={(item) => trRef.current[index] = item}>
-          <td>{props.projectID[index]}</td>
+          <td>{props.finProjectID[index]}</td>
           <td>{props.estimatedCost[index]}</td>
           <td>{props.budget[index]}</td>
           <td>{props.financialYear[index]}</td>
@@ -233,11 +233,11 @@ const AdminTable = ({props}) => {
         <th colSpan='2'>Ward</th>
       </tr>
     ) 
-    tableRows = props.projectID.map((item, index) => {
+    tableRows = props.locProjectID.map((item, index) => {
       return (
         <tr key={index} ref={(item) => trRef.current[index] = item}>
-          <td>{props.projectID[index]}</td>
-          <td>{props.countyNo[index]}</td>
+          <td>{props.locProjectID[index]}</td>
+          <td>{props.locCountyNo[index]}</td>
           <td>{props.subCounty[index]}</td>
           <td>{props.constituency[index]}</td>
           <td>{props.ward[index]}</td>

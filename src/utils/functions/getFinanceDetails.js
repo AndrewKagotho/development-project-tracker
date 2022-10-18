@@ -10,6 +10,7 @@ export const getFinanceDetails = (props) => {
     let recordIndex = 0
     while(recordIndex < resArray.length) {
       props.addFinanceDetails(
+        resArray[recordIndex].projectID,
         resArray[recordIndex]['estimated cost'],
         resArray[recordIndex].budget,
         resArray[recordIndex]['financial year'],

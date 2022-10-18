@@ -10,6 +10,7 @@ export const getTimelineDetails = (props) => {
     let recordIndex = 0
     while(recordIndex < resArray.length) {
       props.addTimelineDetails(
+        resArray[recordIndex].projectID,
         resArray[recordIndex]['approval date'],
         resArray[recordIndex]['start date'],
         resArray[recordIndex]['end date'],

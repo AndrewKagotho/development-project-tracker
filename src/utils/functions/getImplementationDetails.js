@@ -10,6 +10,7 @@ export const getImplementationDetails = (props) => {
     let recordIndex = 0
     while(recordIndex < resArray.length) {
       props.addImplementationDetails(
+        resArray[recordIndex].projectID,
         resArray[recordIndex].sector,
         resArray[recordIndex].ministry,
         resArray[recordIndex]['implementing agency'],

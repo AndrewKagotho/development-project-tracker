@@ -18,44 +18,49 @@ const addProjectDetails = (x1,x2,x3,x4) => {
   }
 }
 
-const addTimelineDetails = (x1,x2,x3,x4) => {
+const addTimelineDetails = (x1,x2,x3,x4,x5) => {
   return {
     type: 'ADD_TIMELINE_DETAILS',
-    approvalDate: x1,
-    startDate: x2,
-    endDate: x3,
-    duration: x4
+    projectID: x1,
+    approvalDate: x2,
+    startDate: x3,
+    endDate: x4,
+    duration: x5
   }
 }
 
-const addImplementationDetails = (x1,x2,x3,x4,x5,x6) => {
+const addImplementationDetails = (x1,x2,x3,x4,x5,x6,x7) => {
   return {
     type: 'ADD_IMPLEMENTATION_DETAILS',
-    sector: x1,
-    ministry: x2,
-    agency: x3,
-    contractor: x4,
-    contacts: x5,
-    priority: x6
+    projectID: x1,
+    sector: x2,
+    ministry: x3,
+    agency: x4,
+    contractor: x5,
+    contacts: x6,
+    priority: x7
   }
 }
 
-const addFinanceDetails = (x1,x2,x3,x4) => {
+const addFinanceDetails = (x1,x2,x3,x4,x5) => {
   return {
     type: 'ADD_FINANCE_DETAILS',
-    estimatedCost: x1,
-    budget: x2,
-    financialYear: x3,
-    fundingSource: x4
+    projectID: x1,
+    estimatedCost: x2,
+    budget: x3,
+    financialYear: x4,
+    fundingSource: x5
   }
 }
 
-const addLocationDetails = (x1,x2,x3) => {
+const addLocationDetails = (x1,x2,x3,x4,x5) => {
   return {
     type: 'ADD_LOCATION_DETAILS',
-    subCounty: x1,
-    constituency: x2,
-    ward: x3
+    projectID: x1,
+    countyNo: x2,
+    subCounty: x3,
+    constituency: x4,
+    ward: x5
   }
 }
 

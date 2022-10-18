@@ -12,12 +12,14 @@ export const initialState = {
     status: []
   },
   timelines: {
+    projectID: [],
     approvalDate: [],
     startDate: [],
     endDate: [],
     duration: []
   },
   implementation: {
+    projectID: [],
     sector: [],
     ministry: [],
     agency: [],
@@ -26,12 +28,15 @@ export const initialState = {
     priority: []
   },
   finances: {
+    projectID: [],
     estimatedCost: [],
     budget: [],
     financialYear: [],
     fundingSource: []
   },
   locations: {
+    projectID: [],
+    countyNo: [],
     subCounty: [],
     constituency: [],
     ward: []

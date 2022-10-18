@@ -585,6 +585,15 @@ table tbody tr:hover .td_more_options_svg {
   left: 50%;
   translate: -50% -50%;
 }
+.modal__card_sm svg {
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+  fill: #669FC3;
+  scale: 2.3;
+  margin-top: 20px;
+  transform: translateY(-10px);
+}
 .modal__card_sm h3 {
   font-weight: 400;
   margin-bottom: 25px;

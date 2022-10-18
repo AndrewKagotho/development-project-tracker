@@ -11,5 +11,6 @@
   
   $result1 = mysqli_query($conn, $projectsSql);
 
-  echo $result1;
+  // echo $result1;
+  var_dump($data);
 ?>

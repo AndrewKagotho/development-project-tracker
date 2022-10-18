@@ -10,6 +10,8 @@ export const getLocationDetails = (props) => {
     let recordIndex = 0
     while(recordIndex < resArray.length) {
       props.addLocationDetails(
+        resArray[recordIndex].projectID,
+        resArray[recordIndex].countyNo,
         resArray[recordIndex]['sub county'],
         resArray[recordIndex].constituency,
         resArray[recordIndex].ward

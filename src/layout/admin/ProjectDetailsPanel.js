@@ -26,9 +26,10 @@ const ProjectDetailsPanel = ({props}) => {
   const handleSubmit = (e) => {
     axios.post(addProjectScript, projectData)
     .then((response) => {
+      // console.log(response)
       if(response.data) {
         axios.post(addProjectDetailsScript, projectData)
-        .then((response) => {
+        .then(() => {
           infoModal.setInfoModalProps({state: true, text:'Successfully added!'})
           getProjectDetails(props)
           getTimelineDetails(props)
@@ -74,12 +75,12 @@ const ProjectDetailsPanel = ({props}) => {
             <label htmlFor='endDate'>End date:</label>
             <input type='text' id='endDate' name='endDate' placeholder='i.e. YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='duration'>Duration (months):</label>
-            <input type='text' id='duration' name='duration' onChange={handleChange} />
+            <input type='text' id='duration' name='duration' onChange={handleChange} required />
           </div>
           <h3>Implementation</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='sector'>Sector:</label>
-            <input type='text' id='sector' name='sector' onChange={handleChange} />
+            <input type='text' id='sector' name='sector' onChange={handleChange} required />
             <label htmlFor='ministry'>Ministry:</label>
             <input type='text' id='ministry' name='ministry' onChange={handleChange} />
             <label htmlFor='agency'>Implementing agency:</label>
@@ -96,7 +97,7 @@ const ProjectDetailsPanel = ({props}) => {
           <h3>Financials</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='estimatedCost'>Estimated cost:</label>
-            <input type='text' id='estimatedCost' name='estimatedCost' placeholder='KSH' onChange={handleChange} />
+            <input type='text' id='estimatedCost' name='estimatedCost' placeholder='KSH' onChange={handleChange} required />
             <label htmlFor='budget'>Budget:</label>
             <input type='text' id='budget' name='budget' placeholder='KSH' onChange={handleChange} />
             <label htmlFor='financialYear'>Financial year:</label>
@@ -107,7 +108,7 @@ const ProjectDetailsPanel = ({props}) => {
           <h3>Location</h3>
           <div className='sidePanel__content__grid'>
             <label htmlFor='countyNo'>County:</label>
-            <input type='text' id='countyNo' name='countyNo' onChange={handleChange} />
+            <input type='text' id='countyNo' name='countyNo' onChange={handleChange} required />
             <label htmlFor='subCounty'>Sub-county:</label>
             <input type='text' id='subCounty' name='subCounty' onChange={handleChange} />
             <label htmlFor='constituency'>Constituency:</label>
