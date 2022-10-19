@@ -37,11 +37,11 @@ const UpdateProjectPanel = ({props}) => {
     axios.post(sendMeta.script, recordFocus.recordInFocus)
     .then((response) => {
       if(response.data) {
-        infoModal.setInfoModalProps({state: true, text:'Successfully updated!'})
+        infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
         sendMeta.action(props)
       }
       else
-        infoModal.setInfoModalProps({state: true, text:'Error!'})
+        infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
     })
 
     closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
@@ -52,11 +52,12 @@ const UpdateProjectPanel = ({props}) => {
     formFields = (
       <>
         <label htmlFor='name'>Name:</label>
-        <input type='text' id='name' name='name' defaultValue={props.projectName[recordFocus.recordInFocus.recordIndex]} key={props.projectName[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} required />
+        <input type='text' id='name' name='name' defaultValue={props.projectName[recordFocus.recordInFocus.recordIndex]} key={props.projectName[recordFocus.recordInFocus.recordIndex] + ':name'} onChange={handleChange} required />
         <label htmlFor='description'>Description:</label>
-        <textarea type='text' id='description' name='description' defaultValue={props.description[recordFocus.recordInFocus.recordIndex]} key={props.description[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <textarea type='text' id='description' name='description' defaultValue={props.description[recordFocus.recordInFocus.recordIndex]} key={props.description[recordFocus.recordInFocus.recordIndex] + ':description'} onChange={handleChange} />
         <label htmlFor='status'>Status:</label>
         <select id='status' name='status' value={recordFocus.recordInFocus.status} onChange={handleChange} >
+          <option value='' disabled hidden></option>
           <option value='Scheduled'>Scheduled</option>
           <option value='Delayed'>Delayed</option>
           <option value='Approved'>Approved</option>
@@ -70,13 +71,13 @@ const UpdateProjectPanel = ({props}) => {
     formFields = (
       <>
         <label htmlFor='approvalDate'>Approval date:</label>
-        <input type='text' id='approvalDate' name='approvalDate' defaultValue={props.approvalDate[recordFocus.recordInFocus.recordIndex]} key={props.approvalDate[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='approvalDate' name='approvalDate' defaultValue={props.approvalDate[recordFocus.recordInFocus.recordIndex]} key={props.approvalDate[recordFocus.recordInFocus.recordIndex] + ':approvalDate'} onChange={handleChange} />
         <label htmlFor='startDate'>Start date:</label>
-        <input type='text' id='startDate' name='startDate' defaultValue={props.startDate[recordFocus.recordInFocus.recordIndex]} key={props.startDate[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='startDate' name='startDate' defaultValue={props.startDate[recordFocus.recordInFocus.recordIndex]} key={props.startDate[recordFocus.recordInFocus.recordIndex] + ':startDate'} onChange={handleChange} />
         <label htmlFor='endDate'>End date:</label>
-        <input type='text' id='endDate' name='endDate' defaultValue={props.endDate[recordFocus.recordInFocus.recordIndex]} key={props.endDate[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='endDate' name='endDate' defaultValue={props.endDate[recordFocus.recordInFocus.recordIndex]} key={props.endDate[recordFocus.recordInFocus.recordIndex] + ':endDate'} onChange={handleChange} />
         <label htmlFor='duration'>Duration (months):</label>
-        <input type='text' id='duration' name='duration' defaultValue={props.duration[recordFocus.recordInFocus.recordIndex]} key={props.duration[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='duration' name='duration' defaultValue={props.duration[recordFocus.recordInFocus.recordIndex]} key={props.duration[recordFocus.recordInFocus.recordIndex] + ':duration'} onChange={handleChange} />
       </>
     )
 
@@ -84,18 +85,19 @@ const UpdateProjectPanel = ({props}) => {
     formFields = (
       <>
         <label htmlFor='sector'>Sector:</label>
-        <input type='text' id='sector' name='sector' defaultValue={props.sector[recordFocus.recordInFocus.recordIndex]} key={props.sector[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='sector' name='sector' defaultValue={props.sector[recordFocus.recordInFocus.recordIndex]} key={props.sector[recordFocus.recordInFocus.recordIndex] + ':sector'} onChange={handleChange} />
         <label htmlFor='ministry'>Ministry:</label>
-        <input type='text' id='ministry' name='ministry' defaultValue={props.ministry[recordFocus.recordInFocus.recordIndex]} key={props.ministry[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='ministry' name='ministry' defaultValue={props.ministry[recordFocus.recordInFocus.recordIndex]} key={props.ministry[recordFocus.recordInFocus.recordIndex] + ':ministry'} onChange={handleChange} />
         <label htmlFor='agency'>Implementing agency:</label>
-        <input type='text' id='agency' name='agency' defaultValue={props.agency[recordFocus.recordInFocus.recordIndex]} key={props.agency[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='agency' name='agency' defaultValue={props.agency[recordFocus.recordInFocus.recordIndex]} key={props.agency[recordFocus.recordInFocus.recordIndex] + ':agency'} onChange={handleChange} />
         <label htmlFor='contractor'>Contractor:</label>
-        <input type='text' id='contractor' name='contractor' defaultValue={props.contractor[recordFocus.recordInFocus.recordIndex]} key={props.contractor[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='contractor' name='contractor' defaultValue={props.contractor[recordFocus.recordInFocus.recordIndex]} key={props.contractor[recordFocus.recordInFocus.recordIndex] + ':contractor'} onChange={handleChange} />
         <label htmlFor='priority'>Priority:</label>
-        <select id='priority' name='priority' onChange={handleChange} >
-          <option>High</option>
-          <option>Medium</option>
-          <option>Low</option>
+        <select id='priority' name='priority' value={recordFocus.recordInFocus.priority} onChange={handleChange} >
+          <option value='' disabled hidden></option>
+          <option value='High'>High</option>
+          <option value='Medium'>Medium</option>
+          <option value='Low'>Low</option>
         </select>
       </>
     )
@@ -104,13 +106,13 @@ const UpdateProjectPanel = ({props}) => {
     formFields = (
       <>
         <label htmlFor='estimatedCost'>Estimated cost:</label>
-        <input type='text' id='estimatedCost' name='estimatedCost' defaultValue={props.estimatedCost[recordFocus.recordInFocus.recordIndex]} key={props.estimatedCost[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='estimatedCost' name='estimatedCost' defaultValue={props.estimatedCost[recordFocus.recordInFocus.recordIndex]} key={props.estimatedCost[recordFocus.recordInFocus.recordIndex] + ':estimatedCost'} onChange={handleChange} />
         <label htmlFor='budget'>Budget:</label>
-        <input type='text' id='budget' name='budget' defaultValue={props.budget[recordFocus.recordInFocus.recordIndex]} key={props.budget[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='budget' name='budget' defaultValue={props.budget[recordFocus.recordInFocus.recordIndex]} key={props.budget[recordFocus.recordInFocus.recordIndex] + ':budget'} onChange={handleChange} />
         <label htmlFor='financialYear'>Financial year:</label>
-        <input type='text' id='financialYear' name='financialYear' defaultValue={props.financialYear[recordFocus.recordInFocus.recordIndex]} key={props.financialYear[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='financialYear' name='financialYear' defaultValue={props.financialYear[recordFocus.recordInFocus.recordIndex]} key={props.financialYear[recordFocus.recordInFocus.recordIndex] + ':financialYear'} onChange={handleChange} />
         <label htmlFor='fundingSource'>Source of funding:</label>
-        <input type='text' id='fundingSource' name='fundingSource' defaultValue={props.fundingSource[recordFocus.recordInFocus.recordIndex]} key={props.fundingSource[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='fundingSource' name='fundingSource' defaultValue={props.fundingSource[recordFocus.recordInFocus.recordIndex]} key={props.fundingSource[recordFocus.recordInFocus.recordIndex] + ':fundingSource'} onChange={handleChange} />
       </>
     )
 
@@ -118,13 +120,13 @@ const UpdateProjectPanel = ({props}) => {
     formFields = (
       <>
         <label htmlFor='countyNo'>County:</label>
-        <input type='text' id='countyNo' name='countyNo' defaultValue={props.countyNo[recordFocus.recordInFocus.recordIndex]} key={props.countyNo[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='countyNo' name='countyNo' defaultValue={props.locCountyNo[recordFocus.recordInFocus.recordIndex]} key={props.locCountyNo[recordFocus.recordInFocus.recordIndex] + ':countyNo'} onChange={handleChange} />
         <label htmlFor='subCounty'>Sub-county:</label>
-        <input type='text' id='subCounty' name='subCounty' defaultValue={props.subCounty[recordFocus.recordInFocus.recordIndex]} key={props.subCounty[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='subCounty' name='subCounty' defaultValue={props.subCounty[recordFocus.recordInFocus.recordIndex]} key={props.subCounty[recordFocus.recordInFocus.recordIndex] + ':subCounty'} onChange={handleChange} />
         <label htmlFor='constituency'>Constituency:</label>
-        <input type='text' id='constituency' name='constituency' defaultValue={props.constituency[recordFocus.recordInFocus.recordIndex]} key={props.constituency[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='constituency' name='constituency' defaultValue={props.constituency[recordFocus.recordInFocus.recordIndex]} key={props.constituency[recordFocus.recordInFocus.recordIndex] + ':constituency'} onChange={handleChange} />
         <label htmlFor='ward'>Ward:</label>
-        <input type='text' id='ward' name='ward' defaultValue={props.ward[recordFocus.recordInFocus.recordIndex]} key={props.ward[recordFocus.recordInFocus.recordIndex]} onChange={handleChange} />
+        <input type='text' id='ward' name='ward' defaultValue={props.ward[recordFocus.recordInFocus.recordIndex]} key={props.ward[recordFocus.recordInFocus.recordIndex] + ':ward'} onChange={handleChange} />
       </>
     )
 

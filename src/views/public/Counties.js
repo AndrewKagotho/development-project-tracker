@@ -14,13 +14,16 @@ const Counties = (props) => {
   const [countyInFocus, setCountyInFocus] = React.useState({ name: '', number: 0 })
   const countyFocus = {countyInFocus, setCountyInFocus}
 
+  const [projectInFocus, setProjectInFocus] = React.useState('')
+  const projectFocus = {projectInFocus, setProjectInFocus}
+
   const [openCountyModal, setCountyModalState] = React.useState(false)
   const countyModalState = {openCountyModal, setCountyModalState}
 
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
-  const value = {countyFocus, countyModalState, projectDetailsPanelState}
+  const value = {countyFocus, projectFocus, countyModalState, projectDetailsPanelState}
 
   return (
     <>
@@ -70,6 +73,7 @@ const mapStateToProps = (state) => {
     financialYear: state.finances.financialYear,
     fundingSource: state.finances.fundingSource,
 
+    locCountyNo: state.locations.countyNo,
     subCounty: state.locations.subCounty,
     constituency: state.locations.constituency,
     ward: state.locations.ward

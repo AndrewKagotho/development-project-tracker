@@ -42,13 +42,13 @@
     @include h_center_content;
     fill: $primary;
     scale: 2.3;
-    margin-top: 20px;
-    transform: translateY(-10px);
+    margin: 20px 0;
+    transform: translateY(-3px);
   }
 
   h3 {
     font-weight: $bold_default;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     text-align: center;
   }
 
@@ -76,9 +76,25 @@
 
   h3 { color: $secondary; }
 
-  span {
-    display: block;
-    margin-top: calc($margin/3);
-    white-space: pre;  
+  section {
+    &:nth-child(1) { margin-bottom: $margin; }
+
+    span {
+      display: block;
+      margin-top: 10px;
+      white-space: pre;  
+    }
   }
+}
+
+.modal__card__top__summary {
+  gap: 15px;
+
+  b {
+    font-size: $mid_font;
+    font-weight: $bold_default;
+    color: $primary;
+  }
+
+  // & > * { @include border_blu; }
 }

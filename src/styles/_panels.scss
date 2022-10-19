@@ -26,10 +26,27 @@ menu {
     border-radius: 0;
     text-align: left;
   }
+}
 
-  & > button:last-child {
-    padding-top: 12px;
-    padding-bottom: 20px;
+.admin_view__add_project {
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  margin: 10px;
+  border: 1px solid $primary;
+  border-radius: $border_radius;
+  color: $primary;
+  transition: background-color $animation;
+
+  svg {
+    fill: $primary;
+    scale: .9;
+    margin-left: -10px;
+  }
+  
+  &:hover {
+    @include hover;
+    svg { fill: $neutral; }
   }
 }
 

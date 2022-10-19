@@ -42,7 +42,7 @@ const Dashboard = (props) => {
   const [deleteProjectModal, setDeleteProjectModalStatus] = React.useState(false)
   const deleteProjectModalState = {deleteProjectModal, setDeleteProjectModalStatus}
 
-  const [infoModalProps, setInfoModalProps] = React.useState({state: false, text:''})
+  const [infoModalProps, setInfoModalProps] = React.useState({state: false, icon: '', text:''})
   const infoModal = {infoModalProps, setInfoModalProps}
 
   const value = {
@@ -74,7 +74,10 @@ const Dashboard = (props) => {
             <h3>Admin data</h3>
             <button>Administrators</button>
           </section>
-          <button onClick={() => setProjectDetailsPanelStatus(true)}>New project</button>
+          <div className='admin_view__add_project flex' onClick={() => setProjectDetailsPanelStatus(true)}>
+            <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/></svg>
+            <span>New project</span>
+          </div>
         </menu>
         <div className='admin_view__content'>
           <AdminTable props={props} />
@@ -131,25 +134,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 
 export const projectTemplate = {
   recordIndex: '',
-  projectID: 'projectID',
-  name: 'name',
-  description: 'description',
-  status: 'status',
-  approvalDate: 'approvalDate',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  duration: 'duration',
-  sector: 'sector',
-  ministry: 'ministry',
-  agency: 'agency',
-  contractor: 'contractor',
-  priority: 'priority',
-  estimatedCost: 'estimatedCost',
-  budget: 'budget',
-  financialYear: 'financialYear',
-  fundingSource: 'fundingSource',
-  countyNo: 'countyNo',
-  subCounty: 'subCounty',
-  constituency: 'constituency',
-  ward: 'ward'
+  projectID: '',
+  name: '',
+  description: '',
+  status: '',
+  approvalDate: '',
+  startDate: '',
+  endDate: '',
+  duration: '',
+  sector: '',
+  ministry: '',
+  agency: '',
+  contractor: '',
+  priority: '',
+  estimatedCost: '',
+  budget: '',
+  financialYear: '',
+  fundingSource: '',
+  countyNo: '',
+  subCounty: '',
+  constituency: '',
+  ward: ''
 }

@@ -8,10 +8,15 @@ import ProjectDetailsPanel from '../../layout/public/ProjectDetailsPanel'
 
 const Modal = ({props}) => {
 
-  const {countyFocus, countyModalState, projectDetailsPanelState} = React.useContext(CountyContext)
+  const {countyFocus, projectFocus, countyModalState, projectDetailsPanelState} = React.useContext(CountyContext)
   const modalRef = React.useRef()
 
   openModal(countyModalState.openCountyModal, modalRef)
+
+  const showProjectDetails = (index) => {
+    projectDetailsPanelState.setProjectDetailsPanelStatus(true)
+    projectFocus.setProjectInFocus(index)
+  }
 
   const barData = [
     ['County', 'Estimated cost', 'Budget'],
@@ -20,14 +25,15 @@ const Modal = ({props}) => {
 
   const projectList = props.projectID.map((item, index) => 
     <tr key={index}>
-      <td><button onClick={() => projectDetailsPanelState.setProjectDetailsPanelStatus(true)}>View</button></td>
+      <td><button onClick={() => showProjectDetails(index)}>View</button></td>
+      <td>{index+1}. {props.projectID[index]}</td>
       <td>{index+1}. {props.projectName[index]}</td>
-      <td>{props.constituency[index]}</td>
-      <td>{props.status[index]}</td>
-      <td>{props.duration[index]}</td>
+      <td>{props.startDate[index]}</td>
+      <td>{props.duration[index]} months</td>
       <td>{props.sector[index]}</td>
       <td>{props.estimatedCost[index]}</td>
       <td>{props.financialYear[index]}</td>
+      <td>{props.status[index]}</td>
     </tr>
   )
 
@@ -41,11 +47,24 @@ const Modal = ({props}) => {
         </div>
         <h2>{countyFocus.countyInFocus.name}<em className='card_number_effect_modal'>(0{countyFocus.countyInFocus.number+1})</em></h2>
         <div className='modal__card__top flex'>
-          <section>
-            <h3>Incumbency</h3>
-            <span>Governor:  {props.governor[countyFocus.countyInFocus.number]}</span>
-            <span>Senator:  {props.senator[countyFocus.countyInFocus.number]}</span>
-          </section>
+          <div>
+            <section>
+              <h3>Incumbency</h3>
+              <span>Governor:  {props.governor[countyFocus.countyInFocus.number]}</span>
+              <span>Senator:  {props.senator[countyFocus.countyInFocus.number]}</span>
+            </section>
+            <section>
+              <h3>Projects</h3>
+              <div className='modal__card__top__summary flex'>
+                <span>Total: <b>#</b></span>
+                <span>Completed: <b>#</b></span>
+                <span>In progress: <b>#</b></span>
+                <span>Approved: <b>#</b></span>
+                <span>Scheduled: <b>#</b></span>
+                <span>Delayed: <b>#</b></span>
+              </div>
+            </section>
+          </div>
           <section>
             <h3>Finances (in KES)</h3>
             <Chart chartType='ColumnChart' data={barData} options={barOptions} />
@@ -56,13 +75,14 @@ const Modal = ({props}) => {
             <thead>
               <tr>
                 <th></th>
+                <th>Project ID</th>
                 <th>Project name</th>
-                <th>Constituency</th>
-                <th>Status</th>
+                <th>Start date</th>
                 <th>Duration</th>
                 <th>Sector</th>
                 <th>Est. cost</th>
                 <th>FIN year</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>

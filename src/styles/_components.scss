@@ -167,25 +167,18 @@ table {
   width: 100%;
   padding: 0 10px;
   border-collapse: collapse;
+  
+  // th, td { @include border_red; }
 
   th {
     font-size: $mid_font;
     font-weight: $bold_default;
     color: $primary;
     text-align: left;
-  }
-  
-  th, td {
-    padding: 5px calc($margin/2);
-    // @include border_red;
+    padding: 10px calc($margin/2);
   }
 
-  td { vertical-align: top; }
-
-  td:last-child {
-    padding-left: 0;
-    position: relative;
-  }
+  td { padding: 5px calc($margin/2); }
 
   tr { transition: background-color $animation; }
 
@@ -196,6 +189,15 @@ table {
       .td_more_options_svg { opacity: 1 !important; }
     }
   }
+}
+
+.admin_tbody {
+  td { vertical-align: top; }
+}
+
+.td_more_options {
+  padding-left: 0;
+  position: relative;
 }
 
 .td_more_options_svg {
@@ -213,18 +215,16 @@ table {
   }
 }
 
-.td_more_options {
+.td_more_options_expand {
   visibility: hidden;
   opacity: 0;
   padding: 5px 0;
-  flex-direction: column;
-  justify-content: center;
   border-radius: $border_radius;
   border: 1px solid $primary;
   background-color: $neutral;
   transition: visibility $animation, opacity $animation;
   position: absolute;
-  top: -30px;
+  top: -23px;
   left: -80px;
   z-index: 3;
 
@@ -233,4 +233,10 @@ table {
     border: none;
     text-align: left;
   }
+}
+
+.mul_options {
+  flex-direction: column;
+  justify-content: center;
+  top: -30px;
 }

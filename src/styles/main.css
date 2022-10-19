@@ -29,6 +29,13 @@ h3 {
   color: #669FC3;
 }
 
+h4 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0;
+  color: #669FC3;
+}
+
 p {
   line-height: 1.5;
   margin-bottom: 25px;
@@ -273,16 +280,10 @@ table th {
   font-weight: 400;
   color: #669FC3;
   text-align: left;
-}
-table th, table td {
-  padding: 5px 15px;
+  padding: 10px 15px;
 }
 table td {
-  vertical-align: top;
-}
-table td:last-child {
-  padding-left: 0;
-  position: relative;
+  padding: 5px 15px;
 }
 table tr {
   transition: background-color 0.1s linear;
@@ -292,6 +293,15 @@ table tbody tr:hover {
 }
 table tbody tr:hover .td_more_options_svg {
   opacity: 1 !important;
+}
+
+.admin_tbody td {
+  vertical-align: top;
+}
+
+.td_more_options {
+  padding-left: 0;
+  position: relative;
 }
 
 .td_more_options_svg {
@@ -308,25 +318,29 @@ table tbody tr:hover .td_more_options_svg {
   cursor: pointer;
 }
 
-.td_more_options {
+.td_more_options_expand {
   visibility: hidden;
   opacity: 0;
   padding: 5px 0;
-  flex-direction: column;
-  justify-content: center;
   border-radius: 5px;
   border: 1px solid #669FC3;
   background-color: #FFF;
   transition: visibility 0.1s linear, opacity 0.1s linear;
   position: absolute;
-  top: -30px;
+  top: -23px;
   left: -80px;
   z-index: 3;
 }
-.td_more_options button {
+.td_more_options_expand button {
   border-radius: 0;
   border: none;
   text-align: left;
+}
+
+.mul_options {
+  flex-direction: column;
+  justify-content: center;
+  top: -30px;
 }
 
 .page_section {
@@ -591,12 +605,12 @@ table tbody tr:hover .td_more_options_svg {
   translate: -50% 0;
   fill: #669FC3;
   scale: 2.3;
-  margin-top: 20px;
-  transform: translateY(-10px);
+  margin: 20px 0;
+  transform: translateY(-3px);
 }
 .modal__card_sm h3 {
   font-weight: 400;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
 }
 .modal__card_sm > div {
@@ -625,10 +639,22 @@ table tbody tr:hover .td_more_options_svg {
 .modal__card__top h3 {
   color: #555;
 }
-.modal__card__top span {
+.modal__card__top section:nth-child(1) {
+  margin-bottom: 30px;
+}
+.modal__card__top section span {
   display: block;
   margin-top: 10px;
   white-space: pre;
+}
+
+.modal__card__top__summary {
+  gap: 15px;
+}
+.modal__card__top__summary b {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #669FC3;
 }
 
 menu {
@@ -657,9 +683,29 @@ menu button {
   border-radius: 0;
   text-align: left;
 }
-menu > button:last-child {
-  padding-top: 12px;
-  padding-bottom: 20px;
+
+.admin_view__add_project {
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  margin: 10px;
+  border: 1px solid #669FC3;
+  border-radius: 5px;
+  color: #669FC3;
+  transition: background-color 0.1s linear;
+}
+.admin_view__add_project svg {
+  fill: #669FC3;
+  scale: 0.9;
+  margin-left: -10px;
+}
+.admin_view__add_project:hover {
+  background-color: #669FC3 !important;
+  color: #FFF !important;
+  cursor: pointer;
+}
+.admin_view__add_project:hover svg {
+  fill: #FFF;
 }
 
 .sidePanel {

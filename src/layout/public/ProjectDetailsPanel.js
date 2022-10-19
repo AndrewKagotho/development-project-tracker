@@ -5,7 +5,7 @@ import { closeLoginPanel } from '../../utils/functions/panels'
 
 const ProjectDetailsPanel = ({props}) => {
 
-  const {projectDetailsPanelState} = React.useContext(CountyContext)
+  const {projectFocus, projectDetailsPanelState} = React.useContext(CountyContext)
   const projectDetailsPanelRef = React.useRef()
 
   openLoginPanel(projectDetailsPanelRef, projectDetailsPanelState.projectDetailsPanel)
@@ -18,61 +18,61 @@ const ProjectDetailsPanel = ({props}) => {
           <h3>Project details</h3>
           <div className='sidePanel__content__grid'>
             <span>Project ID:</span>
-            <span>{props.projectID[1]}</span>
+            <span>{props.projectID[projectFocus.projectInFocus]}</span>
             <span>Name:</span>
-            <span>{props.projectName[1]}</span>
+            <span>{props.projectName[projectFocus.projectInFocus]}</span>
             <span>Description:</span>
-            <span>{props.description[0]}</span>
+            <span>{props.description[projectFocus.projectInFocus]}</span>
             <span>Status:</span>
-            <span>{props.status[1]}</span>
+            <span>{props.status[projectFocus.projectInFocus]}</span>
           </div>
           <h3>Timelines</h3>
           <div className='sidePanel__content__grid'>
             <span>Approval date:</span>
-            <span>{props.approvalDate[1]}</span>
+            <span>{props.approvalDate[projectFocus.projectInFocus]}</span>
             <span>Start date:</span>
-            <span>{props.startDate[1]}</span>
+            <span>{props.startDate[projectFocus.projectInFocus]}</span>
             <span>End date:</span>
-            <span>{props.endDate[1]}</span>
+            <span>{props.endDate[projectFocus.projectInFocus]}</span>
             <span>Duration:</span>
-            <span>{props.duration[1]}</span>
+            <span>{props.duration[projectFocus.projectInFocus]} months</span>
           </div>
           <h3>Implementation</h3>
           <div className='sidePanel__content__grid'>
             <span>Sector:</span>
-            <span>{props.sector[1]}</span>
+            <span>{props.sector[projectFocus.projectInFocus]}</span>
             <span>Ministry:</span>
-            <span>{props.ministry[1]}</span>
+            <span>{props.ministry[projectFocus.projectInFocus]}</span>
             <span>Implementing agency:</span>
-            <span>{props.agency[1]}</span>
+            <span>{props.agency[projectFocus.projectInFocus]}</span>
             <span>Contractor:</span>
-            <span>{props.contractor[1]}</span>
+            <span>{props.contractor[projectFocus.projectInFocus]}</span>
             <span>Contacts:</span>
-            <span>{props.contacts[1]}</span>
+            <span>{props.contacts[projectFocus.projectInFocus]}</span>
             <span>Priority:</span>
-            <span>{props.priority[1]}</span>
+            <span>{props.priority[projectFocus.projectInFocus]}</span>
           </div>
           <h3>Financials</h3>
           <div className='sidePanel__content__grid'>
             <span>Estimated cost:</span>
-            <span>{props.estimatedCost[1]}</span>
+            <span>{props.estimatedCost[projectFocus.projectInFocus]}</span>
             <span>Budget:</span>
-            <span>{props.budget[1]}</span>
+            <span>{props.budget[projectFocus.projectInFocus]}</span>
             <span>Financial year:</span>
-            <span>{props.financialYear[1]}</span>
+            <span>{props.financialYear[projectFocus.projectInFocus]}</span>
             <span>Source of funding:</span>
-            <span>{props.fundingSource[1]}</span>
+            <span>{props.fundingSource[projectFocus.projectInFocus]}</span>
           </div>
           <h3>Location</h3>
           <div className='sidePanel__content__grid'>
           <span>County:</span>
-            <span>{props.countyName[1]}</span>
+            <span>{props.locCountyNo[projectFocus.projectInFocus]}</span>
             <span>Sub-county:</span>
-            <span>{props.subCounty[1]}</span>
+            <span>{props.subCounty[projectFocus.projectInFocus]}</span>
             <span>Constituency:</span>
-            <span>{props.constituency[1]}</span>
+            <span>{props.constituency[projectFocus.projectInFocus]}</span>
             <span>Ward:</span>
-            <span>{props.ward[1]}</span>
+            <span>{props.ward[projectFocus.projectInFocus]}</span>
           </div>
         </aside>
       </div>
