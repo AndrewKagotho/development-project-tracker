@@ -2,6 +2,8 @@ import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 
 let prevCards = [0,0]
+const projectStatusArray = ['Completed', 'In progress', 'Scheduled']
+let statusTotalArray = []
 
 const Names = ({props}) => {
 
@@ -40,16 +42,14 @@ const Names = ({props}) => {
     }
   }
 
-  // countyFocus.countyInFocus.number+1
-  // props.countyName[index] === countyFocus.countyInFocus.name
-
-  const countyCompleted = props.countyNo.filter((x, index) => props.status[index] === 'Completed')
-  // .reduce((acc) => acc + 1, 0)
-
-
-  const countyInprogress = props.status.filter((x, index) => props.status[index] === 'In progress').reduce((acc) => acc + 1, 0)
-  const countyScheduled = props.status.filter((x, index) => props.status[index] === 'Scheduled').reduce((acc) => acc + 1, 0)
-  const countyAllProjects = countyCompleted + countyInprogress + countyScheduled
+  for(let i=0; i<4; i++) {
+    statusTotalArray[i] = props.status
+    .filter((item, index) =>
+      props.status[index] === projectStatusArray[i] &&
+      parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
+    .reduce((acc) => acc + 1, 0)
+  }
+  const countyAllProjects = statusTotalArray[0] + statusTotalArray[1] + statusTotalArray[2]
 
   const countyList = props.countyNo.map((item, index) => 
     <li key={index} className='card card_sm'>
@@ -59,9 +59,9 @@ const Names = ({props}) => {
       </div>
       <div className='counties_list__expand flex' ref={(item) => listDetailsRef.current[index] = item}>
         <div><span>All projects</span><span className='badge'>{countyAllProjects}</span></div>
-        <div><span>Completed</span><span className='badge'>{countyCompleted}</span></div>
-        <div><span>In progress</span><span className='badge'>{countyInprogress}</span></div>
-        <div><span>Scheduled</span><span className='badge'>{countyScheduled}</span></div>
+        <div><span>Completed</span><span className='badge'>{statusTotalArray[0]}</span></div>
+        <div><span>In progress</span><span className='badge'>{statusTotalArray[1]}</span></div>
+        <div><span>Scheduled</span><span className='badge'>{statusTotalArray[2]}</span></div>
         <button className='card_button' onClick={() => countyModalState.setCountyModalState(true)}>View projects</button>
       </div>
     </li>
