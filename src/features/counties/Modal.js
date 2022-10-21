@@ -76,9 +76,13 @@ const Modal = ({props}) => {
         <td>{props.status[index]}</td>
       </tr>
     )
-    .filter((item, index) => filterArray[index][inputValue.length-1] === inputValue[inputValue.length-1])
+    .filter((item, index) => 
+      filterArray[index][inputValue.length-1] === inputValue[inputValue.length-1]
+      && filterArray[index][inputValue.length-2] === inputValue[inputValue.length-2]
+      && filterArray[index][inputValue.length-3] === inputValue[inputValue.length-3]
+    )
     
-    resultSetLength = projectList.reduce((acc, curr) => acc + 1, 0)
+    resultSetLength = projectList.reduce((acc) => acc + 1, 0)
   }
 
   return (
@@ -136,14 +140,14 @@ const Modal = ({props}) => {
             <tbody>
               <tr className='tr_search'>
                 <td></td>
-                <td><input type='text' name='projectID' value={searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='projectName' value={searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='startDate' value={searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='duration' value={searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='sector' value={searchContent.sector} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='estimatedCost' value={searchContent.estimatedCost} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='financialYear' value={searchContent.financialYear} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='text' name='status' value={searchContent.status} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='projectID' value={searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='projectName' value={searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='startDate' value={searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='duration' value={searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='sector' value={searchContent.sector} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='estimatedCost' value={searchContent.estimatedCost} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='financialYear' value={searchContent.financialYear} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='search' name='status' value={searchContent.status} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
               </tr>
               {projectList}
             </tbody>

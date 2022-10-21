@@ -60,12 +60,6 @@
       stroke: #FFF !important;
       cursor: pointer;
     }
-
-    // &:hover .tooltiptext {
-    //   visibility: visible;
-    //   position: absolute;
-    //   z-index: 100;
-    // }
   }
 }
 
@@ -88,21 +82,20 @@
 
 .counties_list__expand {
   display: none;
-  width: 160px;
+  width: 155px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 20px 10px 3px;
-  // @include border_red;
+  padding: 20px 10px 0;
 
   div {
-    width: calc(100% + 10px);
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // @include border_blu;
   }
   
   span { font-size: $small_font; }
+  button { margin: 2px 0 4px; }
 }
 

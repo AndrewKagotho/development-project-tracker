@@ -27,6 +27,7 @@ a, button {
   color: $primary;
   border-radius: $border_radius;
   transition: background-color $animation;
+  translate: 10px 0;
 
   &:hover {
     color: $neutral;
@@ -52,9 +53,11 @@ a, button {
   }
 }
 
-.card_lg {
+.card_md {
+  padding: $card_padding_md;
   transition: scale $animation;
 
+  span { white-space: nowrap ;}
   &:hover { scale: $scale; }
 }
 
@@ -194,6 +197,8 @@ table {
 
       &:focus { box-shadow: 0 2px 1px $primary_hover; }
     }
+
+    &:last-child { white-space: nowrap; }
   }
 
   button { padding: 5px 10px; }

@@ -3,8 +3,7 @@
   margin: 50px 0;
   @include h_center_content;
   
-  // @include border_blu;
-  // & > * {@include border_blu;}
+  // @include border_blu; & > * {@include border_blu;}
 
   p { margin-bottom: $margin; }
 

@@ -36,7 +36,7 @@ const Counties = (props) => {
           <Map />
           <CountiesList props={props} />
         </div>
-        <Stats />
+        <Stats props={props} />
         <Modal props={props} />
       </CountyContext.Provider>
       <Footer />
