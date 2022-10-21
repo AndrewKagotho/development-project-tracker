@@ -1,5 +1,5 @@
 .tooltip {
-  // display: inline-block;
+  display: inline-block;
 }
 
 .tooltiptext {
@@ -10,30 +10,16 @@
   padding: 5px;
 }
 
-#Kwale:hover .tooltiptext {
+.tooltip:hover .tooltiptext {
   display: block;
   width: 100px;
   height: 100px;
   background-color: red;
   position: absolute;
-  left: 0;
+  left: 50px;
   top: 50%;
   z-index: 100;
 }
-
-// .counties_map_path:hover .tooltiptext {
-//   display: none;
-//   position: absolute;
-//   z-index: 100;
-// }
-
-
-
-// .tooltip:hover .tooltiptext {
-//   visibility: visible;
-//   position: relative;
-//   z-index: 1;
-// }
 
 ////////////////////////////////////////////////
 
@@ -62,7 +48,6 @@
 .counties_map {
   translate: -25px 25px;
   background-color: transparent;
-  position: relative;
   scale: 1.05;
 
   path {
@@ -103,19 +88,21 @@
 
 .counties_list__expand {
   display: none;
+  width: 160px;
   flex-direction: column;
   align-items: flex-start;
-  width: 160px;
-  padding: 0 10px;
-  
-  span {
-    font-size: $small_font;
-    display: block;
-    margin: 7px 0;
+  gap: 10px;
+  padding: 20px 10px 3px;
+  // @include border_red;
 
-    &:nth-child(4) { margin-bottom: 12px; }
+  div {
+    width: calc(100% + 10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // @include border_blu;
   }
-
-  &:last-child { margin: 5px 0;}
+  
+  span { font-size: $small_font; }
 }
 

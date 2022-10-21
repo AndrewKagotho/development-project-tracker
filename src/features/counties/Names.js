@@ -32,7 +32,7 @@ const Names = ({props}) => {
         listDetailsRef.current[prevCards[i]].style.display = 'flex'
         listHeaderNameRef.current[prevCards[i]].textContent = `${props.countyName[index]}`
         listHeaderNameRef.current[prevCards[i]].style.color =  '#669FC3'
-        listHeaderNameRef.current[prevCards[i]].style.width =  '60%'
+        listHeaderNameRef.current[prevCards[i]].style.width =  '65%'
         listHeaderNameRef.current[prevCards[i]].style.fontSize =  '1.4rem'
         listHeaderNameRef.current[prevCards[i]].style.fontWeight =  '600'
         listHeaderNumberRef.current[prevCards[i]].style.display = 'block'
@@ -47,10 +47,10 @@ const Names = ({props}) => {
         <span className='card_number_effect_ex' ref={(item) => listHeaderNumberRef.current[index] = item}>{props.countyNo[index]}</span>
       </div>
       <div className='counties_list__expand flex' ref={(item) => listDetailsRef.current[index] = item}>
-        <span>All projects</span>
-        <span>Ongoing</span>
-        <span>Scheduled</span>
-        <span>Delayed</span>
+        <div><span>All projects</span><span className='badge'>#</span></div>
+        <div><span>Completed</span><span className='badge'>#</span></div>
+        <div><span>In progress</span><span className='badge'>#</span></div>
+        <div><span>Scheduled</span><span className='badge'>#</span></div>
         <button className='card_button' onClick={() => countyModalState.setCountyModalState(true)}>View projects</button>
       </div>
     </li>

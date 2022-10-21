@@ -47,8 +47,6 @@ const ProjectDetailsPanel = ({props}) => {
             <span>{props.agency[projectFocus.projectInFocus]}</span>
             <span>Contractor:</span>
             <span>{props.contractor[projectFocus.projectInFocus]}</span>
-            <span>Contacts:</span>
-            <span>{props.contacts[projectFocus.projectInFocus]}</span>
             <span>Priority:</span>
             <span>{props.priority[projectFocus.projectInFocus]}</span>
           </div>

@@ -6,10 +6,13 @@ import { closeModal } from '../../utils/functions/modal'
 import { barOptions } from '../../utils/charts'
 import ProjectDetailsPanel from '../../layout/public/ProjectDetailsPanel'
 
+let projectList, resultSetLength
+
 const Modal = ({props}) => {
 
   const {countyFocus, projectFocus, countyModalState, projectDetailsPanelState} = React.useContext(CountyContext)
   const modalRef = React.useRef()
+  const resultsRef = React.useRef()
 
   openModal(countyModalState.openCountyModal, modalRef)
 
@@ -18,24 +21,65 @@ const Modal = ({props}) => {
     projectFocus.setProjectInFocus(index)
   }
 
+  const [searchContent, setSearchContent] = React.useState({state: false, value:''})
+
   const barData = [
     ['County', 'Estimated cost', 'Budget'],
     [countyFocus.countyInFocus.name, parseInt(props.estimatedCost), parseInt(props.budget)]
   ]
 
-  const projectList = props.projectID.map((item, index) => 
-    <tr key={index}>
-      <td><button onClick={() => showProjectDetails(index)}>View</button></td>
-      <td>{index+1}. {props.projectID[index]}</td>
-      <td>{index+1}. {props.projectName[index]}</td>
-      <td>{props.startDate[index]}</td>
-      <td>{props.duration[index]} months</td>
-      <td>{props.sector[index]}</td>
-      <td>{props.estimatedCost[index]}</td>
-      <td>{props.financialYear[index]}</td>
-      <td>{props.status[index]}</td>
-    </tr>
-  )
+  if(!searchContent.state) {
+    projectList = props.projectID.map((item, index) => 
+      <tr key={index}>
+        <td className='td_view_project' onClick={() => showProjectDetails(index)}>
+          <svg className='visibilitySVG' xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+        </td>
+        <td>{props.projectID[index]}</td>
+        <td>{props.projectName[index]}</td>
+        <td>{props.startDate[index]}</td>
+        <td>{props.duration[index]} months</td>
+        <td>{props.sector[index]}</td>
+        <td>{props.estimatedCost[index]}</td>
+        <td>{props.financialYear[index]}</td>
+        <td>{props.status[index]}</td>
+      </tr>
+    )
+  }
+
+  const handleChange = (e) => {
+    setSearchContent({state: true, value: e.target.value})
+    resultsRef.current.style.display = 'block'
+
+    let selectedInput = e.target.name
+    let inputValue = e.target.value
+    let filterArray
+
+    if(selectedInput === 'projectID') filterArray = props.projectID
+    else if(selectedInput === 'projectName') filterArray = props.projectName
+    else if(selectedInput === 'startDate') filterArray = props.startDate
+    else if(selectedInput === 'duration') filterArray = props.duration
+    else if(selectedInput === 'sector') filterArray = props.sector
+    else if(selectedInput === 'estimatedCost') filterArray = props.estimatedCost
+    else if(selectedInput === 'financialYear') filterArray = props.financialYear
+    else if(selectedInput === 'status') filterArray = props.status
+
+    projectList = props.projectID.map((item, index) =>
+      <tr key={index}>
+        <td className='td_view_project' onClick={() => showProjectDetails(index)}><svg className='visibilitySVG' xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></td>
+        <td>{item}</td>
+        <td>{props.projectName[index]}</td>
+        <td>{props.startDate[index]}</td>
+        <td>{props.duration[index]} months</td>
+        <td>{props.sector[index]}</td>
+        <td>{props.estimatedCost[index]}</td>
+        <td>{props.financialYear[index]}</td>
+        <td>{props.status[index]}</td>
+      </tr>
+    )
+    .filter((item, index) => filterArray[index][inputValue.length-1] === inputValue[inputValue.length-1])
+    
+    resultSetLength = projectList.reduce((acc, curr) => acc + 1, 0)
+  }
 
   return (
     <>
@@ -70,6 +114,10 @@ const Modal = ({props}) => {
             <Chart chartType='ColumnChart' data={barData} options={barOptions} />
           </section>
         </div>
+        <div className='modal__card__table_extras flex'>
+          <span>Rows and stuff</span>
+          <span ref={resultsRef}>Results found: {resultSetLength}</span>
+        </div>
         <div className='table_container'>
           <table className='table_wd'>
             <thead>
@@ -86,6 +134,17 @@ const Modal = ({props}) => {
               </tr>
             </thead>
             <tbody>
+              <tr className='tr_search'>
+                <td></td>
+                <td><input type='text' name='projectID' value={searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='projectName' value={searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='startDate' value={searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='duration' value={searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='sector' value={searchContent.sector} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='estimatedCost' value={searchContent.estimatedCost} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='financialYear' value={searchContent.financialYear} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+                <td><input type='text' name='status' value={searchContent.status} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              </tr>
               {projectList}
             </tbody>
           </table>

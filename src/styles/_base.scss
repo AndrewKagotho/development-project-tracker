@@ -91,6 +91,29 @@ em {
   }
 }
 
+.more_options_svg {
+  width: 20px;
+  height: 25px;
+  opacity: 0;
+  fill: $light_grey;
+  transition: opacity $animation, fill $animation;
+  border-radius: 50%;
+  background-color: transparent;
+
+  &:hover {
+    fill: $primary !important;
+    cursor: pointer;
+  }
+}
+
+.visibilitySVG {
+  height: 25px;
+  fill: $light_grey;
+  scale: .9;
+  translate: 0 3px;
+  transition: fill $animation;
+}
+
 // Other
 .flex {
   display: flex;

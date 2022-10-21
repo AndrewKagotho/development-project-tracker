@@ -69,10 +69,7 @@
 }
 
 .modal__card__top {
-  margin-bottom: $margin;
-
-  // @include border_red;
-  // & > * { @include border_blu; }
+  // @include border_red; & > * { @include border_blu; }
 
   h3 { color: $secondary; }
 
@@ -82,7 +79,7 @@
     span {
       display: block;
       margin-top: 10px;
-      white-space: pre;  
+      white-space: pre;
     }
   }
 }
@@ -95,6 +92,12 @@
     font-weight: $bold_default;
     color: $primary;
   }
+}
 
-  // & > * { @include border_blu; }
+.modal__card__table_extras {
+  margin: 10px 0;
+  padding: 5px 10px;
+  // @include border_red;
+
+  span:nth-child(2) { display: none; }
 }

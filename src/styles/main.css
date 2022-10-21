@@ -58,6 +58,28 @@ em {
   cursor: pointer;
 }
 
+.more_options_svg {
+  width: 20px;
+  height: 25px;
+  opacity: 0;
+  fill: #CCC;
+  transition: opacity 0.1s linear, fill 0.1s linear;
+  border-radius: 50%;
+  background-color: transparent;
+}
+.more_options_svg:hover {
+  fill: #669FC3 !important;
+  cursor: pointer;
+}
+
+.visibilitySVG {
+  height: 25px;
+  fill: #CCC;
+  scale: 0.9;
+  translate: 0 3px;
+  transition: fill 0.1s linear;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
@@ -137,7 +159,6 @@ a:hover, button:hover {
   padding: 2px 10px;
   color: #669FC3;
   border-radius: 5px;
-  border: 1px solid #669FC3;
   transition: background-color 0.1s linear;
 }
 .badge:hover {
@@ -212,15 +233,16 @@ input, textarea, select, option {
   font-size: 0.9rem;
 }
 
-form input, form textarea, form select {
+input, textarea, select {
   border-radius: 5px;
   border: 1px solid #669FC3;
   transition: box-shadow 0.1s linear;
 }
-form input:focus, form textarea:focus, form select:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   box-shadow: 0 0 5px #BDD6E5;
 }
+
 form textarea {
   min-width: 40%;
   max-width: calc(100% - 10px);
@@ -252,6 +274,10 @@ form button {
   border: none;
   border-bottom: 1px solid #669FC3;
   border-radius: 0;
+  background: transparent;
+}
+.login_form input:focus {
+  box-shadow: 0 0 0 transparent;
 }
 
 .table_container {
@@ -267,7 +293,7 @@ form button {
 }
 
 .table_container_sm {
-  display: inline-block;
+  display: inline-table;
 }
 
 table {
@@ -275,24 +301,49 @@ table {
   padding: 0 10px;
   border-collapse: collapse;
 }
+table tr {
+  transition: background-color 0.1s linear;
+}
 table th {
   font-size: 1.2rem;
   font-weight: 400;
   color: #669FC3;
   text-align: left;
   padding: 10px 15px;
+  white-space: nowrap;
 }
 table td {
   padding: 5px 15px;
 }
-table tr {
-  transition: background-color 0.1s linear;
+table td input {
+  width: 90%;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #669FC3;
+  background: transparent;
+}
+table td input:focus {
+  box-shadow: 0 2px 1px #BDD6E5;
+}
+table button {
+  padding: 5px 10px;
 }
 table tbody tr:hover {
   background-color: #F6F6F6 !important;
 }
-table tbody tr:hover .td_more_options_svg {
+table tbody tr:hover svg {
   opacity: 1 !important;
+}
+
+.tr_search:hover {
+  background-color: transparent !important;
+}
+
+.td_view_project {
+  padding-right: 0;
+}
+.td_view_project:hover svg {
+  fill: #669FC3;
 }
 
 .admin_tbody td {
@@ -302,20 +353,6 @@ table tbody tr:hover .td_more_options_svg {
 .td_more_options {
   padding-left: 0;
   position: relative;
-}
-
-.td_more_options_svg {
-  width: 20px;
-  height: 20px;
-  opacity: 0;
-  fill: #CCC;
-  transition: opacity 0.1s linear, fill 0.1s linear;
-  border-radius: 50%;
-  background-color: transparent;
-}
-.td_more_options_svg:hover {
-  fill: #669FC3 !important;
-  cursor: pointer;
 }
 
 .td_more_options_expand {
@@ -468,6 +505,10 @@ table tbody tr:hover .td_more_options_svg {
   z-index: 3;
 }
 
+.tooltip {
+  display: inline-block;
+}
+
 .tooltiptext {
   display: none;
   width: 0;
@@ -476,13 +517,13 @@ table tbody tr:hover .td_more_options_svg {
   padding: 5px;
 }
 
-#Kwale:hover .tooltiptext {
+.tooltip:hover .tooltiptext {
   display: block;
   width: 100px;
   height: 100px;
   background-color: red;
   position: absolute;
-  left: 0;
+  left: 50px;
   top: 50%;
   z-index: 100;
 }
@@ -509,7 +550,6 @@ table tbody tr:hover .td_more_options_svg {
 .counties_map {
   translate: -25px 25px;
   background-color: transparent;
-  position: relative;
   scale: 1.05;
 }
 .counties_map path {
@@ -541,21 +581,20 @@ table tbody tr:hover .td_more_options_svg {
 
 .counties_list__expand {
   display: none;
+  width: 160px;
   flex-direction: column;
   align-items: flex-start;
-  width: 160px;
-  padding: 0 10px;
+  gap: 10px;
+  padding: 20px 10px 3px;
+}
+.counties_list__expand div {
+  width: calc(100% + 10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .counties_list__expand span {
   font-size: 0.8rem;
-  display: block;
-  margin: 7px 0;
-}
-.counties_list__expand span:nth-child(4) {
-  margin-bottom: 12px;
-}
-.counties_list__expand:last-child {
-  margin: 5px 0;
 }
 
 .modal {
@@ -633,9 +672,6 @@ table tbody tr:hover .td_more_options_svg {
   font-size: 1.4rem;
 }
 
-.modal__card__top {
-  margin-bottom: 30px;
-}
 .modal__card__top h3 {
   color: #555;
 }
@@ -655,6 +691,14 @@ table tbody tr:hover .td_more_options_svg {
   font-size: 1.2rem;
   font-weight: 400;
   color: #669FC3;
+}
+
+.modal__card__table_extras {
+  margin: 10px 0;
+  padding: 5px 10px;
+}
+.modal__card__table_extras span:nth-child(2) {
+  display: none;
 }
 
 menu {
