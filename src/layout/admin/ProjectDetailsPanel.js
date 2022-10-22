@@ -59,7 +59,6 @@ const ProjectDetailsPanel = ({props}) => {
             <select id='status' name='status' defaultValue='' onChange={handleChange} >
               <option value='' disabled hidden></option>
               <option value='Scheduled'>Scheduled</option>
-              <option value='Delayed'>Delayed</option>
               <option value='Approved'>Approved</option>
               <option value='In progress'>In progress</option>
               <option value='Completed'>Completed</option>

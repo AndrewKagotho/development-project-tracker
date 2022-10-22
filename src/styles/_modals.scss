@@ -95,9 +95,20 @@
 }
 
 .modal__card__table_extras {
+  align-items: flex-end;
   margin: 10px 0;
-  padding: 5px 10px;
   // @include border_red;
 
-  span:nth-child(2) { display: none; }
+  button { margin-right: 10px; }
+  span {
+    font-size: $small_font;
+    white-space: pre;
+
+    &:nth-child(2) { margin: 0 0 0 auto; }
+
+    &:nth-child(3) {
+      display: none;
+      margin-right: 10px;
+    }
+  }
 }

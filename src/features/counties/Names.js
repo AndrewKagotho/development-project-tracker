@@ -2,18 +2,31 @@ import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 
 let prevCards = [0,0]
-const projectStatusArray = ['Completed', 'In progress', 'Scheduled']
+const projectStatusArray = ['Completed', 'In progress', 'Approved', 'Scheduled']
 let statusTotalArray = []
 
 const Names = ({props}) => {
+  let countyAllProjects = 0
 
-  const {countyFocus, countyModalState} = React.useContext(CountyContext)
+  const {countyFocus, countyStats, countyModalState} = React.useContext(CountyContext)
   const listHeaderNameRef = React.useRef([])
   const listHeaderNumberRef = React.useRef([])
   const listDetailsRef = React.useRef([])
 
+  for(let i=0; i<projectStatusArray.length; i++) {
+    statusTotalArray[i] = props.status
+    .filter((item, index) =>
+      item === projectStatusArray[i] 
+      && parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number
+      )
+    .reduce((acc) => acc + 1, 0)
+  }
+  statusTotalArray.forEach((value) => countyAllProjects += value )
+
   const showProjects = (index) => {
     countyFocus.setCountyInFocus({name: props.countyName[index], number: index})
+    countyStats.setCountyInFocusStats(statusTotalArray)
+    
 
     for(let a=0; a<prevCards.length; a++) {
       prevCards[0] = prevCards[1]
@@ -41,16 +54,7 @@ const Names = ({props}) => {
       }
     }
   }
-
-  for(let i=0; i<4; i++) {
-    statusTotalArray[i] = props.status
-    .filter((item, index) =>
-      props.status[index] === projectStatusArray[i] &&
-      parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
-    .reduce((acc) => acc + 1, 0)
-  }
-  const countyAllProjects = statusTotalArray[0] + statusTotalArray[1] + statusTotalArray[2]
-
+  
   const countyList = props.countyNo.map((item, index) => 
     <li key={index} className='card card_sm'>
       <div className='counties_list__header' onClick={() => showProjects(index)}>
@@ -61,7 +65,8 @@ const Names = ({props}) => {
         <div><span>All projects</span><span className='badge'>{countyAllProjects}</span></div>
         <div><span>Completed</span><span className='badge'>{statusTotalArray[0]}</span></div>
         <div><span>In progress</span><span className='badge'>{statusTotalArray[1]}</span></div>
-        <div><span>Scheduled</span><span className='badge'>{statusTotalArray[2]}</span></div>
+        <div><span>Approved</span><span className='badge'>{statusTotalArray[2]}</span></div>
+        <div><span>Scheduled</span><span className='badge'>{statusTotalArray[3]}</span></div>
         <button className='card_button' onClick={() => countyModalState.setCountyModalState(true)}>View projects</button>
       </div>
     </li>

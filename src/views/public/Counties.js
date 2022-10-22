@@ -11,8 +11,11 @@ export const CountyContext = React.createContext()
 
 const Counties = (props) => {
 
-  const [countyInFocus, setCountyInFocus] = React.useState({ name: '', number: 0 })
+  const [countyInFocus, setCountyInFocus] = React.useState({name: '', number: 0})
   const countyFocus = {countyInFocus, setCountyInFocus}
+
+  const [countyInFocusStats, setCountyInFocusStats] = React.useState([])
+  const countyStats = {countyInFocusStats, setCountyInFocusStats}
 
   const [projectInFocus, setProjectInFocus] = React.useState('')
   const projectFocus = {projectInFocus, setProjectInFocus}
@@ -23,7 +26,7 @@ const Counties = (props) => {
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
-  const value = {countyFocus, projectFocus, countyModalState, projectDetailsPanelState}
+  const value = {countyFocus, countyStats, projectFocus, countyModalState, projectDetailsPanelState}
 
   return (
     <>
