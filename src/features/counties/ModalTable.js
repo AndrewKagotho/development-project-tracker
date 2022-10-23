@@ -1,20 +1,18 @@
 import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 
-let projectList
+let projectList, filterArray
 
 const ModalTable = ({props, searchState}) => {
-  
-  let resultSetLength = 0, resultSetLengthPerView = 0
-  let filterArray
+  let resultSetLength = 0, resultSetLengthPerView = 0, recordsInPage = 0
 
   const {countyFocus, projectFocus, projectDetailsPanelState} = React.useContext(CountyContext)
   const [searchContent, setSearchContent] = React.useState({selectedInput: '', inputValue: ''})
-  const [page, setPage] = React.useState(1)
+  const [currentPage, setCurrentPage] = React.useState(1)
   const resultsRef = React.useRef()
 
   let firstPageIndex = 0
-  firstPageIndex += page*10-10
+  firstPageIndex += currentPage*10-10
 
   const showProjectDetails = (index) => {
     projectDetailsPanelState.setProjectDetailsPanelStatus(true)
@@ -22,15 +20,17 @@ const ModalTable = ({props, searchState}) => {
   }
 
   if(!searchState.searchContent.state)
+    projectList = props.projectID.map((item, index) =>  index)
+    .filter((item, index) => parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
     // eslint-disable-next-line
-    projectList = props.projectID.map((item, index) => {
-      while(index >= firstPageIndex && index < firstPageIndex+10) {
+    .map((index, num) => {
+      while(num >= firstPageIndex && num < firstPageIndex+10) {
         return (
           <tr key={index}>
             <td className='td_view_project' onClick={() => showProjectDetails(index)}>
               <svg className='visibilitySVG' xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
             </td>
-            <td>{index+1}. {item}</td>
+            <td>{num+1}. {props.projectID[index]}</td>
             <td>{props.projectName[index]}</td>
             <td>{props.startDate[index]}</td>
             <td>{props.duration[index]} months</td>
@@ -39,11 +39,9 @@ const ModalTable = ({props, searchState}) => {
             <td>{props.financialYear[index]}</td>
             <td>{props.status[index]}</td>
           </tr>
-          )
-        }
+        )
       }
-    )
-    .filter((item, index) => parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
+    })
 
   if(searchState.searchContent.state) {
     if(searchContent.selectedInput === 'projectID') filterArray = props.projectID
@@ -55,15 +53,28 @@ const ModalTable = ({props, searchState}) => {
     else if(searchContent.selectedInput === 'financialYear') filterArray = props.financialYear
     else if(searchContent.selectedInput === 'status') filterArray = props.status
 
+    projectList = props.projectID.map((item, index) => index)
     // eslint-disable-next-line
-    projectList = props.projectID.map((item, index) => {
-      while(index >= firstPageIndex && index < firstPageIndex+10) {
+    .filter((item, index) => {
+      let truthTests = parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number
+      && filterArray[index][searchContent.inputValue.length-1] === searchContent.inputValue[searchContent.inputValue.length-1]
+      && filterArray[index][searchContent.inputValue.length-2] === searchContent.inputValue[searchContent.inputValue.length-2]
+      && filterArray[index][searchContent.inputValue.length-3] === searchContent.inputValue[searchContent.inputValue.length-3]
+
+      if(truthTests) resultSetLength++
+
+      return ( truthTests )
+    })
+    // eslint-disable-next-line
+    .map((index, num) => {
+      while(num >= firstPageIndex && num < firstPageIndex+10) {
+        if(num > recordsInPage) recordsInPage = num
         return (
           <tr key={index}>
             <td className='td_view_project' onClick={() => showProjectDetails(index)}>
               <svg className='visibilitySVG' xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
             </td>
-            <td>{index+1}. {item}</td>
+            <td>{num+1}. {props.projectID[index]}</td>
             <td>{props.projectName[index]}</td>
             <td>{props.startDate[index]}</td>
             <td>{props.duration[index]} months</td>
@@ -72,29 +83,14 @@ const ModalTable = ({props, searchState}) => {
             <td>{props.financialYear[index]}</td>
             <td>{props.status[index]}</td>
           </tr>
-          )
-        }
+        )
       }
-    )
-    // eslint-disable-next-line
-    .filter((item, index) => {
-      resultSetLengthPerView = 0
-      let truthTests = parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number
-      && filterArray[index][searchContent.inputValue.length-1] === searchContent.inputValue[searchContent.inputValue.length-1]
-      && filterArray[index][searchContent.inputValue.length-2] === searchContent.inputValue[searchContent.inputValue.length-2]
-      && filterArray[index][searchContent.inputValue.length-3] === searchContent.inputValue[searchContent.inputValue.length-3]
-
-      if(truthTests) resultSetLength++
-
-      while(index >= firstPageIndex && index < firstPageIndex+10){
-        resultSetLengthPerView++
-      
-      return ( truthTests )}
-      
     })
-
-    resultSetLengthPerView = projectList.reduce((acc) => acc + 1, 0)
   }
+  
+  if((recordsInPage+1)%10 === 0) resultSetLengthPerView = 10
+  else if(recordsInPage%10 === 0) resultSetLengthPerView = 0
+  else resultSetLengthPerView = (recordsInPage+1)%(10)
 
   const handleChange = (e) => {
     setSearchContent({selectedInput: e.target.name, inputValue: e.target.value})
@@ -104,12 +100,12 @@ const ModalTable = ({props, searchState}) => {
 
   const changeTablePage = (action) => {
     if(action === 'next') {
-      if(page < Math.ceil(props.projectID.length/10))
-        setPage(page+1)
+      if(currentPage < Math.ceil(resultSetLength/10))
+        setCurrentPage(currentPage+1)
     }
     else if(action === 'prev') {
-      if(page > 1)
-        setPage(page-1)
+      if(currentPage > 1)
+        setCurrentPage(currentPage-1)
     }
   }
 
@@ -120,7 +116,7 @@ const ModalTable = ({props, searchState}) => {
           <button onClick={() => changeTablePage('prev')}>Prev page</button>
           <button onClick={() => changeTablePage('next')}>Next page</button>
         </div>
-        <span>PAGE {page} of {Math.ceil(props.projectID.length/10)}   </span>
+        <span>PAGE {currentPage} of {Math.ceil(resultSetLength/10)}   </span>
         <span ref={resultsRef}>|   SHOWING RESULTS: {resultSetLengthPerView} of {resultSetLength}</span>
       </div>
       <div className='table_container'>
@@ -134,7 +130,7 @@ const ModalTable = ({props, searchState}) => {
                 <th>Duration</th>
                 <th>Sector</th>
                 <th>Est. cost</th>
-                <th>FIN year</th>
+                <th>Fin. year</th>
                 <th>Status</th>
               </tr>
             </thead>
