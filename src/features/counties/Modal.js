@@ -7,17 +7,14 @@ import ModalBanner from './ModalBanner'
 import ModalTable from './ModalTable'
 
 const Modal = ({props}) => {
-  let countyAllProjects = 0
-
-  const {countyFocus, countyStats, countyModalState} = React.useContext(CountyContext)
+  
+  const {countyFocus, countyModalState} = React.useContext(CountyContext)
   const modalRef = React.useRef()
 
   openModal(countyModalState.openCountyModal, modalRef)
 
   const [searchContent, setSearchContent] = React.useState({state: false, value:''})
   const searchState = {searchContent, setSearchContent}
-
-  countyStats.countyInFocusStats.forEach((item) => countyAllProjects += item)
 
   const closeAction = () => {
     closeModal(countyModalState.setCountyModalState, modalRef)

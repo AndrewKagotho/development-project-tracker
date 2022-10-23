@@ -7,6 +7,8 @@ const ModalTop = ({props}) => {
   let countyAllProjects = 0
 
   const {countyFocus, countyStats} = React.useContext(CountyContext)
+
+  countyStats.countyInFocusStats.forEach((item) => countyAllProjects += item)
   
   const barData = [
     ['County', 'Estimated cost', 'Budget'],
