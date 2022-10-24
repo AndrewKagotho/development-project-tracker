@@ -61,6 +61,12 @@ a, button {
   &:hover { scale: $scale; }
 }
 
+.card_lg {
+  transition: scale $animation;  
+  
+  &:hover { scale: $scale; }
+}
+
 .card_number_effect_ex {
   display: none;
   font-size: $large_font_xl;
@@ -76,7 +82,7 @@ a, button {
   font-weight: $bold_x2;
   opacity: .05;
   position: absolute;
-  top: -17px;
+  top: -15px;
   right: 7px;
 }
 

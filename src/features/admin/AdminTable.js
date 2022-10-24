@@ -2,19 +2,35 @@ import React from 'react'
 import { DashboardContext } from '../../views/admin/Dashboard'
 import { dynamicShowMoreOptions } from '../../utils/functions/map'
 import { dynamicShowMoreOptionsSVG } from '../../utils/functions/map'
+import { countyTableHead } from './countyTable'
+import { countyTableSearch } from './countyTable'
+import { countyTableRows } from './countyTable'
+
+export const showMoreOptions = (ref1, ref2, ref3, index) => {
+  dynamicShowMoreOptions(ref3, index)
+  dynamicShowMoreOptionsSVG(ref2, ref1, index)
+}
+
+// ref1 = trRef
+// ref2 = moreOptionsSVGRef
+// ref3 = moreOptionsRef
 
 const AdminTable = ({props}) => {
   
   const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState} = React.useContext(DashboardContext)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: '', inputValue: ''})
+  const searchState = {searchContent, setSearchContent}
+  const resultsRef = React.useRef()
   const trRef = React.useRef([])
   const moreOptionsSVGRef = React.useRef([])
   const moreOptionsRef = React.useRef([])
-  let tableRows, tableHead
+  let tableHead, tableSearch, tableRows
+  let resultSetLength = 0, resultSetLengthPerView = 0, firstPageIndex = 0
+  let totalPages
 
-  const showMoreOptions = (index) => {
-    dynamicShowMoreOptions(moreOptionsRef, index)
-    dynamicShowMoreOptionsSVG(moreOptionsSVGRef, trRef, index)
-  }
+  firstPageIndex += currentPage*10-10
+  const tableValues = {props, searchContent, trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex, resultSetLength}
 
   const showDeleteModal = (index) => {
     deleteProjectModalState.setDeleteProjectModalStatus(true)
@@ -80,33 +96,12 @@ const AdminTable = ({props}) => {
   }
 
   if(tableFocus.tableInFocus === 'Counties') {
-    tableHead = (
-      <tr>
-        <th>County No</th>
-        <th>Name</th>
-        <th>Governor</th>
-        <th colSpan='2'>Senator</th>
-      </tr>
-    )
-    tableRows = props.countyNo.map((item, index) => {
-      return (
-        <tr key={index} ref={(item) => trRef.current[index] = item}>
-          <td>{props.countyNo[index]}</td>
-          <td>{props.countyName[index]}</td>
-          <td>{props.governor[index]}</td>
-          <td>{props.senator[index]}</td>
-          <td className='td_more_options'>
-            <div>
-              <svg className='more_options_svg' onClick={() => showMoreOptions(index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-              <div className='td_more_options_expand' ref={(item) => moreOptionsRef.current[index] = item}>
-                <button>Update</button>
-              </div>
-            </div>
-          </td>
-        </tr>
-      )
-    }
-  )}
+    tableHead = countyTableHead()
+    tableSearch = countyTableSearch(searchState, resultsRef)
+    tableRows = countyTableRows(tableValues)
+    resultSetLength = countyTableRows(tableValues).length
+    resultSetLengthPerView = countyTableRows(tableValues).filter((item) => item !== undefined).length
+  }
 
   else if(tableFocus.tableInFocus === 'projects') {
     tableHead = (
@@ -254,16 +249,38 @@ const AdminTable = ({props}) => {
     }
   )}
 
+  totalPages = Math.ceil(resultSetLength/10)
+  if(totalPages < 1) totalPages = 1
+
+  const changeTablePage = (action) => {
+    if(action === 'next') {
+      if(currentPage < totalPages)
+        setCurrentPage(currentPage+1)
+    }
+    else if(action === 'prev') {
+      if(currentPage > 1)
+        setCurrentPage(currentPage-1)
+    }
+  }
+
   return (
     <section className='page_section'>
       <h2>Viewing table: {tableFocus.tableInFocus}</h2>
-      <p>Create, read, update and delete records here.</p>
+      <div className='modal__card__table_extras flex'>
+        <div>
+          <button onClick={() => changeTablePage('prev')}>Prev page</button>
+          <button onClick={() => changeTablePage('next')}>Next page</button>
+        </div>
+        <span>PAGE {currentPage} of {totalPages}   </span>
+        <span ref={resultsRef}>|   SHOWING RESULTS: {resultSetLengthPerView} of {resultSetLength}</span>
+      </div>
       <div className='table_container table_container_sm'>
         <table key={tableFocus.tableInFocus}>
           <thead>
             {tableHead}
           </thead>
           <tbody className='admin_tbody'>
+            {tableSearch}
             {tableRows}
           </tbody>
         </table>

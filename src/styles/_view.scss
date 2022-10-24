@@ -1,9 +1,8 @@
 .page_section {
-  width: 90%;
   margin: 50px 0;
   @include h_center_content;
   
-  // @include border_blu; & > * {@include border_blu;}
+  @include border_blu; & > * {@include border_blu;}
 
   p { margin-bottom: $margin; }
 
@@ -16,6 +15,8 @@
 }
 
 .page_section_sm { width: 55%; }
+
+.page_section_md { width: 90%; }
 
 .page_section__features {
   gap: $margin;

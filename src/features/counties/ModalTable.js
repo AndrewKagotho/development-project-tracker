@@ -4,14 +4,14 @@ import { CountyContext } from '../../views/public/Counties'
 let projectList, filterArray
 
 const ModalTable = ({props, searchState}) => {
-  let resultSetLength = 0, resultSetLengthPerView = 0, recordsInPage = 0
+  const {searchContent, setSearchContent} = searchState
+  let firstPageIndex = 0, resultSetLength = 0, resultSetLengthPerView = 0, recordsInPage = 0
+  let totalPages
 
   const {countyFocus, projectFocus, projectDetailsPanelState} = React.useContext(CountyContext)
-  const [searchContent, setSearchContent] = React.useState({selectedInput: '', inputValue: ''})
   const [currentPage, setCurrentPage] = React.useState(1)
   const resultsRef = React.useRef()
 
-  let firstPageIndex = 0
   firstPageIndex += currentPage*10-10
 
   const showProjectDetails = (index) => {
@@ -19,9 +19,14 @@ const ModalTable = ({props, searchState}) => {
     projectFocus.setProjectInFocus(index)
   }
 
-  if(!searchState.searchContent.state)
+  const handleChange = (e) => {
+    setSearchContent({state: true, selectedInput: e.target.name, inputValue: e.target.value})
+    resultsRef.current.style.display = 'block'
+  }
+
+  if(!searchContent.state)
     projectList = props.projectID.map((item, index) =>  index)
-    .filter((item, index) => parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
+    .filter((index) => parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
     // eslint-disable-next-line
     .map((index, num) => {
       while(num >= firstPageIndex && num < firstPageIndex+10) {
@@ -43,7 +48,7 @@ const ModalTable = ({props, searchState}) => {
       }
     })
 
-  if(searchState.searchContent.state) {
+  if(searchContent.state) {
     if(searchContent.selectedInput === 'projectID') filterArray = props.projectID
     else if(searchContent.selectedInput === 'projectName') filterArray = props.projectName
     else if(searchContent.selectedInput === 'startDate') filterArray = props.startDate
@@ -55,7 +60,7 @@ const ModalTable = ({props, searchState}) => {
 
     projectList = props.projectID.map((item, index) => index)
     // eslint-disable-next-line
-    .filter((item, index) => {
+    .filter((index) => {
       let truthTests = parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number
       && filterArray[index][searchContent.inputValue.length-1] === searchContent.inputValue[searchContent.inputValue.length-1]
       && filterArray[index][searchContent.inputValue.length-2] === searchContent.inputValue[searchContent.inputValue.length-2]
@@ -63,12 +68,12 @@ const ModalTable = ({props, searchState}) => {
 
       if(truthTests) resultSetLength++
 
-      return ( truthTests )
+      return (truthTests)
     })
     // eslint-disable-next-line
     .map((index, num) => {
       while(num >= firstPageIndex && num < firstPageIndex+10) {
-        if(num > recordsInPage) recordsInPage = num
+        if((num+1) > recordsInPage) recordsInPage = (num+1)
         return (
           <tr key={index}>
             <td className='td_view_project' onClick={() => showProjectDetails(index)}>
@@ -87,20 +92,15 @@ const ModalTable = ({props, searchState}) => {
       }
     })
   }
-  
-  if((recordsInPage+1)%10 === 0) resultSetLengthPerView = 10
-  else if(recordsInPage%10 === 0) resultSetLengthPerView = 0
-  else resultSetLengthPerView = (recordsInPage+1)%(10)
 
-  const handleChange = (e) => {
-    setSearchContent({selectedInput: e.target.name, inputValue: e.target.value})
-    searchState.setSearchContent({state: true, value: e.target.value})
-    resultsRef.current.style.display = 'block'
-  }
+  totalPages = Math.ceil(resultSetLength/10)
+  if(totalPages < 1) totalPages = 1
+  
+  resultSetLengthPerView = recordsInPage%10
 
   const changeTablePage = (action) => {
     if(action === 'next') {
-      if(currentPage < Math.ceil(resultSetLength/10))
+      if(currentPage < totalPages)
         setCurrentPage(currentPage+1)
     }
     else if(action === 'prev') {
@@ -116,40 +116,40 @@ const ModalTable = ({props, searchState}) => {
           <button onClick={() => changeTablePage('prev')}>Prev page</button>
           <button onClick={() => changeTablePage('next')}>Next page</button>
         </div>
-        <span>PAGE {currentPage} of {Math.ceil(resultSetLength/10)}   </span>
+        <span>PAGE {currentPage} of {totalPages}   </span>
         <span ref={resultsRef}>|   SHOWING RESULTS: {resultSetLengthPerView} of {resultSetLength}</span>
       </div>
       <div className='table_container'>
-          <table className='table_wd'>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Project ID</th>
-                <th>Project name</th>
-                <th>Start date</th>
-                <th>Duration</th>
-                <th>Sector</th>
-                <th>Est. cost</th>
-                <th>Fin. year</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className='tr_search'>
-                <td></td>
-                <td><input type='search' name='projectID' value={searchState.searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='projectName' value={searchState.searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='startDate' value={searchState.searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='duration' value={searchState.searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='sector' value={searchState.searchContent.sector} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='estimatedCost' value={searchState.searchContent.estimatedCost} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='financialYear' value={searchState.searchContent.financialYear} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-                <td><input type='search' name='status' value={searchState.searchContent.status} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              </tr>
-              {projectList}
-            </tbody>
-          </table>
-        </div>
+        <table className='table_wd'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Project ID</th>
+              <th>Project name</th>
+              <th>Start date</th>
+              <th>Duration</th>
+              <th>Sector</th>
+              <th>Est. cost</th>
+              <th>Fin. year</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className='tr_search'>
+              <td></td>
+              <td><input type='search' name='projectID' value={searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='projectName' value={searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='startDate' value={searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='duration' value={searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='sector' value={searchContent.sector} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='estimatedCost' value={searchContent.estimatedCost} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='financialYear' value={searchContent.financialYear} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='status' value={searchContent.status} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+            </tr>
+            {projectList}
+          </tbody>
+        </table>
+      </div>
     </>
   )
 }

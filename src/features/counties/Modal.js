@@ -13,7 +13,7 @@ const Modal = ({props}) => {
 
   openModal(countyModalState.openCountyModal, modalRef)
 
-  const [searchContent, setSearchContent] = React.useState({state: false, value:''})
+  const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: '', inputValue: ''})
   const searchState = {searchContent, setSearchContent}
 
   const closeAction = () => {
