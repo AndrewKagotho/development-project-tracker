@@ -1,8 +1,9 @@
 .page_section {
+  width: 90%;
   margin: 50px 0;
   @include h_center_content;
   
-  @include border_blu; & > * {@include border_blu;}
+  // @include border_blu; & > * {@include border_blu;}
 
   p { margin-bottom: $margin; }
 
@@ -16,7 +17,16 @@
 
 .page_section_sm { width: 55%; }
 
-.page_section_md { width: 90%; }
+.page_section_lg {
+  margin: 30px 0;
+
+  h2 {
+    font-size: $large_font;
+    margin-bottom: 15px;
+  }
+}
+
+.table_div { display: inline-block; }
 
 .page_section__features {
   gap: $margin;

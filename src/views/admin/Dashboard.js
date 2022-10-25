@@ -27,7 +27,9 @@ const Dashboard = (props) => {
     // eslint-disable-next-line
   }, [])
 
-  const [tableInFocus, setTableInFocus] = React.useState('Counties')
+  const resultsRef = React.useRef()
+
+  const [tableInFocus, setTableInFocus] = React.useState('counties')
   const tableFocus = {tableInFocus, setTableInFocus}
 
   const [recordInFocus, setRecordInFocus] = React.useState(projectTemplate)
@@ -45,13 +47,29 @@ const Dashboard = (props) => {
   const [infoModalProps, setInfoModalProps] = React.useState({state: false, icon: '', text:''})
   const infoModal = {infoModalProps, setInfoModalProps}
 
+  const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: '', inputValue: ''})
+  const searchState = {searchContent, setSearchContent}
+
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const pageValue = {currentPage, setCurrentPage}
+
   const value = {
     tableFocus,
     recordFocus,
     projectDetailsPanelState,
     updateProjectPanelState,
     deleteProjectModalState,
-    infoModal
+    infoModal,
+    searchState,
+    pageValue,
+    resultsRef
+  }
+
+  const showTable = (table) => {
+    setTableInFocus(table)
+    setSearchContent({state: false, selectedInput: '', inputValue: ''})
+    setCurrentPage(1)
+    resultsRef.current.style.display = 'none'
   }
 
   return (
@@ -60,15 +78,15 @@ const Dashboard = (props) => {
         <menu className='flex'>
           <section>
             <h3>County data</h3>
-            <button onClick={() => setTableInFocus('Counties')}>Counties</button>
+            <button onClick={() => showTable('counties')}>Counties</button>
           </section>
           <section>
             <h3>Project data</h3>
-            <button onClick={() => setTableInFocus('projects')}>Projects</button>
-            <button onClick={() => setTableInFocus('timelines')}>Timelines</button>
-            <button onClick={() => setTableInFocus('implementation')}>Implementation</button>
-            <button onClick={() => setTableInFocus('finances')}>Finances</button>
-            <button onClick={() => setTableInFocus('locations')}>Locations</button>
+            <button onClick={() => showTable('projects')}>Projects</button>
+            <button onClick={() => showTable('timelines')}>Timelines</button>
+            <button onClick={() => showTable('implementation')}>Implementation</button>
+            <button onClick={() => showTable('finances')}>Finances</button>
+            <button onClick={() => showTable('locations')}>Locations</button>
           </section>
           <section>
             <h3>Admin data</h3>

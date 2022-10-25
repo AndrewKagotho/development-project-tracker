@@ -12,7 +12,6 @@ export const countyTableHead = () => {
 }
 
 export const countyTableSearch = (searchState, resultsRef) => {
-  const {searchContent} = searchState
 
   const handleChange = (e) => {
     searchState.setSearchContent({state: true, selectedInput: e.target.name, inputValue: e.target.value})
@@ -21,19 +20,19 @@ export const countyTableSearch = (searchState, resultsRef) => {
   
   return (
     <tr className='tr_search'>
-      <td><input type='search' name='countyNo' value={searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-      <td><input type='search' name='countyName' value={searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-      <td><input type='search' name='governor' value={searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-      <td><input type='search' name='senator' value={searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+      <td><input type='search' name='countyNo' value={searchState.searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+      <td><input type='search' name='countyName' value={searchState.searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+      <td><input type='search' name='governor' value={searchState.searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+      <td><input type='search' name='senator' value={searchState.searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
     </tr>
   )
 }
 
-export const countyTableRows = (tableValues) => {
+export const countyTableRows = (countyTableValues) => {
   let filterArray
-  let {props, searchContent, trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex} = tableValues
+  let {props, searchState, trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex} = countyTableValues
 
-  if(!searchContent.state) {
+  if(!searchState.searchContent.state) {
     return (
       // eslint-disable-next-line
       props.countyNo.map((item, index) => {
@@ -59,19 +58,19 @@ export const countyTableRows = (tableValues) => {
     )
   }
 
-  if(searchContent.state) {
-    if(searchContent.selectedInput === 'countyNo') filterArray = props.countyNo
-    else if(searchContent.selectedInput === 'countyName') filterArray = props.countyName
-    else if(searchContent.selectedInput === 'governor') filterArray = props.governor
-    else if(searchContent.selectedInput === 'senator') filterArray = props.senator
+  if(searchState.searchContent.state) {
+    if(searchState.searchContent.selectedInput === 'countyNo') filterArray = props.countyNo
+    else if(searchState.searchContent.selectedInput === 'countyName') filterArray = props.countyName
+    else if(searchState.searchContent.selectedInput === 'governor') filterArray = props.governor
+    else if(searchState.searchContent.selectedInput === 'senator') filterArray = props.senator
 
     return (
       props.countyNo.map((item, index) => index)
       .filter((index) => {
         const truthTests
-        = filterArray[index][searchContent.inputValue.length-1] === searchContent.inputValue[searchContent.inputValue.length-1]
-        && filterArray[index][searchContent.inputValue.length-2] === searchContent.inputValue[searchContent.inputValue.length-2]
-        && filterArray[index][searchContent.inputValue.length-3] === searchContent.inputValue[searchContent.inputValue.length-3]
+        = filterArray[index][searchState.searchContent.inputValue.length-1] === searchState.searchContent.inputValue[searchState.searchContent.inputValue.length-1]
+        && filterArray[index][searchState.searchContent.inputValue.length-2] === searchState.searchContent.inputValue[searchState.searchContent.inputValue.length-2]
+        && filterArray[index][searchState.searchContent.inputValue.length-3] === searchState.searchContent.inputValue[searchState.searchContent.inputValue.length-3]
 
         return (truthTests)
       })
@@ -80,7 +79,7 @@ export const countyTableRows = (tableValues) => {
         while(num >= firstPageIndex && num < firstPageIndex+10) {
           return (
             <tr key={index} ref={(item) => trRef.current[index] = item}>
-              <td>{num+1}. {props.countyNo[index]}</td>
+              <td>{props.countyNo[index]}</td>
               <td>{props.countyName[index]}</td>
               <td>{props.governor[index]}</td>
               <td>{props.senator[index]}</td>
