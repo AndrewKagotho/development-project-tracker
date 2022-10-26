@@ -20,10 +20,14 @@ const UpdateProjectPanel = ({props}) => {
 
   const {tableFocus, recordFocus, updateProjectPanelState, infoModal} = React.useContext(DashboardContext)
   const updateProjectPanelRef = React.useRef()
+  const [track, setTrack] = React.useState({})
 
   openLoginPanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
 
-  const handleChange = (e) => recordFocus.setRecordInFocus({...recordFocus.recordInFocus, [e.target.name]: e.target.value })
+  const handleChange = (e) => {
+    recordFocus.setRecordInFocus({...recordFocus.recordInFocus, [e.target.name]: e.target.value })
+    setTrack({...track, [e.target.name]: [e.target.value, recordFocus.recordInFocus.recordIndex]})
+  }
 
   const handleSubmit = (e, table) => {
     let sendMeta = {script: '', action: ''}
@@ -34,17 +38,18 @@ const UpdateProjectPanel = ({props}) => {
     if(table === 'finances') { sendMeta = { script: updateFinanceScript, action: getFinanceDetails }}
     if(table === 'locations') { sendMeta = { script: updateLocationScript, action: getLocationDetails }}
 
-    axios.post(sendMeta.script, recordFocus.recordInFocus)
-    .then((response) => {
-      if(response.data) {
-        infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
-        sendMeta.action(props)
-      }
-      else
-        infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
-    })
+    // axios.post(sendMeta.script, recordFocus.recordInFocus)
+    // .then((response) => {
+    //   if(response.data) {
+    //     infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
+    //     sendMeta.action(props)
+    //   }
+    //   else
+    //     infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
+    // })
 
-    closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
+    // closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
+    console.log(track)
     e.preventDefault()
   }
 
