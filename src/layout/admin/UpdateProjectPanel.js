@@ -14,19 +14,22 @@ let updateTimelineScript = 'http://localhost/development-project-tracker/src/uti
 let updateImplementationScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateImplementation.php'
 let updateFinanceScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateFinance.php'
 let updateLocationScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateLocation.php'
+let logChangesScript = 'http://localhost/development-project-tracker/src/utils/php/logChanges.php'
 let formFields
 
 const UpdateProjectPanel = ({props}) => {
 
   const {tableFocus, recordFocus, updateProjectPanelState, infoModal} = React.useContext(DashboardContext)
   const updateProjectPanelRef = React.useRef()
-  const [track, setTrack] = React.useState({})
+  const [track, setTrack] = React.useState({
+    action: 'update'
+  })
 
   openLoginPanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
 
   const handleChange = (e) => {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus, [e.target.name]: e.target.value })
-    setTrack({...track, [e.target.name]: [e.target.value, recordFocus.recordInFocus.recordIndex]})
+    setTrack({...track, projectID: recordFocus.recordInFocus.projectID, [e.target.name]: [e.target.defaultValue, e.target.value]})
   }
 
   const handleSubmit = (e, table) => {
@@ -38,18 +41,23 @@ const UpdateProjectPanel = ({props}) => {
     if(table === 'finances') { sendMeta = { script: updateFinanceScript, action: getFinanceDetails }}
     if(table === 'locations') { sendMeta = { script: updateLocationScript, action: getLocationDetails }}
 
-    // axios.post(sendMeta.script, recordFocus.recordInFocus)
-    // .then((response) => {
-    //   if(response.data) {
-    //     infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
-    //     sendMeta.action(props)
-    //   }
-    //   else
-    //     infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
-    // })
+    axios.post(sendMeta.script, recordFocus.recordInFocus)
+    .then((response) => {
+      if(response.data) {
+        infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
+        sendMeta.action(props)
+      }
+      else
+        infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
+    })
 
-    // closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
-    console.log(track)
+    closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
+
+    // console.log(track)
+
+    // axios.post(logChangesScript, track)
+    // .then((response) => console.log(response))
+
     e.preventDefault()
   }
 
@@ -61,8 +69,7 @@ const UpdateProjectPanel = ({props}) => {
         <label htmlFor='description'>Description:</label>
         <textarea type='text' id='description' name='description' defaultValue={props.description[recordFocus.recordInFocus.recordIndex]} key={props.description[recordFocus.recordInFocus.recordIndex] + ':description'} onChange={handleChange} />
         <label htmlFor='status'>Status:</label>
-        <select id='status' name='status' value={recordFocus.recordInFocus.status} onChange={handleChange} >
-          <option value='' disabled hidden></option>
+        <select id='status' name='status' defaultValue={props.status[recordFocus.recordInFocus.recordIndex]} key={props.status[recordFocus.recordInFocus.recordIndex] + ':status'} onChange={handleChange} >
           <option value='Scheduled'>Scheduled</option>
           <option value='Approved'>Approved</option>
           <option value='In progress'>In progress</option>
@@ -138,7 +145,7 @@ const UpdateProjectPanel = ({props}) => {
     <div className='sidePanel' ref={updateProjectPanelRef}>
       <svg className='close_modal_svg' onClick={() => closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000"><path d="M0 0h24v24H0V0z" fill="#FFF"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
       <div className='sidePanel__content'>
-        <form onSubmit={(event) => handleSubmit(event, tableFocus.tableInFocus)}>
+        <form onSubmit={(e) => handleSubmit(e, tableFocus.tableInFocus)}>
           <h3>Updating projectID <em>'{recordFocus.recordInFocus.projectID}'</em></h3>
           <div className='sidePanel__content__grid'>
             {formFields}
