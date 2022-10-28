@@ -26,10 +26,11 @@ export const showMoreOptions = (trRef, moreOptionsSVGRef, moreOptionsRef, index)
   dynamicShowMoreOptionsSVG(moreOptionsSVGRef, trRef, index)
 }
 
-export const showSidePanel = (props, table, index, updateProjectPanelState, recordFocus) => {
+export const showSidePanel = (props, tableFocus, index, updateProjectPanelState, recordFocus, trackValue) => {
   updateProjectPanelState.setUpdateProjectPanelStatus(true)
+  trackValue.setTrackLog({action: 'update'})
 
-  if(table === 'projects') {
+  if(tableFocus.tableInFocus === 'projects') {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
       recordIndex: index,
       projectID: props.projectID[index],
@@ -38,7 +39,7 @@ export const showSidePanel = (props, table, index, updateProjectPanelState, reco
       status: props.status[index]
     })
   }
-  else if(table === 'timelines') {
+  else if(tableFocus.tableInFocus === 'timelines') {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
       recordIndex: index,
       projectID: props.timeProjectID[index],
@@ -48,7 +49,7 @@ export const showSidePanel = (props, table, index, updateProjectPanelState, reco
       duration: props.duration[index]
     })
   }
-  else if(table === 'implementation') {
+  else if(tableFocus.tableInFocus === 'implementation') {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
       recordIndex: index,
       projectID: props.impProjectID[index],
@@ -59,7 +60,7 @@ export const showSidePanel = (props, table, index, updateProjectPanelState, reco
       priority: props.priority[index]
     })
   }
-  else if(table === 'finances') {
+  else if(tableFocus.tableInFocus === 'finances') {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
       recordIndex: index,
       projectID: props.finProjectID[index],
@@ -69,7 +70,7 @@ export const showSidePanel = (props, table, index, updateProjectPanelState, reco
       fundingSource: props.fundingSource[index]
     })
   }
-  else if(table === 'locations') {
+  else if(tableFocus.tableInFocus === 'locations') {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
       recordIndex: index,
       projectID: props.locProjectID[index],
@@ -91,7 +92,7 @@ export const showDeleteModal = (props, index, deleteProjectModalState, recordFoc
 
 const AdminTable = ({props}) => {
   
-  const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, resultsRef} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackValue, resultsRef} = React.useContext(DashboardContext)
   const trRef = React.useRef([])
   const moreOptionsSVGRef = React.useRef([])
   const moreOptionsRef = React.useRef([])
@@ -102,7 +103,7 @@ const AdminTable = ({props}) => {
   firstPageIndex += pageValue.currentPage*10-10
   const countyTableValues = {props, searchState, trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex, resultSetLength}
 
-  const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState}  
+  const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackValue}  
   const projectInfoVars = {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex}
 
   if(tableFocus.tableInFocus === 'counties') {

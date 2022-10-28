@@ -72,6 +72,12 @@ p {
   margin-bottom: 25px;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 em {
   font-weight: $bold_x1;
   font-style: normal;

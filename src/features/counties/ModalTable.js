@@ -137,14 +137,14 @@ const ModalTable = ({props, searchState}) => {
           <tbody>
             <tr className='tr_search'>
               <td></td>
-              <td><input type='search' name='projectID' value={searchContent.projectID} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='projectName' value={searchContent.projectName} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='startDate' value={searchContent.startDate} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='duration' value={searchContent.duration} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='sector' value={searchContent.sector} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='estimatedCost' value={searchContent.estimatedCost} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='financialYear' value={searchContent.financialYear} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
-              <td><input type='search' name='status' value={searchContent.status} placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='projectID' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='projectName' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='startDate' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='duration' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='sector' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='estimatedCost' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='financialYear' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
+              <td><input type='search' name='status' placeholder='Search:' onChange={handleChange} autoComplete='off' /></td>
             </tr>
             {projectList}
           </tbody>

@@ -24,7 +24,6 @@ export const initialState = {
     ministry: [],
     agency: [],
     contractor: [],
-    contacts: [],
     priority: []
   },
   finances: {
@@ -40,5 +39,13 @@ export const initialState = {
     subCounty: [],
     constituency: [],
     ward: []
+  },
+  tracking: {
+    date: [],
+    projectID: [],
+    field: [],
+    action: [],
+    valueFrom: [],
+    valueTo: []
   }
 }

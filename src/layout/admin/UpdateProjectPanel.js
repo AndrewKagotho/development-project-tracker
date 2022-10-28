@@ -19,17 +19,40 @@ let formFields
 
 const UpdateProjectPanel = ({props}) => {
 
-  const {tableFocus, recordFocus, updateProjectPanelState, infoModal} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, updateProjectPanelState, infoModal, trackValue} = React.useContext(DashboardContext)
   const updateProjectPanelRef = React.useRef()
-  const [track, setTrack] = React.useState({
-    action: 'update'
-  })
 
   openLoginPanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
 
   const handleChange = (e) => {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus, [e.target.name]: e.target.value })
-    setTrack({...track, projectID: recordFocus.recordInFocus.projectID, [e.target.name]: [e.target.defaultValue, e.target.value]})
+
+    let propsName, propsValue
+    if(e.target.name === 'name') {propsValue = props.projectName; propsName = 'project name'}
+    else if(e.target.name === 'description') {propsValue = props.description; propsName = 'description'}
+    else if(e.target.name === 'status') {propsValue = props.status; propsName = 'status'}
+    else if(e.target.name === 'approvalDate') {propsValue = props.approvalDate; propsName = 'approval date'}
+    else if(e.target.name === 'startDate') {propsValue = props.startDate; propsName = 'start date'}
+    else if(e.target.name === 'endDate') {propsValue = props.endDate; propsName = 'end date'}
+    else if(e.target.name === 'duration') {propsValue = props.duration; propsName = 'duration'}
+    else if(e.target.name === 'sector') {propsValue = props.sector; propsName = 'sector'}
+    else if(e.target.name === 'ministry') {propsValue = props.ministry; propsName = 'ministry'}
+    else if(e.target.name === 'agency') {propsValue = props.agency; propsName = 'agency'}
+    else if(e.target.name === 'contractor') {propsValue = props.contractor; propsName = 'contractor'}
+    else if(e.target.name === 'priority') {propsValue = props.priority; propsName = 'priority'}
+    else if(e.target.name === 'estimatedCost') {propsValue = props.estimatedCost; propsName = 'estimated cost'}
+    else if(e.target.name === 'budget') {propsValue = props.budget; propsName = 'budget'}
+    else if(e.target.name === 'financialYear') {propsValue = props.financialYear; propsName = 'financial year'}
+    else if(e.target.name === 'fundingSource') {propsValue = props.fundingSource; propsName = 'funding source'}
+    else if(e.target.name === 'countyNo') {propsValue = props.locCountyNo; propsName = 'county'}
+    else if(e.target.name === 'subCounty') {propsValue = props.subCounty; propsName = 'sub county'}
+    else if(e.target.name === 'constituency') {propsValue = props.constituency; propsName = 'constituency'}
+    else if(e.target.name === 'ward') {propsValue = props.ward; propsName = 'ward'}
+
+    trackValue.setTrackLog({...trackValue.trackLog,
+      projectID: recordFocus.recordInFocus.projectID,
+      [propsName]: [propsValue[recordFocus.recordInFocus.recordIndex], e.target.value]
+    })
   }
 
   const handleSubmit = (e, table) => {
@@ -44,6 +67,7 @@ const UpdateProjectPanel = ({props}) => {
     axios.post(sendMeta.script, recordFocus.recordInFocus)
     .then((response) => {
       if(response.data) {
+        axios.post(logChangesScript, trackValue.trackLog)
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
         sendMeta.action(props)
       }
@@ -52,12 +76,6 @@ const UpdateProjectPanel = ({props}) => {
     })
 
     closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
-
-    // console.log(track)
-
-    // axios.post(logChangesScript, track)
-    // .then((response) => console.log(response))
-
     e.preventDefault()
   }
 
@@ -104,8 +122,7 @@ const UpdateProjectPanel = ({props}) => {
         <label htmlFor='contractor'>Contractor:</label>
         <input type='text' id='contractor' name='contractor' defaultValue={props.contractor[recordFocus.recordInFocus.recordIndex]} key={props.contractor[recordFocus.recordInFocus.recordIndex] + ':contractor'} onChange={handleChange} />
         <label htmlFor='priority'>Priority:</label>
-        <select id='priority' name='priority' value={recordFocus.recordInFocus.priority} onChange={handleChange} >
-          <option value='' disabled hidden></option>
+        <select id='priority' name='priority' defaultValue={props.priority[recordFocus.recordInFocus.recordIndex]} key={props.priority[recordFocus.recordInFocus.recordIndex] + ':priority'} onChange={handleChange} >
           <option value='High'>High</option>
           <option value='Medium'>Medium</option>
           <option value='Low'>Low</option>

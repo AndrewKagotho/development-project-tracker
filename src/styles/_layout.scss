@@ -11,6 +11,10 @@ nav {
   height: 75px;
   align-items: center;
   padding: 0px 50px;
+  background-color: $neutral;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 
   ul {
     list-style-type: none;

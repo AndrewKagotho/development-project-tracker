@@ -53,6 +53,9 @@ const Dashboard = (props) => {
   const [currentPage, setCurrentPage] = React.useState(1)
   const pageValue = {currentPage, setCurrentPage}
 
+  const [trackLog, setTrackLog] = React.useState({action: ''})
+  const trackValue = {trackLog, setTrackLog}
+
   const value = {
     tableFocus,
     recordFocus,
@@ -62,6 +65,7 @@ const Dashboard = (props) => {
     infoModal,
     searchState,
     pageValue,
+    trackValue,
     resultsRef
   }
 

@@ -86,6 +86,21 @@ export const appReducer = (state = initialState, action) => {
       return {...state,
         locations: { projectID: [], countyNo: [], subCounty: [], constituency: [], ward: [] }  
       }
+    case 'ADD_TRACKING_LOGS':
+    return {...state,
+      tracking: {
+        date: [...state.tracking.date, action.date],
+        projectID: [...state.tracking.projectID, action.projectID],
+        field: [...state.tracking.field, action.field],
+        action: [...state.tracking.action, action.action],
+        valueFrom: [...state.tracking.valueFrom, action.valueFrom],
+        valueTo: [...state.tracking.valueTo, action.valueTo]
+      }
+    }
+  case 'RESET_TRACKING_LOGS':
+    return {...state,
+      tracking: { date: [], projectID: [], field: [], action: [], valueFrom: [], valueTo: [] }
+    }
     default:
       return state
   }

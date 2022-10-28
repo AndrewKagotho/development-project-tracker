@@ -7,6 +7,7 @@ import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
 import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
 import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
 import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 import LoginPanel from '../../layout/public/LoginPanel'
 import Footer from '../../layout/Footer'
 
@@ -22,6 +23,7 @@ const Landing = (props) => {
     getImplementationDetails(props)
     getFinanceDetails(props)
     getLocationDetails(props)
+    getTrackingLogs(props)
     // eslint-disable-next-line
   }, [])
 

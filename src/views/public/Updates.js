@@ -1,9 +1,47 @@
-const Updates = () => {
-    return (
+import { connect } from 'react-redux'
+import { mapDispatchToProps } from '../../store/Action'
+
+const Updates = (props) => {
+
+  let currentDate = new Date()
+  let year = currentDate.getFullYear()
+  let month = currentDate.getMonth()+1
+  let date = currentDate.getDate()
+  let hours = currentDate.getHours()
+  let minutes = currentDate.getMinutes()
+
+  if(month < 10) month = '0' + month
+  if(hours < 10) hours = '0' + hours
+  if(minutes < 10) minutes = '0' + minutes
+
+  const logList = props.projectID.map((item, index) => 
+    <li className='card card_sm' key={index}>
+      <span><em>Project ID: {props.projectID[index]}</em></span>
+      <span>Date: {props.logDate[index]}</span>
+      <span>Project <em>{props.field[index]}</em> changed from <em>{props.valueFrom[index]}</em> to <em>{props.valueTo[index]}</em></span>  
+    </li>
+  )
+
+  return (
+    <>
       <section className='page_section'>
-        <h2>Updates</h2>
+        <h2>Project updates</h2>
+        <p>View changes to tracked projects here. Last updated at {hours}:{minutes}, {date}/{month}/{year}</p>
       </section>
-    )
+      <ul className='updates flex'>{logList}</ul>
+    </>
+  )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    logDate: state.tracking.date,
+    projectID: state.tracking.projectID,
+    field: state.tracking.field,
+    logAction: state.tracking.action,
+    valueFrom: state.tracking.valueFrom,
+    valueTo: state.tracking.valueTo
   }
-  
-  export default Updates
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Updates)

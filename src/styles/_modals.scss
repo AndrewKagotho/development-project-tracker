@@ -5,10 +5,10 @@
   opacity: 0;
   background-color: rgba(255, 255, 255, .75);
   overflow-y: auto;
-  z-index: 2;
   transition: visibility $animation, opacity $animation;
   position: fixed;
   top: 0;
+  z-index: 10;
 }
 
 .modal__card {

@@ -58,12 +58,12 @@ menu {
   background-color: rgba(255, 255, 255, .99);
   border-left: 1px solid $primary;
   overflow-y: auto;
-  z-index: 3;
   padding: $card_padding;
   transition: width $animation, visibility $animation, opacity $animation;
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 10;
 
   h3 {
     margin-bottom: 10px;

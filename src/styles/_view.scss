@@ -44,6 +44,18 @@
   & > div { width: 100%; }
 }
 
+.updates {
+  width: 50vw;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+  @include h_center_content;
+
+  span { display: block; }
+  span:last-child { margin-top: 10px; }
+  em { color: $primary; }
+}
+
 .about {
   width: 50vw;
   text-align: center;
