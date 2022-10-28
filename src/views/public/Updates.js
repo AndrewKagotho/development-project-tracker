@@ -16,7 +16,7 @@ const Updates = (props) => {
 
   const logList = props.projectID.map((item, index) => 
     <li className='card card_sm' key={index}>
-      <span><em>Project ID: {props.projectID[index]}</em></span>
+      <span><em>Project ID: {item}</em></span>
       <span>Date: {props.logDate[index]}</span>
       <span>Project <em>{props.field[index]}</em> changed from <em>{props.valueFrom[index]}</em> to <em>{props.valueTo[index]}</em></span>  
     </li>
