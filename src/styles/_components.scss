@@ -202,7 +202,7 @@ table {
       &:focus { box-shadow: 0 2px 1px $primary_hover; }
     }
 
-    &:last-child { white-space: nowrap; }
+    // &:last-child { white-space: nowrap; }
   }
 
   button { padding: 5px 10px; }

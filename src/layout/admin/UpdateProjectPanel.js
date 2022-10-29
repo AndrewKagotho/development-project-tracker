@@ -8,6 +8,7 @@ import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
 import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
 import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
 import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 
 let updateProjectScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateProject.php'
 let updateTimelineScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateTimeline.php'
@@ -70,6 +71,7 @@ const UpdateProjectPanel = ({props}) => {
         axios.post(logChangesScript, trackValue.trackLog)
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
         sendMeta.action(props)
+        getTrackingLogs(props)
       }
       else
         infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})

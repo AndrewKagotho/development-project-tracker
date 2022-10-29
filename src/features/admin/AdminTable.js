@@ -20,6 +20,12 @@ import { financesTableRows } from './financesTable'
 import { locationsTableHead } from './locationsTable'
 import { locationsTableSearch } from './locationsTable'
 import { locationsTableRows } from './locationsTable'
+import { trackingLogsTableHead } from './trackingLogsTable'
+import { trackingLogsTableSearch } from './trackingLogsTable'
+import { trackingLogsTableRows } from './trackingLogsTable'
+import { adminsTableHead } from './adminsTable'
+import { adminsTableSearch } from './adminsTable'
+import { adminsTableRows } from './adminsTable'
 
 export const showMoreOptions = (trRef, moreOptionsSVGRef, moreOptionsRef, index) => {
   dynamicShowMoreOptions(moreOptionsRef, index)
@@ -154,6 +160,22 @@ const AdminTable = ({props}) => {
     resultSetLengthPerView = locationsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
   }
 
+  else if(tableFocus.tableInFocus === 'tracking logs') {
+    tableHead = trackingLogsTableHead()
+    tableSearch = trackingLogsTableSearch(searchState, resultsRef)
+    tableRows = trackingLogsTableRows(projectInfoStates, projectInfoVars)
+    resultSetLength = trackingLogsTableRows(projectInfoStates, projectInfoVars).length
+    resultSetLengthPerView = trackingLogsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
+  }
+
+  else if(tableFocus.tableInFocus === 'admin') {
+    tableHead = adminsTableHead()
+    tableSearch = adminsTableSearch(searchState, resultsRef)
+    tableRows = adminsTableRows(projectInfoStates, projectInfoVars)
+    resultSetLength = adminsTableRows(projectInfoStates, projectInfoVars).length
+    resultSetLengthPerView = adminsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
+  }
+
   totalPages = Math.ceil(resultSetLength/10)
   if(totalPages < 1) totalPages = 1
 
@@ -169,8 +191,9 @@ const AdminTable = ({props}) => {
   }
 
   return (
-    <section className='page_section page_section_lg'>
-      <h2>Viewing table: {tableFocus.tableInFocus}</h2>
+    <section className='page_section'>
+      <h2>Database management</h2>
+      <p>Viewing table: <b>{tableFocus.tableInFocus}</b>. Create, view, update and delete records.</p>
       <div className='table_div'>
         <div className='modal__card__table_extras flex'>
           <div>

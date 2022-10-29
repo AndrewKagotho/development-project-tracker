@@ -2,7 +2,7 @@
   $objectArray = [];
   $counter = 0;
 
-  require 'dbconn.php';
+  require './dbconn.php';
 
   $sql = "SELECT * FROM `locations`";
 

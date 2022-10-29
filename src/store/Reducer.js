@@ -101,6 +101,19 @@ export const appReducer = (state = initialState, action) => {
     return {...state,
       tracking: { date: [], projectID: [], field: [], action: [], valueFrom: [], valueTo: [] }
     }
+  case 'ADD_ADMINS':
+    return {...state,
+      admins: {
+        username: [...state.admins.username, action.username],
+        firstName: [...state.admins.firstName, action.firstName],
+        lastName: [...state.admins.lastName, action.lastName],
+        email: [...state.admins.email, action.email]
+      }
+    }
+  case 'RESET_ADMINS':
+    return {...state,
+      admins: { username: [], firstName: [], lastName: [], email: [] }
+    }
     default:
       return state
   }

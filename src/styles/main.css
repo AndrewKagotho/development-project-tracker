@@ -346,9 +346,6 @@ table td input {
 table td input:focus {
   box-shadow: 0 2px 1px #BDD6E5;
 }
-table td:last-child {
-  white-space: nowrap;
-}
 table button {
   padding: 5px 10px;
 }
@@ -426,14 +423,6 @@ table tbody tr:hover svg {
   width: 55%;
 }
 
-.page_section_lg {
-  margin: 30px 0;
-}
-.page_section_lg h2 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-}
-
 .table_div {
   display: inline-block;
 }
@@ -486,19 +475,18 @@ table tbody tr:hover svg {
 
 .admin_view {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 75px);
+  position: relative;
 }
 .admin_view menu, .admin_view > div {
-  height: calc(100% - 75px);
+  height: 100%;
   box-sizing: border-box;
   position: absolute;
-}
-.admin_view h2, .admin_view p {
-  text-align: left;
 }
 
 .admin_view__content {
   width: 85%;
+  overflow-y: auto;
   right: 0;
 }
 
@@ -779,7 +767,7 @@ menu {
   padding: 0;
   border-right: 1px solid #669FC3;
 }
-menu > section:nth-child(3) {
+menu > section:nth-child(4) {
   margin-top: 0;
   margin-bottom: auto;
 }

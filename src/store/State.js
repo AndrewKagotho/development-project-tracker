@@ -47,5 +47,11 @@ export const initialState = {
     action: [],
     valueFrom: [],
     valueTo: []
+  },
+  admins: {
+    username: [],
+    firstName: [],
+    lastName: [],
+    email: []
   }
 }

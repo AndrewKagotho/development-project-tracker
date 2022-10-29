@@ -76,6 +76,16 @@ const addTrackingLogs = (x1,x2,x3,x4,x5,x6) => {
   }
 }
 
+const addAdmins = (x1,x2,x3,x4) => {
+  return {
+    type: 'ADD_ADMINS',
+    username: x1,
+    firstName: x2,
+    lastName: x3,
+    email: x4
+  }
+}
+
 const resetCountyDetails = () => { return { type: 'RESET_COUNTY_DETAILS' } }
 
 const resetProjectDetails = () => { return { type: 'RESET_PROJECT_DETAILS' } }
@@ -90,6 +100,8 @@ const resetLocationDetails = () => { return { type: 'RESET_LOCATION_DETAILS' } }
 
 const resetTrackingLogs = () => { return { type: 'RESET_TRACKING_LOGS' } }
 
+const resetAdmins = () => { return { type: 'RESET_ADMINS' } }
+
 export const mapDispatchToProps = {
   addCountyDetails,
   addProjectDetails,
@@ -98,11 +110,13 @@ export const mapDispatchToProps = {
   addFinanceDetails,
   addLocationDetails,
   addTrackingLogs,
+  addAdmins,
   resetCountyDetails,
   resetProjectDetails,
   resetTimelineDetails,
   resetImplementationDetails,
   resetFinanceDetails,
   resetLocationDetails,
-  resetTrackingLogs
+  resetTrackingLogs,
+  resetAdmins
 }

@@ -7,6 +7,8 @@ import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
 import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
 import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
 import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
+import { getAdmins } from '../../utils/functions/getAdmins'
 import AdminTable from '../../features/admin/AdminTable'
 import ProjectDetailsPanel from '../../layout/admin/ProjectDetailsPanel'
 import UpdateProjectPanel from '../../layout/admin/UpdateProjectPanel'
@@ -24,6 +26,8 @@ const Dashboard = (props) => {
     getImplementationDetails(props)
     getFinanceDetails(props)
     getLocationDetails(props)
+    getTrackingLogs(props)
+    getAdmins(props)
     // eslint-disable-next-line
   }, [])
 
@@ -93,6 +97,10 @@ const Dashboard = (props) => {
             <button onClick={() => showTable('locations')}>Locations</button>
           </section>
           <section>
+            <h3>Tracking data</h3>
+            <button onClick={() => showTable('tracking logs')}>Logs</button>
+          </section>
+          <section>
             <h3>Admin data</h3>
             <button onClick={() => showTable('admin')}>Administrators</button>
           </section>
@@ -148,7 +156,19 @@ const mapStateToProps = (state) => {
     locCountyNo: state.locations.countyNo,
     subCounty: state.locations.subCounty,
     constituency: state.locations.constituency,
-    ward: state.locations.ward
+    ward: state.locations.ward,
+
+    logDate: state.tracking.date,
+    logProjectID: state.tracking.projectID,
+    logField: state.tracking.field,
+    logAction: state.tracking.action,
+    valueFrom: state.tracking.valueFrom,
+    valueTo: state.tracking.valueTo,
+
+    adminUsername: state.admins.username,
+    adminFirstName: state.admins.firstName,
+    adminLastName: state.admins.lastName,
+    adminEmail: state.admins.email
   }
 }
 
