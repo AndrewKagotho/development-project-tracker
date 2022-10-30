@@ -4,10 +4,10 @@ import { DashboardContext } from '../../views/admin/Dashboard'
 import { openModal } from '../../utils/functions/modal'
 import { closeModal } from '../../utils/functions/modal'
 import { getProjectDetails } from '../../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
+import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
+import { getProjectFinances } from '../../utils/functions/getProjectFinances'
+import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 
 let deleteProjectScript = 'http://localhost/development-project-tracker/src/utils/php/delete/deleteProject.php'
 
@@ -26,10 +26,10 @@ const DeleteProjectModal = ({props}) => {
       if(response.data) {
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully deleted!'})
         getProjectDetails(props)
-        getTimelineDetails(props)
-        getImplementationDetails(props)
-        getFinanceDetails(props)
-        getLocationDetails(props)
+        getProjectTimelines(props)
+        getProjectImplementations(props)
+        getProjectFinances(props)
+        getProjectLocations(props)
       }
       else
         infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})

@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-let getCountiesScript = 'http://localhost/development-project-tracker/src/utils/php/getCounties.php'
+let getCountiesScript = 'http://localhost/development-project-tracker/src/utils/php/select/getCounties.php'
 
-export const getCountyDetails = (props) => {
-  props.resetCountyDetails()
+export const getCounties = (props) => {
+  props.resetCounties()
   axios.get(getCountiesScript)
   .then((response) => {
     let resArray = response.data
     let recordIndex = 0
     while(recordIndex < resArray.length) {
-      props.addCountyDetails(
+      props.addCounties(
         resArray[recordIndex].countyNo,
         resArray[recordIndex].name,
         resArray[recordIndex].governor,

@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../../store/Action'
-import { getCountyDetails } from '../../utils/functions/getCountyDetails'
+import { getCounties } from '../../utils/functions/getCounties'
 import { getProjectDetails } from '../../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
+import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
+import { getProjectFinances } from '../../utils/functions/getProjectFinances'
+import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 import LoginPanel from '../../layout/public/LoginPanel'
 import Footer from '../../layout/Footer'
@@ -17,12 +17,12 @@ let imageOnDisplay = 0
 const Landing = (props) => {
 
   React.useEffect(() => {
-    getCountyDetails(props)
+    getCounties(props)
     getProjectDetails(props)
-    getTimelineDetails(props)
-    getImplementationDetails(props)
-    getFinanceDetails(props)
-    getLocationDetails(props)
+    getProjectTimelines(props)
+    getProjectImplementations(props)
+    getProjectFinances(props)
+    getProjectLocations(props)
     getTrackingLogs(props)
     // eslint-disable-next-line
   }, [])

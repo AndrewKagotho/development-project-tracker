@@ -4,10 +4,10 @@ import { DashboardContext } from '../../views/admin/Dashboard'
 import { openLoginPanel } from '../../utils/functions/panels'
 import { closeLoginPanel } from '../../utils/functions/panels'
 import { getProjectDetails } from '../../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
+import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
+import { getProjectFinances } from '../../utils/functions/getProjectFinances'
+import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 
 let updateProjectScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateProject.php'
@@ -15,7 +15,7 @@ let updateTimelineScript = 'http://localhost/development-project-tracker/src/uti
 let updateImplementationScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateImplementation.php'
 let updateFinanceScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateFinance.php'
 let updateLocationScript = 'http://localhost/development-project-tracker/src/utils/php/update/updateLocation.php'
-let logChangesScript = 'http://localhost/development-project-tracker/src/utils/php/logChanges.php'
+let logChangesScript = 'http://localhost/development-project-tracker/src/utils/php/insert/logChanges.php'
 let formFields
 
 const UpdateProjectPanel = ({props}) => {
@@ -60,10 +60,10 @@ const UpdateProjectPanel = ({props}) => {
     let sendMeta = {script: '', action: ''}
     
     if(table === 'projects') { sendMeta = { script: updateProjectScript, action: getProjectDetails }}
-    if(table === 'timelines') { sendMeta = { script: updateTimelineScript, action: getTimelineDetails }}
-    if(table === 'implementation') { sendMeta = { script: updateImplementationScript, action: getImplementationDetails }}
-    if(table === 'finances') { sendMeta = { script: updateFinanceScript, action: getFinanceDetails }}
-    if(table === 'locations') { sendMeta = { script: updateLocationScript, action: getLocationDetails }}
+    if(table === 'timelines') { sendMeta = { script: updateTimelineScript, action: getProjectTimelines }}
+    if(table === 'implementation') { sendMeta = { script: updateImplementationScript, action: getProjectImplementations }}
+    if(table === 'finances') { sendMeta = { script: updateFinanceScript, action: getProjectFinances }}
+    if(table === 'locations') { sendMeta = { script: updateLocationScript, action: getProjectLocations }}
 
     axios.post(sendMeta.script, recordFocus.recordInFocus)
     .then((response) => {

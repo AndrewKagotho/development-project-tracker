@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../../store/Action'
-import { getCountyDetails } from '../../utils/functions/getCountyDetails'
+import { getCounties } from '../../utils/functions/getCounties'
 import { getProjectDetails } from '../../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
+import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
+import { getProjectFinances } from '../../utils/functions/getProjectFinances'
+import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 import { getAdmins } from '../../utils/functions/getAdmins'
 import AdminTable from '../../features/admin/AdminTable'
@@ -20,12 +20,12 @@ export const DashboardContext = React.createContext()
 const Dashboard = (props) => {
 
   React.useEffect(() => {
-    getCountyDetails(props)
+    getCounties(props)
     getProjectDetails(props)
-    getTimelineDetails(props)
-    getImplementationDetails(props)
-    getFinanceDetails(props)
-    getLocationDetails(props)
+    getProjectTimelines(props)
+    getProjectImplementations(props)
+    getProjectFinances(props)
+    getProjectLocations(props)
     getTrackingLogs(props)
     getAdmins(props)
     // eslint-disable-next-line
@@ -128,35 +128,35 @@ const mapStateToProps = (state) => {
     governor: state.counties.governor,
     senator: state.counties.senator,
     
-    projectID: state.projects.projectID,
-    projectName: state.projects.name,
-    description: state.projects.description,
-    status: state.projects.status,
+    projectID: state.projects.details.projectID,
+    projectName: state.projects.details.name,
+    description: state.projects.details.description,
+    status: state.projects.details.status,
 
-    timeProjectID: state.timelines.projectID,
-    approvalDate: state.timelines.approvalDate,
-    startDate: state.timelines.startDate,
-    endDate: state.timelines.endDate,
-    duration: state.timelines.duration,
+    timeProjectID: state.projects.timelines.projectID,
+    approvalDate: state.projects.timelines.approvalDate,
+    startDate: state.projects.timelines.startDate,
+    endDate: state.projects.timelines.endDate,
+    duration: state.projects.timelines.duration,
 
-    impProjectID: state.implementation.projectID,
-    sector: state.implementation.sector,
-    ministry: state.implementation.ministry,
-    agency: state.implementation.agency,
-    contractor: state.implementation.contractor,
-    priority: state.implementation.priority,
+    impProjectID: state.projects.implementation.projectID,
+    sector: state.projects.implementation.sector,
+    ministry: state.projects.implementation.ministry,
+    agency: state.projects.implementation.agency,
+    contractor: state.projects.implementation.contractor,
+    priority: state.projects.implementation.priority,
 
-    finProjectID: state.finances.projectID,
-    estimatedCost: state.finances.estimatedCost,
-    budget: state.finances.budget,
-    financialYear: state.finances.financialYear,
-    fundingSource: state.finances.fundingSource,
+    finProjectID: state.projects.finances.projectID,
+    estimatedCost: state.projects.finances.estimatedCost,
+    budget: state.projects.finances.budget,
+    financialYear: state.projects.finances.financialYear,
+    fundingSource: state.projects.finances.fundingSource,
 
-    locProjectID: state.locations.projectID,
-    locCountyNo: state.locations.countyNo,
-    subCounty: state.locations.subCounty,
-    constituency: state.locations.constituency,
-    ward: state.locations.ward,
+    locProjectID: state.projects.locations.projectID,
+    locCountyNo: state.projects.locations.countyNo,
+    subCounty: state.projects.locations.subCounty,
+    constituency: state.projects.locations.constituency,
+    ward: state.projects.locations.ward,
 
     logDate: state.tracking.date,
     logProjectID: state.tracking.projectID,

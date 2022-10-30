@@ -1,5 +1,5 @@
 <?php
-  require 'dbconn.php';
+  require '../dbconn.php';
 
   $username = $_POST['username'];
   $password = $_POST['password'];

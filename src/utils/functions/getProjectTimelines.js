@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-let getTimelinesScript = 'http://localhost/development-project-tracker/src/utils/php/getTimelines.php'
+let getProjectTimelinesScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectTimelines.php'
 
-export const getTimelineDetails = (props) => {
-  props.resetTimelineDetails()
-  axios.get(getTimelinesScript)
+export const getProjectTimelines = (props) => {
+  props.resetProjectTimelines()
+  axios.get(getProjectTimelinesScript)
   .then((response) => {
     let resArray = response.data
     let recordIndex = 0
     while(recordIndex < resArray.length) {
-      props.addTimelineDetails(
+      props.addProjectTimelines(
         resArray[recordIndex].projectID,
         resArray[recordIndex]['approval date'],
         resArray[recordIndex]['start date'],

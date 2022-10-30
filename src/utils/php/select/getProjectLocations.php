@@ -2,15 +2,13 @@
   $objectArray = [];
   $counter = 0;
 
-  require './dbconn.php';
+  require '../dbconn.php';
 
-  $sql = "SELECT * FROM `implementation`";
+  $sql = "SELECT * FROM `locations`";
 
   $result = mysqli_query($conn, $sql);
 
   while($object = mysqli_fetch_object($result)) {
-    if($object->projectID === '')
-      continue;
     $objectArray[$counter] = $object;
     $counter++;
   }

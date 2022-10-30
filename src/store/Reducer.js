@@ -2,7 +2,7 @@ import { initialState } from './State'
 
 export const appReducer = (state = initialState, action) => {
   switch(action.type) {
-    case 'ADD_COUNTY_DETAILS':
+    case 'COU_ADD':
       return {...state,
         counties: {
           number: [...state.counties.number, action.number],
@@ -11,82 +11,101 @@ export const appReducer = (state = initialState, action) => {
           senator: [...state.counties.senator, action.senator]
         }
       }
-    case 'RESET_COUNTY_DETAILS':
+    case 'COU_RESET':
       return {...state,
         counties: { number: [], name: [], governor: [], senator: [] }
       }
-    case 'ADD_PROJECT_DETAILS':
+    case 'PRO_ADD_DETAILS':
       return {...state,
-        projects: {
-          projectID: [...state.projects.projectID, action.projectID],
-          name: [...state.projects.name, action.name],
-          description: [...state.projects.description, action.description],
-          status: [...state.projects.status, action.status]
+        projects: {...state.projects,
+          details: {
+            projectID: [...state.projects.details.projectID, action.projectID],
+            name: [...state.projects.details.name, action.name],
+            description: [...state.projects.details.description, action.description],
+            status: [...state.projects.details.status, action.status]
+          }
         }
       }
-    case 'RESET_PROJECT_DETAILS':
+    case 'PRO_RESET_DETAILS':
       return {...state,
-        projects: { projectID: [], name: [], description: [], status: [] }
-      }
-    case 'ADD_TIMELINE_DETAILS':
-      return {...state,
-        timelines: {
-          projectID: [...state.timelines.projectID, action.projectID],
-          approvalDate: [...state.timelines.approvalDate, action.approvalDate],
-          startDate: [...state.timelines.startDate, action.startDate],
-          endDate: [...state.timelines.endDate, action.endDate],
-          duration: [...state.timelines.duration, action.duration]
+        projects: {...state.projects,
+          details: { projectID: [], name: [], description: [], status: [] }
         }
       }
-    case 'RESET_TIMELINE_DETAILS':
+    case 'PRO_ADD_TIMELINES':
       return {...state,
-        timelines: { projectID: [], approvalDate: [], startDate: [], endDate: [], duration: [] }
-      }
-    case 'ADD_IMPLEMENTATION_DETAILS':
-      return {...state,
-        implementation: {
-          projectID: [...state.implementation.projectID, action.projectID],
-          sector: [...state.implementation.sector, action.sector],
-          ministry: [...state.implementation.ministry, action.ministry],
-          agency: [...state.implementation.agency, action.agency],
-          contractor: [...state.implementation.contractor, action.contractor],
-          contacts: [...state.implementation.contacts, action.contacts],
-          priority: [...state.implementation.priority, action.priority]
+        projects: {...state.projects,
+          timelines: {
+            projectID: [...state.projects.timelines.projectID, action.projectID],
+            approvalDate: [...state.projects.timelines.approvalDate, action.approvalDate],
+            startDate: [...state.projects.timelines.startDate, action.startDate],
+            endDate: [...state.projects.timelines.endDate, action.endDate],
+            duration: [...state.projects.timelines.duration, action.duration]
+          }
         }
       }
-    case 'RESET_IMPLEMENTATION_DETAILS':
+    case 'PRO_RESET_TIMELINES':
       return {...state,
-        implementation: { projectID: [], sector: [], ministry: [], agency: [], contractor: [], contacts: [], priority: [] }
-      }
-    case 'ADD_FINANCE_DETAILS':
-      return {...state,
-        finances: {
-          projectID: [...state.finances.projectID, action.projectID],
-          estimatedCost: [...state.finances.estimatedCost, action.estimatedCost],
-          budget: [...state.finances.budget, action.budget],
-          financialYear: [...state.finances.financialYear, action.financialYear],
-          fundingSource: [...state.finances.fundingSource, action.fundingSource]
+        projects: {...state.projects,
+          timelines: { projectID: [], approvalDate: [], startDate: [], endDate: [], duration: [] }
         }
       }
-    case 'RESET_FINANCE_DETAILS':
+    case 'PRO_ADD_IMPLEMENTATIONS':
       return {...state,
-        finances: { projectID: [], estimatedCost: [], budget: [], financialYear: [], fundingSource: [] }
-      }
-    case 'ADD_LOCATION_DETAILS':
-      return {...state,
-        locations: {
-          projectID: [...state.locations.projectID, action.projectID],
-          countyNo: [...state.locations.countyNo, action.countyNo],
-          subCounty: [...state.locations.subCounty, action.subCounty],
-          constituency: [...state.locations.constituency, action.constituency],
-          ward: [...state.locations.ward, action.ward]
+        projects: {...state.projects,
+          implementation: {
+            projectID: [...state.projects.implementation.projectID, action.projectID],
+            sector: [...state.projects.implementation.sector, action.sector],
+            ministry: [...state.projects.implementation.ministry, action.ministry],
+            agency: [...state.projects.implementation.agency, action.agency],
+            contractor: [...state.projects.implementation.contractor, action.contractor],
+            priority: [...state.projects.implementation.priority, action.priority]
+          }
         }
       }
-    case 'RESET_LOCATION_DETAILS':
+    case 'PRO_RESET_IMPLEMENTATIONS':
       return {...state,
-        locations: { projectID: [], countyNo: [], subCounty: [], constituency: [], ward: [] }  
+        projects: {...state.projects,
+          implementation: { projectID: [], sector: [], ministry: [], agency: [], contractor: [], contacts: [], priority: [] }
+        }
       }
-    case 'ADD_TRACKING_LOGS':
+    case 'PRO_ADD_FINANCES':
+      return {...state,
+        projects: {...state.projects,
+          finances: {
+            projectID: [...state.projects.finances.projectID, action.projectID],
+            estimatedCost: [...state.projects.finances.estimatedCost, action.estimatedCost],
+            budget: [...state.projects.finances.budget, action.budget],
+            financialYear: [...state.projects.finances.financialYear, action.financialYear],
+            fundingSource: [...state.projects.finances.fundingSource, action.fundingSource]
+          }
+        }
+      }
+    case 'PRO_RESET_FINANCES':
+      return {...state,
+        projects: {...state.projects,
+          finances: { projectID: [], estimatedCost: [], budget: [], financialYear: [], fundingSource: [] }
+        }
+      }
+    case 'PRO_ADD_LOCATIONS':
+      return {...state,
+        projects: {...state.projects,
+          locations: {
+            projectID: [...state.projects.locations.projectID, action.projectID],
+            countyNo: [...state.projects.locations.countyNo, action.countyNo],
+            subCounty: [...state.projects.locations.subCounty, action.subCounty],
+            constituency: [...state.projects.locations.constituency, action.constituency],
+            ward: [...state.projects.locations.ward, action.ward]
+          }
+        }
+      }
+    case 'PRO_RESET_LOCATIONS':
+      return {...state,
+        projects: {...state.projects,
+          locations: { projectID: [], countyNo: [], subCounty: [], constituency: [], ward: [] }  
+        }
+      }
+    case 'TRA_ADD':
     return {...state,
       tracking: {
         date: [...state.tracking.date, action.date],
@@ -97,11 +116,11 @@ export const appReducer = (state = initialState, action) => {
         valueTo: [...state.tracking.valueTo, action.valueTo]
       }
     }
-  case 'RESET_TRACKING_LOGS':
+  case 'TRA_RESET':
     return {...state,
       tracking: { date: [], projectID: [], field: [], action: [], valueFrom: [], valueTo: [] }
     }
-  case 'ADD_ADMINS':
+  case 'ADM_ADD':
     return {...state,
       admins: {
         username: [...state.admins.username, action.username],
@@ -110,7 +129,7 @@ export const appReducer = (state = initialState, action) => {
         email: [...state.admins.email, action.email]
       }
     }
-  case 'RESET_ADMINS':
+  case 'ADM_RESET':
     return {...state,
       admins: { username: [], firstName: [], lastName: [], email: [] }
     }

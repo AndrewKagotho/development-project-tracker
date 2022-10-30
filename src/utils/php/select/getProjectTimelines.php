@@ -2,9 +2,9 @@
   $objectArray = [];
   $counter = 0;
 
-  require './dbconn.php';
+  require '../dbconn.php';
 
-  $sql = "SELECT * FROM `finances`";
+  $sql = "SELECT * FROM `timelines`";
 
   $result = mysqli_query($conn, $sql);
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getAdminsScript = 'http://localhost/development-project-tracker/src/utils/php/getAdmins.php'
+let getAdminsScript = 'http://localhost/development-project-tracker/src/utils/php/select/getAdmins.php'
 
 export const getAdmins = (props) => {
   props.resetAdmins()

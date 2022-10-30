@@ -54,32 +54,32 @@ const mapStateToProps = (state) => {
     governor: state.counties.governor,
     senator: state.counties.senator,
     
-    projectID: state.projects.projectID,
-    projectName: state.projects.name,
-    description: state.projects.description,
-    status: state.projects.status,
+    projectID: state.projects.details.projectID,
+    projectName: state.projects.details.name,
+    description: state.projects.details.description,
+    status: state.projects.details.status,
 
-    approvalDate: state.timelines.approvalDate,
-    startDate: state.timelines.startDate,
-    endDate: state.timelines.endDate,
-    duration: state.timelines.duration,
+    approvalDate: state.projects.timelines.approvalDate,
+    startDate: state.projects.timelines.startDate,
+    endDate: state.projects.timelines.endDate,
+    duration: state.projects.timelines.duration,
 
-    sector: state.implementation.sector,
-    ministry: state.implementation.ministry,
-    agency: state.implementation.agency,
-    contractor: state.implementation.contractor,
-    contacts: state.implementation.contacts,
-    priority: state.implementation.priority,
+    sector: state.projects.implementation.sector,
+    ministry: state.projects.implementation.ministry,
+    agency: state.projects.implementation.agency,
+    contractor: state.projects.implementation.contractor,
+    contacts: state.projects.implementation.contacts,
+    priority: state.projects.implementation.priority,
 
-    estimatedCost: state.finances.estimatedCost,
-    budget: state.finances.budget,
-    financialYear: state.finances.financialYear,
-    fundingSource: state.finances.fundingSource,
+    estimatedCost: state.projects.finances.estimatedCost,
+    budget: state.projects.finances.budget,
+    financialYear: state.projects.finances.financialYear,
+    fundingSource: state.projects.finances.fundingSource,
 
-    locCountyNo: state.locations.countyNo,
-    subCounty: state.locations.subCounty,
-    constituency: state.locations.constituency,
-    ward: state.locations.ward
+    locCountyNo: state.projects.locations.countyNo,
+    subCounty: state.projects.locations.subCounty,
+    constituency: state.projects.locations.constituency,
+    ward: state.projects.locations.ward
   }
 }
 

@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-let getFinancesScript = 'http://localhost/development-project-tracker/src/utils/php/getFinances.php'
+let getProjectFinancesScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectFinances.php'
 
-export const getFinanceDetails = (props) => {
-  props.resetFinanceDetails()
-  axios.get(getFinancesScript)
+export const getProjectFinances = (props) => {
+  props.resetProjectFinances()
+  axios.get(getProjectFinancesScript)
   .then((response) => {
     let resArray = response.data
     let recordIndex = 0
     while(recordIndex < resArray.length) {
-      props.addFinanceDetails(
+      props.addProjectFinances(
         resArray[recordIndex].projectID,
         resArray[recordIndex]['estimated cost'],
         resArray[recordIndex].budget,

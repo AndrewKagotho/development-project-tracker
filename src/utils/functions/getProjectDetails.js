@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-let getProjectsScript = 'http://localhost/development-project-tracker/src/utils/php/getProjects.php'
+let getProjectDetailsScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectDetails.php'
 
 export const getProjectDetails = (props) => {
   props.resetProjectDetails()
-  axios.get(getProjectsScript)
+  axios.get(getProjectDetailsScript)
   .then((response) => {
     let resArray = response.data
     let recordIndex = 0

@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-let getLocationsScript = 'http://localhost/development-project-tracker/src/utils/php/getLocations.php'
+let getProjectLocationsScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectLocations.php'
 
-export const getLocationDetails = (props) => {
-  props.resetLocationDetails()
-  axios.get(getLocationsScript)
+export const getProjectLocations = (props) => {
+  props.resetProjectLocations()
+  axios.get(getProjectLocationsScript)
   .then((response) => {
     let resArray = response.data
     let recordIndex = 0
     while(recordIndex < resArray.length) {
-      props.addLocationDetails(
+      props.addProjectLocations(
         resArray[recordIndex].projectID,
         resArray[recordIndex].countyNo,
         resArray[recordIndex]['sub county'],

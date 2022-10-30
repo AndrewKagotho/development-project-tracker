@@ -2,9 +2,9 @@
   $objectArray = [];
   $counter = 0;
 
-  require './dbconn.php';
+  require '../dbconn.php';
 
-  $sql = "SELECT * FROM `tracking logs` ORDER BY `date` desc";
+  $sql = "SELECT * FROM `counties`";
 
   $result = mysqli_query($conn, $sql);
 

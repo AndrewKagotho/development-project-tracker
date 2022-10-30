@@ -1,21 +1,20 @@
 import axios from 'axios'
 
-let getImplementationsScript = 'http://localhost/development-project-tracker/src/utils/php/getImplementations.php'
+let getProjectImplementationsScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectImplementations.php'
 
-export const getImplementationDetails = (props) => {
-  props.resetImplementationDetails()
-  axios.get(getImplementationsScript)
+export const getProjectImplementations = (props) => {
+  props.resetProjectImplementations()
+  axios.get(getProjectImplementationsScript)
   .then((response) => {
     let resArray = response.data
     let recordIndex = 0
     while(recordIndex < resArray.length) {
-      props.addImplementationDetails(
+      props.addProjectImplementations(
         resArray[recordIndex].projectID,
         resArray[recordIndex].sector,
         resArray[recordIndex].ministry,
         resArray[recordIndex]['implementing agency'],
         resArray[recordIndex].contractor,
-        resArray[recordIndex].contacts,
         resArray[recordIndex].priority
       )
       recordIndex++

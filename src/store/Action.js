@@ -1,6 +1,6 @@
-const addCountyDetails = (x1,x2,x3,x4) => {
+const addCounties = (x1,x2,x3,x4) => {
   return {
-    type: 'ADD_COUNTY_DETAILS',
+    type: 'COU_ADD',
     number: x1,
     name: x2,
     governor: x3,
@@ -10,7 +10,7 @@ const addCountyDetails = (x1,x2,x3,x4) => {
 
 const addProjectDetails = (x1,x2,x3,x4) => {
   return {
-    type: 'ADD_PROJECT_DETAILS',
+    type: 'PRO_ADD_DETAILS',
     projectID: x1,
     name: x2,
     description: x3,
@@ -18,9 +18,9 @@ const addProjectDetails = (x1,x2,x3,x4) => {
   }
 }
 
-const addTimelineDetails = (x1,x2,x3,x4,x5) => {
+const addProjectTimelines = (x1,x2,x3,x4,x5) => {
   return {
-    type: 'ADD_TIMELINE_DETAILS',
+    type: 'PRO_ADD_TIMELINES',
     projectID: x1,
     approvalDate: x2,
     startDate: x3,
@@ -29,22 +29,21 @@ const addTimelineDetails = (x1,x2,x3,x4,x5) => {
   }
 }
 
-const addImplementationDetails = (x1,x2,x3,x4,x5,x6,x7) => {
+const addProjectImplementations = (x1,x2,x3,x4,x5,x6,x7) => {
   return {
-    type: 'ADD_IMPLEMENTATION_DETAILS',
+    type: 'PRO_ADD_IMPLEMENTATIONS',
     projectID: x1,
     sector: x2,
     ministry: x3,
     agency: x4,
     contractor: x5,
-    contacts: x6,
-    priority: x7
+    priority: x6
   }
 }
 
-const addFinanceDetails = (x1,x2,x3,x4,x5) => {
+const addProjectFinances = (x1,x2,x3,x4,x5) => {
   return {
-    type: 'ADD_FINANCE_DETAILS',
+    type: 'PRO_ADD_FINANCES',
     projectID: x1,
     estimatedCost: x2,
     budget: x3,
@@ -53,9 +52,9 @@ const addFinanceDetails = (x1,x2,x3,x4,x5) => {
   }
 }
 
-const addLocationDetails = (x1,x2,x3,x4,x5) => {
+const addProjectLocations = (x1,x2,x3,x4,x5) => {
   return {
-    type: 'ADD_LOCATION_DETAILS',
+    type: 'PRO_ADD_LOCATIONS',
     projectID: x1,
     countyNo: x2,
     subCounty: x3,
@@ -66,7 +65,7 @@ const addLocationDetails = (x1,x2,x3,x4,x5) => {
 
 const addTrackingLogs = (x1,x2,x3,x4,x5,x6) => {
   return {
-    type: 'ADD_TRACKING_LOGS',
+    type: 'TRA_ADD',
     date: x1,
     projectID: x2,
     field: x3,
@@ -78,7 +77,7 @@ const addTrackingLogs = (x1,x2,x3,x4,x5,x6) => {
 
 const addAdmins = (x1,x2,x3,x4) => {
   return {
-    type: 'ADD_ADMINS',
+    type: 'ADM_ADD',
     username: x1,
     firstName: x2,
     lastName: x3,
@@ -86,37 +85,37 @@ const addAdmins = (x1,x2,x3,x4) => {
   }
 }
 
-const resetCountyDetails = () => { return { type: 'RESET_COUNTY_DETAILS' } }
+const resetCounties = () => { return { type: 'COU_RESET' } }
 
-const resetProjectDetails = () => { return { type: 'RESET_PROJECT_DETAILS' } }
+const resetProjectDetails = () => { return { type: 'PRO_RESET_DETAILS' } }
 
-const resetTimelineDetails = () => { return { type: 'RESET_TIMELINE_DETAILS' } }
+const resetProjectTimelines = () => { return { type: 'PRO_RESET_TIMELINES' } }
 
-const resetImplementationDetails = () => { return { type: 'RESET_IMPLEMENTATION_DETAILS' } }
+const resetProjectImplementations = () => { return { type: 'PRO_RESET_IMPLEMENTATIONS' } }
 
-const resetFinanceDetails = () => { return { type: 'RESET_FINANCE_DETAILS' } }
+const resetProjectFinances = () => { return { type: 'PRO_RESET_FINANCES' } }
 
-const resetLocationDetails = () => { return { type: 'RESET_LOCATION_DETAILS' } }
+const resetProjectLocations = () => { return { type: 'PRO_RESET_LOCATIONS' } }
 
-const resetTrackingLogs = () => { return { type: 'RESET_TRACKING_LOGS' } }
+const resetTrackingLogs = () => { return { type: 'TRA_RESET' } }
 
-const resetAdmins = () => { return { type: 'RESET_ADMINS' } }
+const resetAdmins = () => { return { type: 'ADM_RESET' } }
 
 export const mapDispatchToProps = {
-  addCountyDetails,
+  addCounties,
   addProjectDetails,
-  addTimelineDetails,
-  addImplementationDetails,
-  addFinanceDetails,
-  addLocationDetails,
+  addProjectTimelines,
+  addProjectImplementations,
+  addProjectFinances,
+  addProjectLocations,
   addTrackingLogs,
   addAdmins,
-  resetCountyDetails,
+  resetCounties,
   resetProjectDetails,
-  resetTimelineDetails,
-  resetImplementationDetails,
-  resetFinanceDetails,
-  resetLocationDetails,
+  resetProjectTimelines,
+  resetProjectImplementations,
+  resetProjectFinances,
+  resetProjectLocations,
   resetTrackingLogs,
   resetAdmins
 }

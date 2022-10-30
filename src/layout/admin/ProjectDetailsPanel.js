@@ -5,12 +5,12 @@ import { projectTemplate } from '../../views/admin/Dashboard'
 import { openLoginPanel } from '../../utils/functions/panels'
 import { closeLoginPanel } from '../../utils/functions/panels'
 import { getProjectDetails } from '../../utils/functions/getProjectDetails'
-import { getTimelineDetails } from '../../utils/functions/getTimelineDetails'
-import { getImplementationDetails } from '../../utils/functions/getImplementationDetails'
-import { getFinanceDetails } from '../../utils/functions/getFinanceDetails'
-import { getLocationDetails } from '../../utils/functions/getLocationDetails'
+import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
+import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
+import { getProjectFinances } from '../../utils/functions/getProjectFinances'
+import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 
-let addProjectScript = 'http://localhost/development-project-tracker/src/utils/php/add/addProject.php'
+let addProjectScript = 'http://localhost/development-project-tracker/src/utils/php/insert/addProject.php'
 
 const ProjectDetailsPanel = ({props}) => {
 
@@ -28,10 +28,10 @@ const ProjectDetailsPanel = ({props}) => {
       if(response.data) {
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully added!'})
         getProjectDetails(props)
-        getTimelineDetails(props)
-        getImplementationDetails(props)
-        getFinanceDetails(props)
-        getLocationDetails(props)
+        getProjectTimelines(props)
+        getProjectImplementations(props)
+        getProjectFinances(props)
+        getProjectLocations(props)
       }
       else
         infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
