@@ -31,7 +31,7 @@ export const projectsTableSearch = (searchState, resultsRef) => {
 }
 
 export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
-  let {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackValue} = projectInfoStates
+  let {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackingValues} = projectInfoStates
   let {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex} = projectInfoVars
   let filterArray
 
@@ -49,7 +49,7 @@ export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
               <td className='td_more_options'>
                 <svg className='more_options_svg' onClick={() => showMoreOptions(trRef, moreOptionsSVGRef, moreOptionsRef, index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 <div className='td_more_options_expand mul_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
-                  <button onClick={() => showSidePanel(props, tableFocus, index, updateProjectPanelState, recordFocus, trackValue)}>Update</button>
+                  <button onClick={() => showSidePanel(props, tableFocus, index, updateProjectPanelState, recordFocus, trackingValues)}>Update</button>
                   <button onClick={() => showDeleteModal(props, index, deleteProjectModalState, recordFocus)}>Delete</button>
                 </div>
               </td>
@@ -88,7 +88,7 @@ export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
               <td className='td_more_options'>
                 <svg className='more_options_svg' onClick={() => showMoreOptions(trRef, moreOptionsSVGRef, moreOptionsRef, number)} ref={(item) => moreOptionsSVGRef.current[number] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 <div className='td_more_options_expand mul_options flex' ref={(item) => moreOptionsRef.current[number] = item}>
-                  <button onClick={() => showSidePanel(props, tableFocus, index, updateProjectPanelState, recordFocus, trackValue)}>Update</button>
+                  <button onClick={() => showSidePanel(props, tableFocus, index, updateProjectPanelState, recordFocus, trackingValues)}>Update</button>
                   <button onClick={() => showDeleteModal(props, index, deleteProjectModalState, recordFocus)}>Delete</button>
                 </div>
               </td>

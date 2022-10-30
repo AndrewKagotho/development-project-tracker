@@ -57,8 +57,8 @@ const Dashboard = (props) => {
   const [currentPage, setCurrentPage] = React.useState(1)
   const pageValue = {currentPage, setCurrentPage}
 
-  const [trackLog, setTrackLog] = React.useState({action: ''})
-  const trackValue = {trackLog, setTrackLog}
+  const [trackedChanges, setTrackedChanges] = React.useState({action: ''})
+  const trackingValues = {trackedChanges, setTrackedChanges}
 
   const value = {
     tableFocus,
@@ -69,7 +69,7 @@ const Dashboard = (props) => {
     infoModal,
     searchState,
     pageValue,
-    trackValue,
+    trackingValues,
     resultsRef
   }
 
@@ -78,6 +78,11 @@ const Dashboard = (props) => {
     setSearchContent({state: false, selectedInput: '', inputValue: ''})
     setCurrentPage(1)
     resultsRef.current.style.display = 'none'
+  }
+
+  const createProject = () => {
+    setProjectDetailsPanelStatus(true)
+    setTrackedChanges({action: 'create'})
   }
 
   return (
@@ -104,7 +109,7 @@ const Dashboard = (props) => {
             <h3>Admin data</h3>
             <button onClick={() => showTable('admin')}>Administrators</button>
           </section>
-          <div className='admin_view__add_project flex' onClick={() => setProjectDetailsPanelStatus(true)}>
+          <div className='admin_view__add_project flex' onClick={createProject}>
             <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/></svg>
             <span>New project</span>
           </div>

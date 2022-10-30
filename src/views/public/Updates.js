@@ -14,13 +14,25 @@ const Updates = (props) => {
   if(hours < 10) hours = '0' + hours
   if(minutes < 10) minutes = '0' + minutes
 
-  const logList = props.projectID.map((item, index) => 
-    <li className='card card_sm' key={index}>
-      <span><em>Project ID: {item}</em></span>
-      <span>Date: {props.logDate[index]}</span>
-      <span>Project <em>{props.field[index]}</em> changed from <em>{props.valueFrom[index]}</em> to <em>{props.valueTo[index]}</em></span>  
-    </li>
-  )
+  // eslint-disable-next-line
+  const logList = props.projectID.map((item, index) => {
+    if(props.logAction[index] === 'update')
+      return (
+        <li className='card card_sm' key={index}>
+          <span><em>Project ID: {item}</em></span>
+          <span>Date: {props.logDate[index]}</span>
+          <span>Project {props.field[index].replaceAll('"', '')} changed from <em>{props.valueFrom[index]}</em> to <em>{props.valueTo[index]}</em></span>
+        </li>
+        )
+    else if(props.logAction[index] === 'create')
+      return (
+        <li className='card card_sm' key={index}>
+          <span><em>Project ID: {item}</em></span>
+          <span>Date: {props.logDate[index]}</span>
+          <span>Project <em>created</em>.</span>
+        </li>
+      )
+  })
 
   return (
     <>

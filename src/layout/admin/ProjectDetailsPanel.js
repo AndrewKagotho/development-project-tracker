@@ -9,29 +9,39 @@ import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
 import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
 import { getProjectFinances } from '../../utils/functions/getProjectFinances'
 import { getProjectLocations } from '../../utils/functions/getProjectLocations'
+import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 
 let addProjectScript = 'http://localhost/development-project-tracker/src/utils/php/insert/addProject.php'
+let logChangesScript = 'http://localhost/development-project-tracker/src/utils/php/insert/logChanges.php'
 
 const ProjectDetailsPanel = ({props}) => {
 
-  const {recordFocus, projectDetailsPanelState, infoModal} = React.useContext(DashboardContext)
+  const {recordFocus, projectDetailsPanelState, infoModal, trackingValues} = React.useContext(DashboardContext)
   const [projectData, setProjectData] = React.useState(projectTemplate)
   const projectDetailsPanelRef = React.useRef()
 
   openLoginPanel(projectDetailsPanelRef, projectDetailsPanelState.projectDetailsPanel)
 
-  const handleChange = (e) => setProjectData({...projectData, [e.target.name]: e.target.value})
+  const handleChange = (e) => {
+    setProjectData({...projectData, [e.target.name]: e.target.value})
+
+    if(e.target.name === 'projectID')
+      trackingValues.setTrackedChanges({...trackingValues.trackedChanges, projectID: e.target.value})
+  }
 
   const handleSubmit = (e) => {
     axios.post(addProjectScript, projectData)
     .then((response) => {
       if(response.data) {
+        axios.post(logChangesScript, trackingValues.trackedChanges)
+        .then((response) => console.log(response))
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully added!'})
         getProjectDetails(props)
         getProjectTimelines(props)
         getProjectImplementations(props)
         getProjectFinances(props)
         getProjectLocations(props)
+        getTrackingLogs(props)
       }
       else
         infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})

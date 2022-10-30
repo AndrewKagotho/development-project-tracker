@@ -32,9 +32,9 @@ export const showMoreOptions = (trRef, moreOptionsSVGRef, moreOptionsRef, index)
   dynamicShowMoreOptionsSVG(moreOptionsSVGRef, trRef, index)
 }
 
-export const showSidePanel = (props, tableFocus, index, updateProjectPanelState, recordFocus, trackValue) => {
+export const showSidePanel = (props, tableFocus, index, updateProjectPanelState, recordFocus, trackingValues) => {
   updateProjectPanelState.setUpdateProjectPanelStatus(true)
-  trackValue.setTrackLog({action: 'update'})
+  trackingValues.setTrackedChanges({action: 'update'})
 
   if(tableFocus.tableInFocus === 'projects') {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus,

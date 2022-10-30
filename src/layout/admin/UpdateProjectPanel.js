@@ -20,7 +20,7 @@ let formFields
 
 const UpdateProjectPanel = ({props}) => {
 
-  const {tableFocus, recordFocus, updateProjectPanelState, infoModal, trackValue} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, updateProjectPanelState, infoModal, trackingValues} = React.useContext(DashboardContext)
   const updateProjectPanelRef = React.useRef()
 
   openLoginPanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
@@ -50,7 +50,7 @@ const UpdateProjectPanel = ({props}) => {
     else if(e.target.name === 'constituency') {propsValue = props.constituency; propsName = 'constituency'}
     else if(e.target.name === 'ward') {propsValue = props.ward; propsName = 'ward'}
 
-    trackValue.setTrackLog({...trackValue.trackLog,
+    trackingValues.setTrackedChanges({...trackingValues.trackedChanges,
       projectID: recordFocus.recordInFocus.projectID,
       [propsName]: [propsValue[recordFocus.recordInFocus.recordIndex], e.target.value]
     })
@@ -68,7 +68,7 @@ const UpdateProjectPanel = ({props}) => {
     axios.post(sendMeta.script, recordFocus.recordInFocus)
     .then((response) => {
       if(response.data) {
-        axios.post(logChangesScript, trackValue.trackLog)
+        axios.post(logChangesScript, trackingValues.trackedChanges)
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully updated!'})
         sendMeta.action(props)
         getTrackingLogs(props)
