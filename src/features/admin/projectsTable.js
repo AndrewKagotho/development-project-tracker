@@ -35,6 +35,8 @@ export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
   let {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex} = projectInfoVars
   let filterArray
 
+  // searchState.setSearchContent({...searchState.searchContent, selectedInput: 'projectID'})
+
   if(!searchState.searchContent.state) {
     return (
       // eslint-disable-next-line
@@ -50,7 +52,7 @@ export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
                 <svg className='more_options_svg' onClick={() => showMoreOptions(trRef, moreOptionsSVGRef, moreOptionsRef, index)} ref={(item) => moreOptionsSVGRef.current[index] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 <div className='td_more_options_expand mul_options flex' ref={(item) => moreOptionsRef.current[index] = item}>
                   <button onClick={() => showSidePanel(props, tableFocus, index, updateProjectPanelState, recordFocus, trackingValues)}>Update</button>
-                  <button onClick={() => showDeleteModal(props, index, deleteProjectModalState, recordFocus)}>Delete</button>
+                  <button onClick={() => showDeleteModal(props, index, deleteProjectModalState, recordFocus, trackingValues)}>Delete</button>
                 </div>
               </td>
             </tr>
@@ -70,9 +72,9 @@ export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
       props.projectID.map((item, index) => index)
       .filter((index) => {
         const truthTests
-        = filterArray[index][searchState.searchContent.inputValue.length-1] === searchState.searchContent.inputValue[searchState.searchContent.inputValue.length-1]
-        && filterArray[index][searchState.searchContent.inputValue.length-2] === searchState.searchContent.inputValue[searchState.searchContent.inputValue.length-2]
-        && filterArray[index][searchState.searchContent.inputValue.length-3] === searchState.searchContent.inputValue[searchState.searchContent.inputValue.length-3]
+        = filterArray[index].toLowerCase()[searchState.searchContent.inputValue.length-1] === searchState.searchContent.inputValue.toLowerCase()[searchState.searchContent.inputValue.length-1]
+        && filterArray[index].toLowerCase()[searchState.searchContent.inputValue.length-2] === searchState.searchContent.inputValue.toLowerCase()[searchState.searchContent.inputValue.length-2]
+        && filterArray[index].toLowerCase()[searchState.searchContent.inputValue.length-3] === searchState.searchContent.inputValue.toLowerCase()[searchState.searchContent.inputValue.length-3]
 
         return (truthTests)
       })
@@ -89,7 +91,7 @@ export const projectsTableRows = (projectInfoStates, projectInfoVars) => {
                 <svg className='more_options_svg' onClick={() => showMoreOptions(trRef, moreOptionsSVGRef, moreOptionsRef, number)} ref={(item) => moreOptionsSVGRef.current[number] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 <div className='td_more_options_expand mul_options flex' ref={(item) => moreOptionsRef.current[number] = item}>
                   <button onClick={() => showSidePanel(props, tableFocus, index, updateProjectPanelState, recordFocus, trackingValues)}>Update</button>
-                  <button onClick={() => showDeleteModal(props, index, deleteProjectModalState, recordFocus)}>Delete</button>
+                  <button onClick={() => showDeleteModal(props, index, deleteProjectModalState, recordFocus, trackingValues)}>Delete</button>
                 </div>
               </td>
             </tr>

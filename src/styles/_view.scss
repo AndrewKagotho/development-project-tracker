@@ -29,6 +29,15 @@
   }
 }
 
+.page_section__input {
+  width: 40vw;
+  margin-bottom: 30px;
+  @include h_center_content;
+
+  select {width: 30%;}
+  input {width: 65%;}
+}
+
 .page_section__stats {
   gap: $margin;
   
@@ -38,7 +47,7 @@
 .updates {
   width: 40vw;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   margin-bottom: 50px;
   @include h_center_content;
 

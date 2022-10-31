@@ -34,7 +34,6 @@ const ProjectDetailsPanel = ({props}) => {
     .then((response) => {
       if(response.data) {
         axios.post(logChangesScript, trackingValues.trackedChanges)
-        .then((response) => console.log(response))
         infoModal.setInfoModalProps({state: true, icon:'success', text:'Successfully added!'})
         getProjectDetails(props)
         getProjectTimelines(props)

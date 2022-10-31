@@ -257,15 +257,23 @@ input, textarea, select, option {
 }
 
 input, textarea, select {
-  border-radius: 5px;
-  border: 1px solid #669FC3;
+  border: none;
+  border-bottom: 1px solid #669FC3;
+  background: transparent;
   transition: box-shadow 0.1s linear;
 }
 input:focus, textarea:focus, select:focus {
   outline: none;
-  box-shadow: 0 0 5px #BDD6E5;
+  box-shadow: 0 2px 1px #BDD6E5;
 }
 
+form input, form textarea, form select {
+  border-radius: 5px;
+  border: 1px solid #669FC3;
+}
+form input:focus, form textarea:focus, form select:focus {
+  box-shadow: 0 0 5px #BDD6E5;
+}
 form textarea {
   min-width: 40%;
   max-width: calc(100% - 10px);
@@ -298,6 +306,7 @@ form button {
   border-bottom: 1px solid #669FC3;
   border-radius: 0;
   background: transparent;
+  transition: box-shadow 0.1s linear;
 }
 .login_form input:focus {
   box-shadow: 0 0 0 transparent;
@@ -338,13 +347,6 @@ table td {
 }
 table td input {
   width: 90%;
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid #669FC3;
-  background: transparent;
-}
-table td input:focus {
-  box-shadow: 0 2px 1px #BDD6E5;
 }
 table button {
   padding: 5px 10px;
@@ -436,6 +438,20 @@ table tbody tr:hover svg {
   margin: 0;
 }
 
+.page_section__input {
+  width: 40vw;
+  margin-bottom: 30px;
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+}
+.page_section__input select {
+  width: 30%;
+}
+.page_section__input input {
+  width: 65%;
+}
+
 .page_section__stats {
   gap: 30px;
 }
@@ -446,7 +462,7 @@ table tbody tr:hover svg {
 .updates {
   width: 40vw;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   margin-bottom: 50px;
   position: relative;
   left: 50%;
@@ -586,15 +602,14 @@ table tbody tr:hover svg {
   font-weight: 600;
   margin: 35px 0;
 }
-.counties h2 em {
-  font-size: 1.4rem;
-  font-style: normal;
-}
 
 .counties_map {
-  translate: -25px 25px;
+  translate: -15px 15px;
   background-color: transparent;
-  scale: 1.05;
+  scale: 1.02;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 90px;
 }
 .counties_map path {
   stroke: #BBB;

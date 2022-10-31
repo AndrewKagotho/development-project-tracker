@@ -1,7 +1,11 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../../store/Action'
 
 const Updates = (props) => {
+
+  const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: 'projectID', inputValue: ''})
+  let filterArray, logList
 
   let currentDate = new Date()
   let year = currentDate.getFullYear()
@@ -14,25 +18,55 @@ const Updates = (props) => {
   if(hours < 10) hours = '0' + hours
   if(minutes < 10) minutes = '0' + minutes
 
+  if(searchContent.selectedInput === 'projectID') filterArray = props.projectID
+  else if(searchContent.selectedInput === 'logDate') filterArray = props.logDate
+  else if(searchContent.selectedInput === 'logAction') filterArray = props.logAction
+
+  logList = props.projectID.map((item, index) => index)
+  .filter((index) =>
+    filterArray[index].toLowerCase()[searchContent.inputValue.length-1] === searchContent.inputValue.toLowerCase()[searchContent.inputValue.length-1]
+    && filterArray[index].toLowerCase()[searchContent.inputValue.length-2] === searchContent.inputValue.toLowerCase()[searchContent.inputValue.length-2]
+    && filterArray[index].toLowerCase()[searchContent.inputValue.length-3] === searchContent.inputValue.toLowerCase()[searchContent.inputValue.length-3]
+  )
   // eslint-disable-next-line
-  const logList = props.projectID.map((item, index) => {
+  .map((index) => {
     if(props.logAction[index] === 'update')
-      return (
-        <li className='card card_sm' key={index}>
-          <span><em>Project ID: {item}</em></span>
-          <span>Date: {props.logDate[index]}</span>
-          <span>Project {props.field[index].replaceAll('"', '')} changed from <em>{props.valueFrom[index]}</em> to <em>{props.valueTo[index]}</em></span>
-        </li>
+      if(props.valueFrom[index] === '""' || props.valueFrom[index] === '"0"')
+        return (
+          <li className='card card_sm' key={index}>
+            <span><em>Project ID: {props.projectID[index]}</em></span>
+            <span>Date: {props.logDate[index]}</span>
+            <span>({props.logAction[index].toUpperCase()}) Project {props.field[index].replaceAll('"', '')} added: <em>{props.valueTo[index]}</em></span>
+          </li>
         )
+      else
+        return (
+          <li className='card card_sm' key={index}>
+            <span><em>Project ID: {props.projectID[index]}</em></span>
+            <span>Date: {props.logDate[index]}</span>
+            <span>({props.logAction[index].toUpperCase()}) Project {props.field[index].replaceAll('"', '')} changed from <em>{props.valueFrom[index]}</em> to <em>{props.valueTo[index]}</em></span>
+          </li>
+        ) 
     else if(props.logAction[index] === 'create')
       return (
         <li className='card card_sm' key={index}>
-          <span><em>Project ID: {item}</em></span>
+          <span><em>Project ID: {props.projectID[index]}</em></span>
           <span>Date: {props.logDate[index]}</span>
-          <span>Project <em>created</em>.</span>
+          <span>({props.logAction[index].toUpperCase()}) Project added.</span>
+        </li>
+      )
+    else if(props.logAction[index] === 'delete')
+      return (
+        <li className='card card_sm' key={index}>
+          <span><em>Project ID: {props.projectID[index]}</em></span>
+          <span>Date: {props.logDate[index]}</span>
+          <span>({props.logAction[index].toUpperCase()}) Project removed.</span>
         </li>
       )
   })
+
+  const handleInputChange = (e) => setSearchContent({...searchContent, state: true, inputValue: e.target.value})
+  const handleSelectChange = (e) => setSearchContent({...searchContent, state: true, selectedInput: e.target.value})
 
   return (
     <>
@@ -40,6 +74,14 @@ const Updates = (props) => {
         <h2>Project updates</h2>
         <p>View changes to tracked projects here. Last updated at {hours}:{minutes}, {date}/{month}/{year}</p>
       </section>
+      <div className='page_section__input flex'>
+        <input type='search' name='inputValue' placeholder='Search:' onChange={handleInputChange} autoComplete='off' />
+        <select name='selectedInput' onChange={handleSelectChange} >
+          <option value='projectID'>Project ID</option>
+          <option value='logDate'>Date</option>
+          <option value='logAction'>Action</option>
+        </select>
+      </div>
       <ul className='updates flex'>{logList}</ul>
     </>
   )

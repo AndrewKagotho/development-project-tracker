@@ -112,17 +112,25 @@ input, textarea, select, option {
 }
 
 input, textarea, select {
-  border-radius: $border_radius;
-  border: 1px solid $primary;
+  border: none;
+  border-bottom: 1px solid $primary;
+  background: transparent;
   transition: box-shadow $animation;
 
-  &:focus {
+  &:focus {  
     outline: none;
-    box-shadow: 0 0 5px $primary_hover;
+    box-shadow: 0 2px 1px $primary_hover;
   }
 }
 
 form {
+  input, textarea, select {
+    border-radius: $border_radius;
+    border: 1px solid $primary;
+
+    &:focus { box-shadow: 0 0 5px $primary_hover; }
+  }
+
   textarea {
     min-width: 40%;
     max-width: calc(100% - 10px);
@@ -155,6 +163,7 @@ form {
     border-bottom: 1px solid $primary;
     border-radius: 0;
     background: transparent;
+    transition: box-shadow $animation;
 
     &:focus { box-shadow: 0 0 0 transparent; }
   }
@@ -191,18 +200,7 @@ table {
 
   td {
     padding: 7px calc($margin/2);
-
-    input {
-      width: 90%;
-      border-radius: 0;
-      border: none;
-      border-bottom: 1px solid $primary;
-      background: transparent;
-
-      &:focus { box-shadow: 0 2px 1px $primary_hover; }
-    }
-
-    // &:last-child { white-space: nowrap; }
+    input { width: 90%; }
   }
 
   button { padding: 5px 10px; }
@@ -216,10 +214,7 @@ table {
   }
 }
 
-.tr_search {
-
-  &:hover { background-color: transparent !important; }
-}
+.tr_search:hover { background-color: transparent !important; }
 
 .td_view_project {
   padding-right: 0;

@@ -37,18 +37,15 @@
     color: $secondary;
     font-weight: $bold_x1;
     margin: 35px 0;
-
-    em {
-      font-size: $large_font;
-      font-style: normal;
-    }
   }
 }
 
 .counties_map {
-  translate: -25px 25px;
+  translate: -15px 15px;
   background-color: transparent;
-  scale: 1.05;
+  scale: 1.02;
+  position: sticky;
+  top: 90px;
 
   path {
     stroke: #BBB;

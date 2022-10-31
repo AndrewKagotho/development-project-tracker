@@ -88,17 +88,18 @@ export const showSidePanel = (props, tableFocus, index, updateProjectPanelState,
   }
 }
 
-export const showDeleteModal = (props, index, deleteProjectModalState, recordFocus) => {
+export const showDeleteModal = (props, index, deleteProjectModalState, recordFocus, trackingValues) => {
   deleteProjectModalState.setDeleteProjectModalStatus(true)
   recordFocus.setRecordInFocus({...recordFocus.recordInFocus,
     recordIndex: index,
     projectID: props.projectID[index]
   })
+  trackingValues.setTrackedChanges({action: 'delete', projectID: props.projectID[index]})
 }
 
 const AdminTable = ({props}) => {
   
-  const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackValue, resultsRef} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackingValues, resultsRef} = React.useContext(DashboardContext)
   const trRef = React.useRef([])
   const moreOptionsSVGRef = React.useRef([])
   const moreOptionsRef = React.useRef([])
@@ -109,7 +110,7 @@ const AdminTable = ({props}) => {
   firstPageIndex += pageValue.currentPage*10-10
   const countyTableValues = {props, searchState, trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex, resultSetLength}
 
-  const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackValue}  
+  const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackingValues}  
   const projectInfoVars = {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex}
 
   if(tableFocus.tableInFocus === 'counties') {
