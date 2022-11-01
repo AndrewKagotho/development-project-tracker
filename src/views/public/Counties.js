@@ -26,7 +26,10 @@ const Counties = (props) => {
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
-  const value = {countyFocus, countyStats, projectFocus, countyModalState, projectDetailsPanelState}
+  const [nationalAllProjects, setNationalAllProjects] = React.useState(0)
+  const nationalStats = {nationalAllProjects, setNationalAllProjects}
+
+  const value = {countyFocus, countyStats, projectFocus, countyModalState, projectDetailsPanelState, nationalStats}
 
   return (
     <>

@@ -51,7 +51,7 @@ const Dashboard = (props) => {
   const [infoModalProps, setInfoModalProps] = React.useState({state: false, icon: '', text:''})
   const infoModal = {infoModalProps, setInfoModalProps}
 
-  const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: '', inputValue: ''})
+  const [searchContent, setSearchContent] = React.useState({selectedInput: '', inputValue: ''})
   const searchState = {searchContent, setSearchContent}
 
   const [currentPage, setCurrentPage] = React.useState(1)

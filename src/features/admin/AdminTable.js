@@ -101,6 +101,7 @@ const AdminTable = ({props}) => {
   
   const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackingValues, resultsRef} = React.useContext(DashboardContext)
   const trRef = React.useRef([])
+  const inputRef = React.useRef([])
   const moreOptionsSVGRef = React.useRef([])
   const moreOptionsRef = React.useRef([])
   let tableHead, tableSearch, tableRows
@@ -122,8 +123,9 @@ const AdminTable = ({props}) => {
   }
 
   else if(tableFocus.tableInFocus === 'projects') {
+    // searchState.setSearchContent({...searchState.searchContent, selectedInput: 'projectID'})
     tableHead = projectsTableHead()
-    tableSearch = projectsTableSearch(searchState, resultsRef)
+    tableSearch = projectsTableSearch(searchState, inputRef)
     tableRows = projectsTableRows(projectInfoStates, projectInfoVars)
     resultSetLength = projectsTableRows(projectInfoStates, projectInfoVars).length
     resultSetLengthPerView = projectsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length

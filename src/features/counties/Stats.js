@@ -1,24 +1,30 @@
+import React from 'react'
+import { CountyContext } from '../../views/public/Counties'
+
 const projectStatusArray = ['Completed', 'In progress', 'Approved', 'Scheduled']
 let statusTotalArray = []
 
 const Stats = ({props}) => {
-  let nationalAllProjects = 0
+  let nationalAllProject = 0
+  
+  React.useEffect(() => nationalStats.setNationalAllProjects(nationalAllProject))
+  const {nationalStats} = React.useContext(CountyContext)
 
   for(let i=0; i<projectStatusArray.length; i++) {
     statusTotalArray[i] = props.status
     .filter((item, index) => props.status[index] === projectStatusArray[i])
     .reduce((acc) => acc + 1, 0)
   }
-  statusTotalArray.forEach((x) => nationalAllProjects += x)
+  statusTotalArray.forEach((x) => nationalAllProject += x)
 
   return (
     <section className='page_section'>
       <h2>National Statistics</h2>
-      <p>A summary of the national project statistics:</p>
+      <p>A summary of the national project statistics.</p>
       <div className='page_section__stats flex'>
         <div className='card card_md flex'>
           <span>All projects</span>
-          <span className='badge'>{nationalAllProjects}</span>
+          <span className='badge'>{nationalStats.nationalAllProjects}</span>
         </div>
         <div className='card card_md flex'>
           <span>Completed</span>

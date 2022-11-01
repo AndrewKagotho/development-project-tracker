@@ -10,9 +10,7 @@ export const fillCounty = (ref, num) => {
 }
 
 export const dynamicFillCounty = (ref, selectedValue) => {
-  for(let a=0; a<prevCards.length; a++) {
-    prevCards[0] = prevCards[1]
-  }
+  prevCards[0] = prevCards[1]
   prevCards[1] = selectedValue
 
   if(ref.current.length !== 0)
@@ -29,9 +27,7 @@ export const dynamicFillCounty = (ref, selectedValue) => {
 }
 
 export const dynamicShowMoreOptions = (ref, selectedValue) => {
-  for(let a=0; a<prevOptions.length; a++) {
-    prevOptions[0] = prevOptions[1]
-  }
+  prevOptions[0] = prevOptions[1]
   prevOptions[1] = selectedValue
 
   for(let i=0; i<prevOptions.length; i++ ) {
@@ -47,9 +43,7 @@ export const dynamicShowMoreOptions = (ref, selectedValue) => {
 }
 
 export const dynamicShowMoreOptionsSVG = (ref1, ref2, selectedValue) => {
-  for(let a=0; a<prevSVG.length; a++) {
-    prevSVG[0] = prevSVG[1]
-  }
+  prevSVG[0] = prevSVG[1]
   prevSVG[1] = selectedValue
 
   for(let i=0; i<prevSVG.length; i++ ) {

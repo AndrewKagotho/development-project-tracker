@@ -58,14 +58,14 @@ const ProjectDetailsPanel = ({props}) => {
         <form onSubmit={handleSubmit}>
           <h3>Creating project:</h3>
           <div className='sidePanel__content__grid'>
-            <label htmlFor='projectID'>Project ID*:</label>
+            <label htmlFor='projectID'>Project ID:*</label>
             <input type='text' id='projectID' name='projectID' onChange={handleChange} required autoComplete='off' />
-            <label htmlFor='name'>Name*:</label>
-            <input type='text' id='name' name='name' onChange={handleChange} required />
+            <label htmlFor='name'>Name:</label>
+            <input type='text' id='name' name='name' onChange={handleChange} />
             <label htmlFor='description'>Description:</label>
             <textarea type='text' id='description' name='description' onChange={handleChange} />
-            <label htmlFor='status'>Status:</label>
-            <select id='status' name='status' defaultValue='' onChange={handleChange} >
+            <label htmlFor='status'>Status:*</label>
+            <select id='status' name='status' defaultValue='' onChange={handleChange} required >
               <option value='' disabled hidden></option>
               <option value='Scheduled'>Scheduled</option>
               <option value='Approved'>Approved</option>
@@ -81,12 +81,12 @@ const ProjectDetailsPanel = ({props}) => {
             <input type='text' id='startDate' name='startDate' placeholder='i.e. YYYY-MM-DD' onChange={handleChange} />
             <label htmlFor='endDate'>End date:</label>
             <input type='text' id='endDate' name='endDate' placeholder='i.e. YYYY-MM-DD' onChange={handleChange} />
-            <label htmlFor='duration'>Duration (months)*:</label>
+            <label htmlFor='duration'>Duration (months):*</label>
             <input type='text' id='duration' name='duration' onChange={handleChange} required />
           </div>
           <h3>Implementation</h3>
           <div className='sidePanel__content__grid'>
-            <label htmlFor='sector'>Sector*:</label>
+            <label htmlFor='sector'>Sector:*</label>
             <input type='text' id='sector' name='sector' onChange={handleChange} required />
             <label htmlFor='ministry'>Ministry:</label>
             <input type='text' id='ministry' name='ministry' onChange={handleChange} />
@@ -104,7 +104,7 @@ const ProjectDetailsPanel = ({props}) => {
           </div>
           <h3>Financials</h3>
           <div className='sidePanel__content__grid'>
-            <label htmlFor='estimatedCost'>Estimated cost*:</label>
+            <label htmlFor='estimatedCost'>Estimated cost:*</label>
             <input type='text' id='estimatedCost' name='estimatedCost' placeholder='in KSH' onChange={handleChange} required />
             <label htmlFor='budget'>Budget:</label>
             <input type='text' id='budget' name='budget' placeholder='in KSH' onChange={handleChange} />
@@ -115,7 +115,7 @@ const ProjectDetailsPanel = ({props}) => {
           </div>
           <h3>Location</h3>
           <div className='sidePanel__content__grid'>
-            <label htmlFor='countyNo'>County*:</label>
+            <label htmlFor='countyNo'>County:*</label>
             <input type='text' id='countyNo' name='countyNo' onChange={handleChange} required />
             <label htmlFor='subCounty'>Sub-county:</label>
             <input type='text' id='subCounty' name='subCounty' onChange={handleChange} />
