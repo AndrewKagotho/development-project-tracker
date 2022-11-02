@@ -606,7 +606,6 @@ table tbody tr:hover svg {
 .counties_map {
   translate: -15px 15px;
   background-color: transparent;
-  scale: 1.02;
   position: -webkit-sticky;
   position: sticky;
   top: 90px;
@@ -618,7 +617,7 @@ table tbody tr:hover svg {
 }
 .counties_map path:hover {
   fill: #669FC3 !important;
-  stroke: #FFF !important;
+  stroke: #669FC3 !important;
   cursor: pointer;
 }
 

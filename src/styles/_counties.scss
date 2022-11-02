@@ -43,7 +43,7 @@
 .counties_map {
   translate: -15px 15px;
   background-color: transparent;
-  scale: 1.02;
+  // scale: $scale;
   position: sticky;
   top: 90px;
 
@@ -54,7 +54,8 @@
 
     &:hover {
       fill: $primary !important;
-      stroke: #FFF !important;
+      stroke: $primary !important;
+      // stroke-width: 2;
       cursor: pointer;
     }
   }

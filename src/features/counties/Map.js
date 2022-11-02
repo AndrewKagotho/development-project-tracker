@@ -1,15 +1,37 @@
 import React from 'react'
+import { AppContext } from '../../App'
 import { CountyContext } from '../../views/public/Counties'
 import { fillCounty } from '../../utils/functions/map'
 import { dynamicFillCounty } from '../../utils/functions/map'
 
 const Map = () => {
 
+  let nationalAllProjects = 0
+
+  React.useEffect(() => shadeMap())
+
+  const {statsValues} = React.useContext(AppContext)
   const {countyFocus} = React.useContext(CountyContext)
   const countyRefs = React.useRef([])
 
-  fillCounty(countyRefs, countyFocus.countyInFocus.number)
+  for(let i=0; i<47; i++) nationalAllProjects += statsValues.stats.allProjects[i]
 
+  const shadeMap = () => {
+    for(let i=0; i<47; i++) {
+      if(statsValues.stats.allProjects[i] === 0)
+        countyRefs.current[i].style.fill = '#FFF'
+      else if(statsValues.stats.allProjects[i] <= (nationalAllProjects*1/4))
+        countyRefs.current[i].style.fill = '#edf4f8'
+      else if(statsValues.stats.allProjects[i] < (nationalAllProjects*2/4))
+      countyRefs.current[i].style.fill = '#d3e4ee'
+      else if(statsValues.stats.allProjects[i]+5 < (nationalAllProjects*3/4))
+        countyRefs.current[i].style.fill = '#b9d4e4'
+      else
+      countyRefs.current[i].style.fill = '#a0c4da'
+    }
+  }
+
+  fillCounty(countyRefs, countyFocus.countyInFocus.number)
   dynamicFillCounty(countyRefs, countyFocus.countyInFocus.number)
 
   return (

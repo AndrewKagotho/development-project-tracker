@@ -1,14 +1,13 @@
 import React from 'react'
+import { AppContext } from '../../App'
 import { CountyContext } from '../../views/public/Counties'
 import { Chart } from 'react-google-charts'
 import { barOptions } from '../../utils/charts'
 
 const ModalTop = ({props}) => {
-  let countyAllProjects = 0
 
-  const {countyFocus, countyStats} = React.useContext(CountyContext)
-
-  countyStats.countyInFocusStats.forEach((item) => countyAllProjects += item)
+  const {statsValues} = React.useContext(AppContext)
+  const {countyFocus} = React.useContext(CountyContext)
   
   const barData = [
     ['County', 'Estimated cost', 'Budget'],
@@ -26,11 +25,11 @@ const ModalTop = ({props}) => {
         <section>
           <h3>Projects</h3>
           <div className='modal__card__top__summary flex'>
-            <span>Total:  <b>{countyAllProjects}</b></span>
-            <span>Completed:  <b>{countyStats.countyInFocusStats[0]}</b></span>
-            <span>In progress:  <b>{countyStats.countyInFocusStats[1]}</b></span>
-            <span>Approved:  <b>{countyStats.countyInFocusStats[2]}</b></span>
-            <span>Scheduled:  <b>{countyStats.countyInFocusStats[3]}</b></span>
+            <span>Total:  <b>{statsValues.stats.allProjects[countyFocus.countyInFocus.number]}</b></span>
+            <span>Completed:  <b>{statsValues.stats.completed[countyFocus.countyInFocus.number]}</b></span>
+            <span>In progress:  <b>{statsValues.stats.inProgress[countyFocus.countyInFocus.number]}</b></span>
+            <span>Approved:  <b>{statsValues.stats.approved[countyFocus.countyInFocus.number]}</b></span>
+            <span>Scheduled:  <b>{statsValues.stats.scheduled[countyFocus.countyInFocus.number]}</b></span>
           </div>
         </section>
       </div>

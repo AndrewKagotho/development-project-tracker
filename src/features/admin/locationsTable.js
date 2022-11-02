@@ -21,16 +21,16 @@ export const locationsTableSearch = (searchState, inputRef) => {
     prevInput[0] = prevInput[1]
     prevInput[1] = index
     if(prevInput[0] !== prevInput[1]) inputRef.current[prevInput[0]].value = ''
-    searchState.setSearchContent({state: true, selectedInput: e.target.name, inputValue: e.target.value})
+    searchState.setSearchContent({selectedInput: e.target.name, inputValue: e.target.value})
   }
   
   return (
     <tr className='tr_search'>
-      <td><input type='search' name='locProjectID' ref={(item) => inputRef.current[0] = item} placeholder='Search:' onChange={(e) => handleChange(e, 0)} autoComplete='off' /></td>
-      <td><input type='search' name='locCountyNo' ref={(item) => inputRef.current[1] = item} placeholder='Search:' onChange={(e) => handleChange(e, 1)} autoComplete='off' /></td>
-      <td><input type='search' name='subCounty' ref={(item) => inputRef.current[2] = item} placeholder='Search:' onChange={(e) => handleChange(e, 2)} autoComplete='off' /></td>
-      <td><input type='search' name='constituency' ref={(item) => inputRef.current[3] = item} placeholder='Search:' onChange={(e) => handleChange(e, 3)} autoComplete='off' /></td>
-      <td><input type='search' name='ward' ref={(item) => inputRef.current[4] = item} placeholder='Search:' onChange={(e) => handleChange(e, 4)} autoComplete='off' /></td>
+      <td><input type='search' name='locProjectID' ref={(item) => inputRef.current[4] = item} placeholder='Search:' onChange={(e) => handleChange(e, 4)} autoComplete='off' /></td>
+      <td><input type='search' name='locCountyNo' ref={(item) => inputRef.current[5] = item} placeholder='Search:' onChange={(e) => handleChange(e, 5)} autoComplete='off' /></td>
+      <td><input type='search' name='subCounty' ref={(item) => inputRef.current[6] = item} placeholder='Search:' onChange={(e) => handleChange(e, 6)} autoComplete='off' /></td>
+      <td><input type='search' name='constituency' ref={(item) => inputRef.current[7] = item} placeholder='Search:' onChange={(e) => handleChange(e, 7)} autoComplete='off' /></td>
+      <td><input type='search' name='ward' ref={(item) => inputRef.current[8] = item} placeholder='Search:' onChange={(e) => handleChange(e, 8)} autoComplete='off' /></td>
     </tr>
   )
 }

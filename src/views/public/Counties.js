@@ -14,9 +14,6 @@ const Counties = (props) => {
   const [countyInFocus, setCountyInFocus] = React.useState({name: '', number: 0})
   const countyFocus = {countyInFocus, setCountyInFocus}
 
-  const [countyInFocusStats, setCountyInFocusStats] = React.useState([])
-  const countyStats = {countyInFocusStats, setCountyInFocusStats}
-
   const [projectInFocus, setProjectInFocus] = React.useState('')
   const projectFocus = {projectInFocus, setProjectInFocus}
 
@@ -26,10 +23,7 @@ const Counties = (props) => {
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
-  const [nationalAllProjects, setNationalAllProjects] = React.useState(0)
-  const nationalStats = {nationalAllProjects, setNationalAllProjects}
-
-  const value = {countyFocus, countyStats, projectFocus, countyModalState, projectDetailsPanelState, nationalStats}
+  const value = {countyFocus, projectFocus, countyModalState, projectDetailsPanelState}
 
   return (
     <>

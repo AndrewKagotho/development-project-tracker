@@ -4,7 +4,7 @@ import { AppContext } from '../../App'
 
 const NavbarLanding = () => {
   
-  const {setLoginPanelStatus} = React.useContext(AppContext)
+  const {panelStatus} = React.useContext(AppContext)
 
   return (
     <div>
@@ -14,7 +14,7 @@ const NavbarLanding = () => {
           <li><Link to='/counties'>Counties</Link></li>
           <li><Link to='/updates'>Updates</Link></li>
           <li><Link to='/about'>About</Link></li>
-          <li><button onClick={() => setLoginPanelStatus(true)}>Login</button></li>
+          <li><button onClick={() => panelStatus.setLoginPanelStatus(true)}>Login</button></li>
         </ul>
       </nav>
       <Outlet />

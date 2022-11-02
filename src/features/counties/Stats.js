@@ -1,21 +1,22 @@
 import React from 'react'
-import { CountyContext } from '../../views/public/Counties'
-
-const projectStatusArray = ['Completed', 'In progress', 'Approved', 'Scheduled']
-let statusTotalArray = []
+import { AppContext } from '../../App'
 
 const Stats = ({props}) => {
-  let nationalAllProject = 0
-  
-  React.useEffect(() => nationalStats.setNationalAllProjects(nationalAllProject))
-  const {nationalStats} = React.useContext(CountyContext)
 
-  for(let i=0; i<projectStatusArray.length; i++) {
-    statusTotalArray[i] = props.status
-    .filter((item, index) => props.status[index] === projectStatusArray[i])
-    .reduce((acc) => acc + 1, 0)
-  }
-  statusTotalArray.forEach((x) => nationalAllProject += x)
+  let nationalAllProjects = 0
+  let nationalCompleted = 0
+  let nationalInProgress = 0
+  let nationalApproved = 0
+  let nationalScheduled = 0
+  
+  const {statsValues} = React.useContext(AppContext)
+
+  for(let i=0; i<47; i++) nationalAllProjects += statsValues.stats.allProjects[i]
+  for(let i=0; i<47; i++) nationalCompleted += statsValues.stats.completed[i]
+  for(let i=0; i<47; i++) nationalInProgress += statsValues.stats.inProgress[i]
+  for(let i=0; i<47; i++) nationalApproved += statsValues.stats.approved[i]
+  for(let i=0; i<47; i++) nationalScheduled += statsValues.stats.scheduled[i]
+
 
   return (
     <section className='page_section'>
@@ -24,23 +25,23 @@ const Stats = ({props}) => {
       <div className='page_section__stats flex'>
         <div className='card card_md flex'>
           <span>All projects</span>
-          <span className='badge'>{nationalStats.nationalAllProjects}</span>
+          <span className='badge'>{nationalAllProjects}</span>
         </div>
         <div className='card card_md flex'>
           <span>Completed</span>
-          <span className='badge'>{statusTotalArray[0]}</span>
+          <span className='badge'>{nationalCompleted}</span>
         </div>
         <div className='card card_md flex'>
           <span>In progress</span>
-          <span className='badge'>{statusTotalArray[1]}</span>
+          <span className='badge'>{nationalInProgress}</span>
         </div>
         <div className='card card_md flex'>
           <span>Approved</span>
-          <span className='badge'>{statusTotalArray[2]}</span>
+          <span className='badge'>{nationalApproved}</span>
         </div>
         <div className='card card_md flex'>
           <span>Scheduled</span>
-          <span className='badge'>{statusTotalArray[3]}</span>
+          <span className='badge'>{nationalScheduled}</span>
         </div>
       </div>
     </section>
