@@ -40,12 +40,28 @@
   }
 }
 
+.map_contents {
+  flex-direction: column;
+  position: sticky;
+  top: 90px;
+}
+
+.map_contents__key {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+
+  svg:nth-child(2) { fill: #a0c4da;}
+  svg:nth-child(3) { fill: #b9d4e4;}
+  svg:nth-child(4) { fill: #d3e4ee;}
+  svg:nth-child(5) { fill: #edf4f8;}
+}
+
 .counties_map {
   translate: -15px 15px;
   background-color: transparent;
-  // scale: $scale;
-  position: sticky;
-  top: 90px;
+  scale: $scale;
 
   path {
     stroke: #BBB;
@@ -54,8 +70,7 @@
 
     &:hover {
       fill: $primary !important;
-      stroke: $primary !important;
-      // stroke-width: 2;
+      stroke: $neutral !important;
       cursor: pointer;
     }
   }

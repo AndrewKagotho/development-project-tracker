@@ -59,11 +59,11 @@ const UpdateProjectPanel = ({props}) => {
   const handleSubmit = (e, table) => {
     let sendMeta = {script: '', action: ''}
     
-    if(table === 'projects') { sendMeta = { script: updateProjectScript, action: getProjectDetails }}
-    if(table === 'timelines') { sendMeta = { script: updateTimelineScript, action: getProjectTimelines }}
-    if(table === 'implementation') { sendMeta = { script: updateImplementationScript, action: getProjectImplementations }}
-    if(table === 'finances') { sendMeta = { script: updateFinanceScript, action: getProjectFinances }}
-    if(table === 'locations') { sendMeta = { script: updateLocationScript, action: getProjectLocations }}
+    if(table === 'projects') sendMeta = {script: updateProjectScript, action: getProjectDetails}
+    if(table === 'timelines') sendMeta = {script: updateTimelineScript, action: getProjectTimelines}
+    if(table === 'implementation') sendMeta = {script: updateImplementationScript, action: getProjectImplementations}
+    if(table === 'finances') sendMeta = {script: updateFinanceScript, action: getProjectFinances}
+    if(table === 'locations') sendMeta = {script: updateLocationScript, action: getProjectLocations}
 
     axios.post(sendMeta.script, recordFocus.recordInFocus)
     .then((response) => {

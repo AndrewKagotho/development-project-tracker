@@ -32,6 +32,27 @@ export const showMoreOptions = (trRef, moreOptionsSVGRef, moreOptionsRef, index)
   dynamicShowMoreOptionsSVG(moreOptionsSVGRef, trRef, index)
 }
 
+
+export const showOtherSidePanel = (props, tableFocus, index, updateProjectPanelState, countyFocus, adminFocus) => {
+  updateProjectPanelState.setUpdateProjectPanelStatus(true)
+
+  if(tableFocus.tableInFocus === 'counties') {
+    countyFocus.setCountyInFocus({
+      recordIndex: index,
+      governor: props.governor[index],
+      senator: props.senator[index]
+    })
+  }
+  else if(tableFocus.tableInFocus === 'admin') {
+    adminFocus.setAdminInFocus({
+      recordIndex: index,
+      adminFirstName: props.adminFirstName[index],
+      adminLastName: props.adminLastName[index],
+      adminEmail: props.adminEmail[index]
+    })
+  }
+}
+
 export const showSidePanel = (props, tableFocus, index, updateProjectPanelState, recordFocus, trackingValues) => {
   updateProjectPanelState.setUpdateProjectPanelStatus(true)
   trackingValues.setTrackedChanges({action: 'update'})
@@ -99,7 +120,7 @@ export const showDeleteModal = (props, index, deleteProjectModalState, recordFoc
 
 const AdminTable = ({props}) => {
   
-  const {tableFocus, recordFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackingValues, resultsRef} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, countyFocus, adminFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackingValues, resultsRef} = React.useContext(DashboardContext)
   const trRef = React.useRef([])
   const inputRef = React.useRef([])
   const moreOptionsSVGRef = React.useRef([])
@@ -109,21 +130,20 @@ const AdminTable = ({props}) => {
   let totalPages
 
   firstPageIndex += pageValue.currentPage*10-10
-  const countyTableValues = {props, searchState, trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex, resultSetLength}
 
-  const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackingValues}  
+  const otherInfoStates = {props, tableFocus, countyFocus, adminFocus, searchState, updateProjectPanelState}
+  const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackingValues}
   const projectInfoVars = {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex}
 
   if(tableFocus.tableInFocus === 'counties') {
     tableHead = countyTableHead()
-    tableSearch = countyTableSearch(searchState, resultsRef)
-    tableRows = countyTableRows(countyTableValues)
-    resultSetLength = countyTableRows(countyTableValues).length
-    resultSetLengthPerView = countyTableRows(countyTableValues).filter((item) => item !== undefined).length
+    tableSearch = countyTableSearch(searchState, inputRef)
+    tableRows = countyTableRows(otherInfoStates, projectInfoVars)
+    resultSetLength = countyTableRows(otherInfoStates, projectInfoVars).length
+    resultSetLengthPerView = countyTableRows(otherInfoStates, projectInfoVars).filter((item) => item !== undefined).length
   }
 
   else if(tableFocus.tableInFocus === 'projects') {
-    // searchState.setSearchContent({...searchState.searchContent, selectedInput: 'projectID'})
     tableHead = projectsTableHead()
     tableSearch = projectsTableSearch(searchState, inputRef)
     tableRows = projectsTableRows(projectInfoStates, projectInfoVars)
@@ -133,7 +153,7 @@ const AdminTable = ({props}) => {
 
   else if(tableFocus.tableInFocus === 'timelines') {
     tableHead = timelinesTableHead()
-    tableSearch = timelinesTableSearch(searchState, resultsRef)
+    tableSearch = timelinesTableSearch(searchState, inputRef)
     tableRows = timelinesTableRows(projectInfoStates, projectInfoVars)
     resultSetLength = timelinesTableRows(projectInfoStates, projectInfoVars).length
     resultSetLengthPerView = timelinesTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
@@ -141,7 +161,7 @@ const AdminTable = ({props}) => {
 
   else if(tableFocus.tableInFocus === 'implementation') {
     tableHead = implementationsTableHead()
-    tableSearch = implementationsTableSearch(searchState, resultsRef)
+    tableSearch = implementationsTableSearch(searchState, inputRef)
     tableRows = implementationsTableRows(projectInfoStates, projectInfoVars)
     resultSetLength = implementationsTableRows(projectInfoStates, projectInfoVars).length
     resultSetLengthPerView = implementationsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
@@ -149,7 +169,7 @@ const AdminTable = ({props}) => {
 
   else if(tableFocus.tableInFocus === 'finances') {
     tableHead = financesTableHead()
-    tableSearch = financesTableSearch(searchState, resultsRef)
+    tableSearch = financesTableSearch(searchState, inputRef)
     tableRows = financesTableRows(projectInfoStates, projectInfoVars)
     resultSetLength = financesTableRows(projectInfoStates, projectInfoVars).length
     resultSetLengthPerView = financesTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
@@ -157,7 +177,7 @@ const AdminTable = ({props}) => {
 
   else if(tableFocus.tableInFocus === 'locations') {
     tableHead = locationsTableHead()
-    tableSearch = locationsTableSearch(searchState, resultsRef)
+    tableSearch = locationsTableSearch(searchState, inputRef)
     tableRows = locationsTableRows(projectInfoStates, projectInfoVars)
     resultSetLength = locationsTableRows(projectInfoStates, projectInfoVars).length
     resultSetLengthPerView = locationsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
@@ -165,7 +185,7 @@ const AdminTable = ({props}) => {
 
   else if(tableFocus.tableInFocus === 'tracking logs') {
     tableHead = trackingLogsTableHead()
-    tableSearch = trackingLogsTableSearch(searchState, resultsRef)
+    tableSearch = trackingLogsTableSearch(searchState, inputRef)
     tableRows = trackingLogsTableRows(projectInfoStates, projectInfoVars)
     resultSetLength = trackingLogsTableRows(projectInfoStates, projectInfoVars).length
     resultSetLengthPerView = trackingLogsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
@@ -173,10 +193,10 @@ const AdminTable = ({props}) => {
 
   else if(tableFocus.tableInFocus === 'admin') {
     tableHead = adminsTableHead()
-    tableSearch = adminsTableSearch(searchState, resultsRef)
-    tableRows = adminsTableRows(projectInfoStates, projectInfoVars)
-    resultSetLength = adminsTableRows(projectInfoStates, projectInfoVars).length
-    resultSetLengthPerView = adminsTableRows(projectInfoStates, projectInfoVars).filter((item) => item !== undefined).length
+    tableSearch = adminsTableSearch(searchState, inputRef)
+    tableRows = adminsTableRows(otherInfoStates, projectInfoVars)
+    resultSetLength = adminsTableRows(otherInfoStates, projectInfoVars).length
+    resultSetLengthPerView = adminsTableRows(otherInfoStates, projectInfoVars).filter((item) => item !== undefined).length
   }
 
   totalPages = Math.ceil(resultSetLength/10)

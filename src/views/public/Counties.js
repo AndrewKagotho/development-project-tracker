@@ -11,7 +11,7 @@ export const CountyContext = React.createContext()
 
 const Counties = (props) => {
 
-  const [countyInFocus, setCountyInFocus] = React.useState({name: '', number: 0})
+  const [countyInFocus, setCountyInFocus] = React.useState({name: '', number: 47})
   const countyFocus = {countyInFocus, setCountyInFocus}
 
   const [projectInFocus, setProjectInFocus] = React.useState('')

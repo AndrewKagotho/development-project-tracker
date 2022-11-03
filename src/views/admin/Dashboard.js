@@ -12,6 +12,7 @@ import { getAdmins } from '../../utils/functions/getAdmins'
 import AdminTable from '../../features/admin/AdminTable'
 import ProjectDetailsPanel from '../../layout/admin/ProjectDetailsPanel'
 import UpdateProjectPanel from '../../layout/admin/UpdateProjectPanel'
+import UpdateCountyPanel from '../../layout/admin/UpdateCountyPanel'
 import DeleteProjectModal from '../../features/admin/DeleteProjectModal'
 import InfoModal from '../../features/admin/InfoModal'
 
@@ -39,6 +40,12 @@ const Dashboard = (props) => {
   const [recordInFocus, setRecordInFocus] = React.useState(projectTemplate)
   const recordFocus = {recordInFocus, setRecordInFocus}
 
+  const [countyInFocus, setCountyInFocus] = React.useState({recordIndex: '', governor: '', senator: ''})
+  const countyFocus = {countyInFocus, setCountyInFocus}
+
+  const [adminInFocus, setAdminInFocus] = React.useState({recordIndex: '', adminFirstName: '', adminLastName: '', adminEmail: ''})
+  const adminFocus = {adminInFocus, setAdminInFocus}
+
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
@@ -63,6 +70,8 @@ const Dashboard = (props) => {
   const value = {
     tableFocus,
     recordFocus,
+    countyFocus,
+    adminFocus,
     projectDetailsPanelState,
     updateProjectPanelState,
     deleteProjectModalState,
@@ -75,9 +84,8 @@ const Dashboard = (props) => {
 
   const showTable = (table) => {
     setTableInFocus(table)
-    setSearchContent({state: false, selectedInput: '', inputValue: ''})
+    setSearchContent({selectedInput: '', inputValue: ''})
     setCurrentPage(1)
-    resultsRef.current.style.display = 'none'
   }
 
   const createProject = () => {
@@ -118,6 +126,7 @@ const Dashboard = (props) => {
           <AdminTable props={props} />
           <ProjectDetailsPanel props={props} />
           <UpdateProjectPanel props={props} />
+          <UpdateCountyPanel props={props} />
         </div>
       </div>
       <DeleteProjectModal props={props} />
