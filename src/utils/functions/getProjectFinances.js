@@ -18,5 +18,5 @@ export const getProjectFinances = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

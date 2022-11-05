@@ -9,10 +9,13 @@ import { getProjectFinances } from '../../utils/functions/getProjectFinances'
 import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 import { getAdmins } from '../../utils/functions/getAdmins'
+import { projectObject } from '../../utils/templates/objects'
+import { countyObject } from '../../utils/templates/objects'
+import { adminObject } from '../../utils/templates/objects'
 import AdminTable from '../../features/admin/AdminTable'
-import ProjectDetailsPanel from '../../layout/admin/ProjectDetailsPanel'
+import CreateProjectPanel from '../../layout/admin/CreateProjectPanel'
 import UpdateProjectPanel from '../../layout/admin/UpdateProjectPanel'
-import UpdateCountyPanel from '../../layout/admin/UpdateCountyPanel'
+import UpdateOtherPanel from '../../layout/admin/UpdateOtherPanel'
 import DeleteProjectModal from '../../features/admin/DeleteProjectModal'
 import InfoModal from '../../features/admin/InfoModal'
 
@@ -34,52 +37,32 @@ const Dashboard = (props) => {
 
   const resultsRef = React.useRef()
 
-  const [tableInFocus, setTableInFocus] = React.useState('counties')
-  const tableFocus = {tableInFocus, setTableInFocus}
-
-  const [recordInFocus, setRecordInFocus] = React.useState(projectTemplate)
-  const recordFocus = {recordInFocus, setRecordInFocus}
-
-  const [countyInFocus, setCountyInFocus] = React.useState({recordIndex: '', governor: '', senator: ''})
-  const countyFocus = {countyInFocus, setCountyInFocus}
-
-  const [adminInFocus, setAdminInFocus] = React.useState({recordIndex: '', adminFirstName: '', adminLastName: '', adminEmail: ''})
-  const adminFocus = {adminInFocus, setAdminInFocus}
-
-  const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
-  const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
-
+  const [tableInFocus, setTableInFocus] = React.useState('projects')
+  const [recordInFocus, setRecordInFocus] = React.useState(projectObject)
+  const [countyInFocus, setCountyInFocus] = React.useState(countyObject)
+  const [adminInFocus, setAdminInFocus] = React.useState(adminObject)
+  const [createProjectPanel, setCreateProjectPanelStatus] = React.useState(false)
   const [updateProjectPanel, setUpdateProjectPanelStatus] = React.useState(false)
-  const updateProjectPanelState = {updateProjectPanel, setUpdateProjectPanelStatus}
-
   const [deleteProjectModal, setDeleteProjectModalStatus] = React.useState(false)
-  const deleteProjectModalState = {deleteProjectModal, setDeleteProjectModalStatus}
-
   const [infoModalProps, setInfoModalProps] = React.useState({state: false, icon: '', text:''})
-  const infoModal = {infoModalProps, setInfoModalProps}
-
   const [searchContent, setSearchContent] = React.useState({selectedInput: '', inputValue: ''})
-  const searchState = {searchContent, setSearchContent}
-
   const [currentPage, setCurrentPage] = React.useState(1)
-  const pageValue = {currentPage, setCurrentPage}
-
   const [trackedChanges, setTrackedChanges] = React.useState({action: ''})
+
+  const tableFocus = {tableInFocus, setTableInFocus}
+  const recordFocus = {recordInFocus, setRecordInFocus}
+  const countyFocus = {countyInFocus, setCountyInFocus}
+  const adminFocus = {adminInFocus, setAdminInFocus}
+  const createProjectPanelState = {createProjectPanel, setCreateProjectPanelStatus}
+  const updateProjectPanelState = {updateProjectPanel, setUpdateProjectPanelStatus}
+  const deleteProjectModalState = {deleteProjectModal, setDeleteProjectModalStatus}
+  const infoModal = {infoModalProps, setInfoModalProps}
+  const searchState = {searchContent, setSearchContent}
+  const pageValue = {currentPage, setCurrentPage}
   const trackingValues = {trackedChanges, setTrackedChanges}
 
   const value = {
-    tableFocus,
-    recordFocus,
-    countyFocus,
-    adminFocus,
-    projectDetailsPanelState,
-    updateProjectPanelState,
-    deleteProjectModalState,
-    infoModal,
-    searchState,
-    pageValue,
-    trackingValues,
-    resultsRef
+    tableFocus, recordFocus, countyFocus, adminFocus, createProjectPanelState, updateProjectPanelState, deleteProjectModalState, infoModal, searchState, pageValue, trackingValues, resultsRef
   }
 
   const showTable = (table) => {
@@ -89,7 +72,7 @@ const Dashboard = (props) => {
   }
 
   const createProject = () => {
-    setProjectDetailsPanelStatus(true)
+    setCreateProjectPanelStatus(true)
     setTrackedChanges({action: 'create'})
   }
 
@@ -124,9 +107,9 @@ const Dashboard = (props) => {
         </menu>
         <div className='admin_view__content'>
           <AdminTable props={props} />
-          <ProjectDetailsPanel props={props} />
+          <CreateProjectPanel props={props} />
           <UpdateProjectPanel props={props} />
-          <UpdateCountyPanel props={props} />
+          <UpdateOtherPanel props={props} />
         </div>
       </div>
       <DeleteProjectModal props={props} />
@@ -187,28 +170,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
-
-export const projectTemplate = {
-  recordIndex: '',
-  projectID: '',
-  name: '',
-  description: '',
-  status: '',
-  approvalDate: '',
-  startDate: '',
-  endDate: '',
-  duration: '',
-  sector: '',
-  ministry: '',
-  agency: '',
-  contractor: '',
-  priority: '',
-  estimatedCost: '',
-  budget: '',
-  financialYear: '',
-  fundingSource: '',
-  countyNo: '',
-  subCounty: '',
-  constituency: '',
-  ward: ''
-}

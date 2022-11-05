@@ -17,5 +17,5 @@ export const getCounties = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { DashboardContext } from '../../views/admin/Dashboard'
-import { openLoginPanel } from '../../utils/functions/panels'
-import { closeLoginPanel } from '../../utils/functions/panels'
+import { openSidePanel } from '../../utils/functions/panels'
+import { closeSidePanel } from '../../utils/functions/panels'
 import { getProjectDetails } from '../../utils/functions/getProjectDetails'
 import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
 import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
@@ -23,7 +23,7 @@ const UpdateProjectPanel = ({props}) => {
   const {tableFocus, recordFocus, updateProjectPanelState, infoModal, trackingValues} = React.useContext(DashboardContext)
   const updateProjectPanelRef = React.useRef()
 
-  openLoginPanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
+  openSidePanel(updateProjectPanelRef, updateProjectPanelState.updateProjectPanel)
 
   const handleChange = (e) => {
     recordFocus.setRecordInFocus({...recordFocus.recordInFocus, [e.target.name]: e.target.value })
@@ -77,7 +77,7 @@ const UpdateProjectPanel = ({props}) => {
         infoModal.setInfoModalProps({state: true, icon:'fail', text:'Error! Try again.'})
     })
 
-    closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
+    closeSidePanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)
     e.preventDefault()
   }
 
@@ -162,7 +162,7 @@ const UpdateProjectPanel = ({props}) => {
 
   return (
     <div className='sidePanel' ref={updateProjectPanelRef}>
-      <svg className='close_modal_svg' onClick={() => closeLoginPanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000"><path d="M0 0h24v24H0V0z" fill="#FFF"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
+      <svg className='close_modal_svg' onClick={() => closeSidePanel(updateProjectPanelRef, updateProjectPanelState.setUpdateProjectPanelStatus)} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000"><path d="M0 0h24v24H0V0z" fill="#FFF"/><path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/></svg>
       <div className='sidePanel__content'>
         <form onSubmit={(e) => handleSubmit(e, tableFocus.tableInFocus)}>
           <h3>Updating projectID <em>'{recordFocus.recordInFocus.projectID}'</em></h3>

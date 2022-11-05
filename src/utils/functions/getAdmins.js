@@ -17,5 +17,5 @@ export const getAdmins = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

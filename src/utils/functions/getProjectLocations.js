@@ -18,5 +18,5 @@ export const getProjectLocations = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

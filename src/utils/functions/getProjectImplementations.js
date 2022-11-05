@@ -19,5 +19,5 @@ export const getProjectImplementations = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

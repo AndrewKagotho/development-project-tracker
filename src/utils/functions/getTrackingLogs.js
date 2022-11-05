@@ -19,5 +19,5 @@ export const getTrackingLogs = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

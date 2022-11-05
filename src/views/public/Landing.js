@@ -14,6 +14,8 @@ import Footer from '../../layout/Footer'
 const bannerArray = ['http://127.0.0.1:8887/banner.jpg', 'http://127.0.0.1:8887/image3.jpeg']
 let imageOnDisplay = 0
 
+setTimeout(() => console.log('active'), 2000)
+
 const Landing = (props) => {
 
   React.useEffect(() => {
@@ -24,6 +26,12 @@ const Landing = (props) => {
     getProjectFinances(props)
     getProjectLocations(props)
     getTrackingLogs(props)
+
+    const timer = setTimeout(() => {
+      console.log('This will run after 1 second!')
+    }, 1000)
+
+    return () => clearTimeout(timer)
     // eslint-disable-next-line
   }, [])
 

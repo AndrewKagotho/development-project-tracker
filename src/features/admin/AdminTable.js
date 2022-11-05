@@ -39,6 +39,7 @@ export const showOtherSidePanel = (props, tableFocus, index, updateProjectPanelS
   if(tableFocus.tableInFocus === 'counties') {
     countyFocus.setCountyInFocus({
       recordIndex: index,
+      countyNo: props.countyNo[index],
       governor: props.governor[index],
       senator: props.senator[index]
     })
@@ -46,6 +47,7 @@ export const showOtherSidePanel = (props, tableFocus, index, updateProjectPanelS
   else if(tableFocus.tableInFocus === 'admin') {
     adminFocus.setAdminInFocus({
       recordIndex: index,
+      adminUsername: props.adminUsername[index],
       adminFirstName: props.adminFirstName[index],
       adminLastName: props.adminLastName[index],
       adminEmail: props.adminEmail[index]
@@ -216,7 +218,7 @@ const AdminTable = ({props}) => {
   return (
     <section className='page_section'>
       <h2>Database management</h2>
-      <p>Viewing table: <b>{tableFocus.tableInFocus}</b>. Create, view, update and delete records.</p>
+      <p>Viewing table: <b>{tableFocus.tableInFocus}</b>. View, search, create, update and delete records.</p>
       <div className='table_div'>
         <div className='modal__card__table_extras flex'>
           <div>

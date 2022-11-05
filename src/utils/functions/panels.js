@@ -1,4 +1,4 @@
-export const openLoginPanel = (ref, contextValue) => {
+export const openSidePanel = (ref, contextValue) => {
   if(contextValue === true) {
     if(ref.current !== undefined) {
       ref.current.style.width = '25vw'
@@ -8,7 +8,7 @@ export const openLoginPanel = (ref, contextValue) => {
   }
 }
 
-export const closeLoginPanel = (ref, contextValue) => {
+export const closeSidePanel = (ref, contextValue) => {
   contextValue(false)
   ref.current.style.visibility = 'hidden'
   ref.current.style.opacity = '0';

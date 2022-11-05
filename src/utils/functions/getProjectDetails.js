@@ -17,5 +17,5 @@ export const getProjectDetails = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

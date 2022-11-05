@@ -18,5 +18,5 @@ export const getProjectTimelines = (props) => {
       )
       recordIndex++
     }
-  })
+  },((error) => console.log(error)))
 }

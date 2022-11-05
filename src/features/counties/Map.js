@@ -2,19 +2,15 @@ import React from 'react'
 import { AppContext } from '../../App'
 import { CountyContext } from '../../views/public/Counties'
   
-let newRender = true
-
 const Map = () => {
   let nationalAllProjects = 0
 
   React.useEffect(() => {
     shadeMap()
-    if(!newRender) {
+    if(countyFocus.countyInFocus.number !== -1) {
       countyRefs.current[countyFocus.countyInFocus.number].style.fill = '#669FC3'
       countyRefs.current[countyFocus.countyInFocus.number].style.stroke = '#FFF'
     }
-    // eslint-disable-next-line
-    if(newRender) newRender = false
   })
 
   const {statsValues} = React.useContext(AppContext)
@@ -41,7 +37,7 @@ const Map = () => {
   }
 
   let keyBlock = (
-    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2H4C2.9,4,2,4.9,2,6z"/></g></g></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2H4C2.9,4,2,4.9,2,6z"/></g></g></svg>
   )
 
   return (
