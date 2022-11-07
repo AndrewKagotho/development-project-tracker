@@ -7,12 +7,12 @@ let prevCards = [0,0]
 const Names = ({props}) => {
 
   const {statsValues} = React.useContext(AppContext)
-  const {countyFocus, countyModalState} = React.useContext(CountyContext)
+  const {countyFocus, countyModalState, searchState, resultsRef} = React.useContext(CountyContext)
   const listHeaderNameRef = React.useRef([])
   const listHeaderNumberRef = React.useRef([])
   const listDetailsRef = React.useRef([])
 
-  const showProjects = (index) => {
+  const showCountySummary = (index) => {
     countyFocus.setCountyInFocus({name: props.countyName[index], number: index})
 
     prevCards[0] = prevCards[1]
@@ -39,10 +39,16 @@ const Names = ({props}) => {
       }
     }
   }
+
+  const viewProjects = () => {
+    countyModalState.setCountyModalState(true)
+    searchState.setSearchContent({selectedInput: '', inputValue: ''})
+    resultsRef.current.style.display = 'none'
+  }
   
   const countyList = props.countyNo.map((item, index) => 
     <li key={index} className='card card_sm'>
-      <div className='counties_list__header' onClick={() => showProjects(index)}>
+      <div className='counties_list__header' onClick={() => showCountySummary(index)}>
         <div ref={(item) => listHeaderNameRef.current[index] = item}><span>0{item} | {props.countyName[index]}</span></div>
         <span className='card_number_effect_ex' ref={(item) => listHeaderNumberRef.current[index] = item}>{item}</span>
       </div>
@@ -52,7 +58,7 @@ const Names = ({props}) => {
         <div><span>In progress</span><span className='badge'>{statsValues.stats.inProgress[countyFocus.countyInFocus.number]}</span></div>
         <div><span>Approved</span><span className='badge'>{statsValues.stats.approved[countyFocus.countyInFocus.number]}</span></div>
         <div><span>Scheduled</span><span className='badge'>{statsValues.stats.scheduled[countyFocus.countyInFocus.number]}</span></div>
-        <button className='card_button' onClick={() => countyModalState.setCountyModalState(true)}>View projects</button>
+        <button className='card_button' onClick={viewProjects}>View projects</button>
       </div>
     </li>
   )

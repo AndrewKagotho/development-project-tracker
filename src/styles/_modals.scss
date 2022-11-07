@@ -73,13 +73,15 @@
 
   h3 { color: $secondary; }
 
-  section {
-    &:nth-child(1) { margin-bottom: $margin; }
+  div {
+    section {
+      margin-bottom: $margin;
 
-    span {
-      display: block;
-      margin-top: 10px;
-      white-space: pre;
+      span {
+        display: block;
+        margin-top: 10px;
+        white-space: pre;
+      }
     }
   }
 }
@@ -95,11 +97,18 @@
 }
 
 .modal__card__table_extras {
-  align-items: flex-end;
+  align-items: center;
   margin: 10px 0;
   // @include border_red;
 
   button { margin-right: 10px; }
+
+  a {
+    font-size: $small_font;
+    border: 1px solid transparent;
+    &:hover { border: 1px solid $primary; }
+  }
+
   span {
     font-size: $small_font;
     white-space: pre;

@@ -13,12 +13,8 @@ const Modal = ({props}) => {
 
   openModal(countyModalState.openCountyModal, modalRef)
 
-  const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: '', inputValue: ''})
-  const searchState = {searchContent, setSearchContent}
-
   const closeAction = () => {
     closeModal(countyModalState.setCountyModalState, modalRef)
-    setSearchContent({...searchContent, state: false})
   }
 
   return (
@@ -31,7 +27,7 @@ const Modal = ({props}) => {
           </div>
           <h2>{countyFocus.countyInFocus.name}<em className='card_number_effect_modal'>(0{countyFocus.countyInFocus.number+1})</em></h2>
           <ModalBanner props={props} />
-          <ModalTable props={props} searchState={searchState} />
+          <ModalTable props={props} />
         </div>
       </div>
       <ProjectDetailsPanel props={props} />

@@ -10,6 +10,8 @@ import Footer from '../../layout/Footer'
 export const CountyContext = React.createContext()
 
 const Counties = (props) => {
+  
+  const resultsRef = React.useRef()
 
   const [countyInFocus, setCountyInFocus] = React.useState({name: '', number: -1})
   const countyFocus = {countyInFocus, setCountyInFocus}
@@ -23,7 +25,10 @@ const Counties = (props) => {
   const [projectDetailsPanel, setProjectDetailsPanelStatus] = React.useState(false)
   const projectDetailsPanelState = {projectDetailsPanel, setProjectDetailsPanelStatus}
 
-  const value = {countyFocus, projectFocus, countyModalState, projectDetailsPanelState}
+  const [searchContent, setSearchContent] = React.useState({selectedInput: '', inputValue: ''})
+  const searchState = {searchContent, setSearchContent}
+
+  const value = {countyFocus, projectFocus, countyModalState, projectDetailsPanelState, searchState, resultsRef}
 
   return (
     <>

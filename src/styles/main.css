@@ -760,10 +760,10 @@ table tbody tr:hover svg {
 .modal__card__top h3 {
   color: #555;
 }
-.modal__card__top section:nth-child(1) {
+.modal__card__top div section {
   margin-bottom: 30px;
 }
-.modal__card__top section span {
+.modal__card__top div section span {
   display: block;
   margin-top: 10px;
   white-space: pre;
@@ -779,11 +779,18 @@ table tbody tr:hover svg {
 }
 
 .modal__card__table_extras {
-  align-items: flex-end;
+  align-items: center;
   margin: 10px 0;
 }
 .modal__card__table_extras button {
   margin-right: 10px;
+}
+.modal__card__table_extras a {
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+}
+.modal__card__table_extras a:hover {
+  border: 1px solid #659FC3;
 }
 .modal__card__table_extras span {
   font-size: 0.85rem;
