@@ -32,9 +32,8 @@ export const showMoreOptions = (trRef, moreOptionsSVGRef, moreOptionsRef, index)
   dynamicShowMoreOptionsSVG(moreOptionsSVGRef, trRef, index)
 }
 
-
-export const showOtherSidePanel = (props, tableFocus, index, updateProjectPanelState, countyFocus, adminFocus) => {
-  updateProjectPanelState.setUpdateProjectPanelStatus(true)
+export const showOtherSidePanel = (props, tableFocus, index, updateOtherPanelState, countyFocus, adminFocus) => {
+  updateOtherPanelState.setUpdateOtherPanelStatus(true)
 
   if(tableFocus.tableInFocus === 'counties') {
     countyFocus.setCountyInFocus({
@@ -120,9 +119,17 @@ export const showDeleteModal = (props, index, deleteProjectModalState, recordFoc
   trackingValues.setTrackedChanges({action: 'delete', projectID: props.projectID[index]})
 }
 
+export const showDeleteAdminModal = (props, index, deleteAdminModalState, adminFocus) => {
+  deleteAdminModalState.setDeleteAdminModalStatus(true)
+  adminFocus.setAdminInFocus({...adminFocus.adminInFocus,
+    recordIndex: index,
+    adminUsername: props.adminUsername[index]
+  })
+}
+
 const AdminTable = ({props}) => {
   
-  const {tableFocus, recordFocus, countyFocus, adminFocus, updateProjectPanelState, deleteProjectModalState, searchState, pageValue, trackingValues, resultsRef} = React.useContext(DashboardContext)
+  const {tableFocus, recordFocus, countyFocus, adminFocus, updateProjectPanelState, createAdminPanelState, updateOtherPanelState, deleteProjectModalState, deleteAdminModalState, searchState, pageValue, trackingValues, resultsRef} = React.useContext(DashboardContext)
   const trRef = React.useRef([])
   const inputRef = React.useRef([])
   const moreOptionsSVGRef = React.useRef([])
@@ -133,7 +140,7 @@ const AdminTable = ({props}) => {
 
   firstPageIndex += pageValue.currentPage*10-10
 
-  const otherInfoStates = {props, tableFocus, countyFocus, adminFocus, searchState, updateProjectPanelState}
+  const otherInfoStates = {props, tableFocus, countyFocus, adminFocus, searchState, createAdminPanelState, updateOtherPanelState, deleteAdminModalState}
   const projectInfoStates = {props, tableFocus, recordFocus, searchState, updateProjectPanelState, deleteProjectModalState, trackingValues}
   const projectInfoVars = {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex}
 

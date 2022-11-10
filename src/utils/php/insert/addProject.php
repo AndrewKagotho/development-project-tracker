@@ -24,7 +24,7 @@
   $constituency = $data->constituency;
   $ward = $data->ward;
 
-  $projectsSql = "INSERT INTO `projects` (`projectID`, `name`, `description`, `status`, `created`) VALUES ('$projectID','$name', '$description', '$status', NOW())";
+  $projectsSql = "INSERT INTO `projects` (`projectID`, `name`, `description`, `status`) VALUES ('$projectID','$name', '$description', '$status')";
   $timelinesSql = "INSERT INTO `timelines`(`projectID`, `approval date`, `start date`, `end date`, `duration`) VALUES ('$projectID', '$approvalDate', '$startDate', '$endDate', '$duration')";
   $implementationSql = "INSERT INTO `implementation`(`projectID`, `sector`, `ministry`, `implementing agency`, `contractor`, `priority`) VALUES ('$projectID', '$sector', '$ministry', '$agency', '$contractor', '$priority')";
   $financesSql = "INSERT INTO `finances`(`projectID`, `estimated cost`, `budget`, `financial year`, `funding source`) VALUES ('$projectID', '$estimatedCost', '$budget', '$financialYear', '$fundingSource')";

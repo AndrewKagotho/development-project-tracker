@@ -14,10 +14,13 @@ import { countyObject } from '../../utils/templates/objects'
 import { adminObject } from '../../utils/templates/objects'
 import AdminTable from '../../features/admin/AdminTable'
 import CreateProjectPanel from '../../layout/admin/CreateProjectPanel'
+import CreateAdminPanel from '../../layout/admin/CreateAdminPanel'
 import UpdateProjectPanel from '../../layout/admin/UpdateProjectPanel'
 import UpdateOtherPanel from '../../layout/admin/UpdateOtherPanel'
 import DeleteProjectModal from '../../features/admin/DeleteProjectModal'
+import DeleteAdminModal from '../../features/admin/DeleteAdminModal'
 import InfoModal from '../../features/admin/InfoModal'
+import { dynamicMenu } from '../../utils/functions/map'
 
 export const DashboardContext = React.createContext()
 
@@ -35,6 +38,7 @@ const Dashboard = (props) => {
     // eslint-disable-next-line
   }, [])
 
+  const menuRef = React.useRef([])
   const resultsRef = React.useRef()
 
   const [tableInFocus, setTableInFocus] = React.useState('projects')
@@ -42,8 +46,11 @@ const Dashboard = (props) => {
   const [countyInFocus, setCountyInFocus] = React.useState(countyObject)
   const [adminInFocus, setAdminInFocus] = React.useState(adminObject)
   const [createProjectPanel, setCreateProjectPanelStatus] = React.useState(false)
+  const [createAdminPanel, setCreateAdminPanelStatus] = React.useState(false)
   const [updateProjectPanel, setUpdateProjectPanelStatus] = React.useState(false)
+  const [updateOtherPanel, setUpdateOtherPanelStatus] = React.useState(false)
   const [deleteProjectModal, setDeleteProjectModalStatus] = React.useState(false)
+  const [deleteAdminModal, setDeleteAdminModalStatus] = React.useState(false)
   const [infoModalProps, setInfoModalProps] = React.useState({state: false, icon: '', text:''})
   const [searchContent, setSearchContent] = React.useState({selectedInput: '', inputValue: ''})
   const [currentPage, setCurrentPage] = React.useState(1)
@@ -54,21 +61,39 @@ const Dashboard = (props) => {
   const countyFocus = {countyInFocus, setCountyInFocus}
   const adminFocus = {adminInFocus, setAdminInFocus}
   const createProjectPanelState = {createProjectPanel, setCreateProjectPanelStatus}
+  const createAdminPanelState = {createAdminPanel, setCreateAdminPanelStatus}
   const updateProjectPanelState = {updateProjectPanel, setUpdateProjectPanelStatus}
+  const updateOtherPanelState = {updateOtherPanel, setUpdateOtherPanelStatus}
   const deleteProjectModalState = {deleteProjectModal, setDeleteProjectModalStatus}
+  const deleteAdminModalState = {deleteAdminModal, setDeleteAdminModalStatus}
   const infoModal = {infoModalProps, setInfoModalProps}
   const searchState = {searchContent, setSearchContent}
   const pageValue = {currentPage, setCurrentPage}
   const trackingValues = {trackedChanges, setTrackedChanges}
 
   const value = {
-    tableFocus, recordFocus, countyFocus, adminFocus, createProjectPanelState, updateProjectPanelState, deleteProjectModalState, infoModal, searchState, pageValue, trackingValues, resultsRef
+    tableFocus,
+    recordFocus,
+    countyFocus,
+    adminFocus,
+    createProjectPanelState,
+    createAdminPanelState,
+    updateProjectPanelState,
+    updateOtherPanelState,
+    deleteProjectModalState,
+    deleteAdminModalState,
+    infoModal,
+    searchState,
+    pageValue,
+    trackingValues,
+    resultsRef
   }
 
-  const showTable = (table) => {
+  const showTable = (table, index) => {
     setTableInFocus(table)
     setSearchContent({selectedInput: '', inputValue: ''})
     setCurrentPage(1)
+    dynamicMenu(menuRef, index)
   }
 
   const createProject = () => {
@@ -82,23 +107,23 @@ const Dashboard = (props) => {
         <menu className='flex'>
           <section>
             <h3>County data</h3>
-            <button onClick={() => showTable('counties')}>Counties</button>
+            <button ref={(item) => menuRef.current[0] = item} onClick={() => showTable('counties', 0)}>Counties</button>
           </section>
           <section>
             <h3>Project data</h3>
-            <button onClick={() => showTable('projects')}>Projects</button>
-            <button onClick={() => showTable('timelines')}>Timelines</button>
-            <button onClick={() => showTable('implementation')}>Implementation</button>
-            <button onClick={() => showTable('finances')}>Finances</button>
-            <button onClick={() => showTable('locations')}>Locations</button>
+            <button ref={(item) => menuRef.current[1] = item} onClick={() => showTable('projects', 1)}>Projects</button>
+            <button ref={(item) => menuRef.current[2] = item} onClick={() => showTable('timelines', 2)}>Timelines</button>
+            <button ref={(item) => menuRef.current[3] = item} onClick={() => showTable('implementation', 3)}>Implementation</button>
+            <button ref={(item) => menuRef.current[4] = item} onClick={() => showTable('finances', 4)}>Finances</button>
+            <button ref={(item) => menuRef.current[5] = item} onClick={() => showTable('locations', 5)}>Locations</button>
           </section>
           <section>
             <h3>Tracking data</h3>
-            <button onClick={() => showTable('tracking logs')}>Logs</button>
+            <button ref={(item) => menuRef.current[6] = item} onClick={() => showTable('tracking logs', 6)}>Logs</button>
           </section>
           <section>
             <h3>Admin data</h3>
-            <button onClick={() => showTable('admin')}>Administrators</button>
+            <button ref={(item) => menuRef.current[7] = item} onClick={() => showTable('admin', 7)}>Administrators</button>
           </section>
           <div className='admin_view__add_project flex' onClick={createProject}>
             <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/></svg>
@@ -110,9 +135,11 @@ const Dashboard = (props) => {
           <CreateProjectPanel props={props} />
           <UpdateProjectPanel props={props} />
           <UpdateOtherPanel props={props} />
+          <CreateAdminPanel props={props} />
         </div>
       </div>
       <DeleteProjectModal props={props} />
+      <DeleteAdminModal props={props} />
       <InfoModal />
     </DashboardContext.Provider>
   )

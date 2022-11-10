@@ -5,6 +5,7 @@
   $password = $_POST['password'];
 
   $sql = "SELECT * FROM `admin` WHERE `username` = '$username'";
+  // $pass
 
   $result = mysqli_query($conn, $sql);
 
@@ -17,7 +18,7 @@
       redirect(0, $username);
   }
   else
-    redirect(0, $username);
+    redirect(0, '');
 
   function redirect($val, $username) {
     if($val === 1) {

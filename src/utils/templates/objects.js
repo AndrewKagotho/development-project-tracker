@@ -31,7 +31,9 @@ export const countyObject = {
 
 export const adminObject = {
   recordIndex: '',
+  adminUsername: '',
   adminFirstName: '',
   adminLastName: '',
+  adminPassword: '',
   adminEmail: ''
 }

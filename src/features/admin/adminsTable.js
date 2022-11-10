@@ -1,5 +1,6 @@
 import { showMoreOptions } from './AdminTable'
 import { showOtherSidePanel } from './AdminTable'
+import { showDeleteAdminModal } from './AdminTable'
 
 export const adminsTableHead = () => {
   return (
@@ -34,7 +35,7 @@ export const adminsTableSearch = (searchState, inputRef) => {
 }
 
 export const adminsTableRows = (otherInfoStates, projectInfoVars) => {
-  let {props, tableFocus, countyFocus, adminFocus, searchState, updateProjectPanelState} = otherInfoStates
+  let {props, tableFocus, countyFocus, adminFocus, searchState, createAdminPanelState, updateOtherPanelState, deleteAdminModalState} = otherInfoStates
   let {trRef, moreOptionsSVGRef, moreOptionsRef, firstPageIndex} = projectInfoVars
   let filterArray
 
@@ -65,7 +66,9 @@ export const adminsTableRows = (otherInfoStates, projectInfoVars) => {
             <td className='td_more_options'>
               <svg className='more_options_svg' onClick={() => showMoreOptions(trRef, moreOptionsSVGRef, moreOptionsRef, number)} ref={(item) => moreOptionsSVGRef.current[number] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
               <div className='td_more_options_expand mul_options flex' ref={(item) => moreOptionsRef.current[number] = item}>
-                <button onClick={() => showOtherSidePanel(props, tableFocus, index, updateProjectPanelState, countyFocus, adminFocus)}>Update</button>
+                <button onClick={() => showOtherSidePanel(props, tableFocus, index, updateOtherPanelState, countyFocus, adminFocus)}>Update</button>
+                <button onClick={() => showDeleteAdminModal(props, index, deleteAdminModalState, adminFocus)}>Delete</button>
+                <button onClick={() => createAdminPanelState.setCreateAdminPanelStatus(true)}>Add new</button>
               </div>
             </td>
           </tr>

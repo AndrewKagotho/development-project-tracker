@@ -1,6 +1,8 @@
 import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 import { CSVLink } from 'react-csv'
+import { dynamicShowMoreOptions } from '../../utils/functions/map'
+import { dynamicShowDetailsSVG } from '../../utils/functions/map'
 
 let projectList, filterArray
 let prevInput = [0,0]
@@ -9,6 +11,8 @@ let exportData = [], CSVname
 const ModalTable = ({props}) => {
 
   React.useEffect(() => prepareExport())
+  const showDetailsSVGRef = React.useRef([])
+  const trRef = React.useRef([])
   
   let firstPageIndex = 0, resultSetLength = 0, resultSetLengthPerView = 0, recordsInPage = 0
   let totalPages
@@ -22,6 +26,8 @@ const ModalTable = ({props}) => {
   const showProjectDetails = (index) => {
     projectDetailsPanelState.setProjectDetailsPanelStatus(true)
     projectFocus.setProjectInFocus(index)
+    // dynamicShowMoreOptions(showDetailsRef, index)
+    dynamicShowDetailsSVG(showDetailsSVGRef, trRef, index)
   }
 
   const handleChange = (e, index) => {
@@ -58,8 +64,8 @@ const ModalTable = ({props}) => {
     while(num >= firstPageIndex && num < firstPageIndex+10) {
       if((num+1) > recordsInPage) recordsInPage = (num+1)
       return (
-        <tr key={index}>
-          <td className='td_view_project' onClick={() => showProjectDetails(index)}>
+        <tr key={index} ref={(item) => trRef.current[num] = item}>
+          <td className='td_view_project' ref={(item) => showDetailsSVGRef.current[num] = item} onClick={() => showProjectDetails(index)}>
             <svg className='visibilitySVG' xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
           </td>
           <td>{num+1}. {props.projectID[index]}</td>

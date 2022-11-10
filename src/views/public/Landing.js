@@ -64,10 +64,10 @@ const Landing = (props) => {
         <p>The CDPT is a tool that facilitates the logging of county projects - past, present and future - and tracks these projects for transparency and accountability. It seeks to address the static nature of most project tracking systems, offering itself as an easy-to-use platform that prioritizes public engagement and scrutiny.</p>
         <span>Features included:</span>
         <div className='page_section__features flex'>
-          <span className='card card_sm'>Project insights</span>
-          <span className='card card_sm'>Expenditure tracking</span>
-          <span className='card card_sm'>Data visualization</span>
+          <span className='card card_sm'>County insights</span>
           <span className='card card_sm'>Active updates</span>
+          <span className='card card_sm'>Report generation</span>
+          <span className='card card_sm'>DB management</span>
         </div>
       </section>
       <section className='page_section page_section_sm'>
