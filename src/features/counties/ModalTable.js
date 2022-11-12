@@ -130,6 +130,15 @@ const ModalTable = ({props}) => {
 
   CSVname=`county${countyFocus.countyInFocus.number+1} report`
 
+  if(projectList.length === 0)
+    return (
+      <>
+        <div className='no_projects'><b>No county projects available.</b></div>
+        <span ref={resultsRef}>Placeholder</span>
+      </>
+    )
+  else
+
   return (
     <>
       <div className='modal__card__table_extras flex'>

@@ -8,12 +8,20 @@
 
   section {
     width: 325px;
+    padding: 20px;
+    border-radius: $border_radius;
+    transition: background-color $animation;
+    @include v_center_content;
     position: absolute;
-    top: 50%;
     right: 100px;
-    translate: 0 -50%;
+    
+    p { margin: 0; }
 
     & > * { color: $neutral; }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .4);
+    }
   }
 
   svg {
@@ -21,9 +29,8 @@
     border-radius: 50%;
     opacity: .4;
     transition: opacity $animation;
+    @include v_center_content;
     position: absolute;
-    top: 50%;
-    translate: 0 -50%;
 
     &:hover { opacity: .9; }
   }
