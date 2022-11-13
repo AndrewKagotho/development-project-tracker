@@ -13,7 +13,7 @@
 
 .modal__card {
   width: 70vw;
-  margin: 100px 0 50px;
+  margin: 120px 0 50px;
   @include h_center_content;
 
   h2 {
@@ -29,6 +29,11 @@
       color: $secondary;
     }
   }
+}
+
+.modal__card_centered {
+  margin: 0;
+  @include center_content;
 }
 
 .modal__card_sm {
