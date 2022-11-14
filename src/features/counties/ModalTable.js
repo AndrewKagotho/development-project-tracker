@@ -22,10 +22,10 @@ const ModalTable = ({props}) => {
 
   firstPageIndex += currentPage*10-10
 
-  const showProjectDetails = (index) => {
+  const showProjectDetails = (index, number) => {
     projectDetailsPanelState.setProjectDetailsPanelStatus(true)
     projectFocus.setProjectInFocus(index)
-    dynamicShowDetailsSVG(showDetailsSVGRef, trRef, index)
+    dynamicShowDetailsSVG(showDetailsSVGRef, trRef, number)
   }
 
   const handleChange = (e, index) => {
@@ -58,15 +58,15 @@ const ModalTable = ({props}) => {
     return (truthTests)
   })
   // eslint-disable-next-line
-  .map((index, num) => {
-    while(num >= firstPageIndex && num < firstPageIndex+10) {
-      if((num+1) > recordsInPage) recordsInPage = (num+1)
+  .map((index, number) => {
+    while(number >= firstPageIndex && number < firstPageIndex+10) {
+      if((number+1) > recordsInPage) recordsInPage = (number+1)
       return (
-        <tr key={index} ref={(item) => trRef.current[num] = item}>
-          <td className='td_view_project' ref={(item) => showDetailsSVGRef.current[num] = item} onClick={() => showProjectDetails(index)}>
-            <svg className='visibilitySVG' xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+        <tr key={index} ref={(item) => trRef.current[number] = item}>
+          <td className='td_view_project' onClick={() => showProjectDetails(index, number)}>
+            <svg className='visibilitySVG' ref={(item) => showDetailsSVGRef.current[number] = item} xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
           </td>
-          <td>{num+1}. {props.projectID[index]}</td>
+          <td>{number+1}. {props.projectID[index]}</td>
           <td>{props.projectName[index]}</td>
           <td>{props.duration[index]} months</td>
           <td>{props.sector[index]}</td>

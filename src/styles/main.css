@@ -366,7 +366,7 @@ table tbody tr:hover svg {
   padding-right: 0;
 }
 .td_view_project:hover svg {
-  fill: #659FC3;
+  fill: #659FC3 !important;
 }
 
 .admin_tbody td {

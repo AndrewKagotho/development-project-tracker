@@ -219,7 +219,7 @@ table {
   padding-right: 0;
 
   &:hover {
-    svg { fill: $primary; }
+    svg { fill: $primary !important; }
   }
 }
 
