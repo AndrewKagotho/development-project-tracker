@@ -1,7 +1,6 @@
 import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 import { CSVLink } from 'react-csv'
-import { dynamicShowMoreOptions } from '../../utils/functions/map'
 import { dynamicShowDetailsSVG } from '../../utils/functions/map'
 
 let projectList, filterArray
@@ -26,7 +25,6 @@ const ModalTable = ({props}) => {
   const showProjectDetails = (index) => {
     projectDetailsPanelState.setProjectDetailsPanelStatus(true)
     projectFocus.setProjectInFocus(index)
-    // dynamicShowMoreOptions(showDetailsRef, index)
     dynamicShowDetailsSVG(showDetailsSVGRef, trRef, index)
   }
 
@@ -40,10 +38,10 @@ const ModalTable = ({props}) => {
 
   if(searchState.searchContent.selectedInput === 'projectID' || searchState.searchContent.selectedInput === '') filterArray = props.projectID
   else if(searchState.searchContent.selectedInput === 'projectName') filterArray = props.projectName
-  else if(searchState.searchContent.selectedInput === 'startDate') filterArray = props.startDate
   else if(searchState.searchContent.selectedInput === 'duration') filterArray = props.duration
   else if(searchState.searchContent.selectedInput === 'sector') filterArray = props.sector
   else if(searchState.searchContent.selectedInput === 'estimatedCost') filterArray = props.estimatedCost
+  else if(searchState.searchContent.selectedInput === 'budget') filterArray = props.budget
   else if(searchState.searchContent.selectedInput === 'financialYear') filterArray = props.financialYear
   else if(searchState.searchContent.selectedInput === 'status') filterArray = props.status
 
@@ -70,10 +68,10 @@ const ModalTable = ({props}) => {
           </td>
           <td>{num+1}. {props.projectID[index]}</td>
           <td>{props.projectName[index]}</td>
-          <td>{props.startDate[index]}</td>
           <td>{props.duration[index]} months</td>
           <td>{props.sector[index]}</td>
           <td>{props.estimatedCost[index]}</td>
+          <td>{props.budget[index]}</td>
           <td>{props.financialYear[index]}</td>
           <td>{props.status[index]}</td>
         </tr>
@@ -157,10 +155,10 @@ const ModalTable = ({props}) => {
               <th></th>
               <th>Project ID</th>
               <th>Project name</th>
-              <th>Start date</th>
               <th>Duration</th>
               <th>Sector</th>
               <th>Est. cost</th>
+              <th>Budget</th>
               <th>Fin. year</th>
               <th>Status</th>
             </tr>
@@ -170,10 +168,10 @@ const ModalTable = ({props}) => {
               <td></td>
               <td><input type='search' name='projectID' ref={(item) => inputRef.current[0] = item} key={countyFocus.countyInFocus.number + ':projectID'} placeholder='Search:' onChange={(e) => handleChange(e, 0)} autoComplete='off' /></td>
               <td><input type='search' name='projectName' ref={(item) => inputRef.current[1] = item} key={countyFocus.countyInFocus.number + ':projectName'} placeholder='Search:' onChange={(e) => handleChange(e, 1)} autoComplete='off' /></td>
-              <td><input type='search' name='startDate' ref={(item) => inputRef.current[2] = item} key={countyFocus.countyInFocus.number + ':startDate'} placeholder='Search:' onChange={(e) => handleChange(e, 2)} autoComplete='off' /></td>
-              <td><input type='search' name='duration' ref={(item) => inputRef.current[3] = item} key={countyFocus.countyInFocus.number + ':duration'} placeholder='Search:' onChange={(e) => handleChange(e, 3)} autoComplete='off' /></td>
-              <td><input type='search' name='sector' ref={(item) => inputRef.current[4] = item} key={countyFocus.countyInFocus.number + ':sector'} placeholder='Search:' onChange={(e) => handleChange(e, 4)} autoComplete='off' /></td>
-              <td><input type='search' name='estimatedCost' ref={(item) => inputRef.current[5] = item} key={countyFocus.countyInFocus.number + ':estimatedCost'} placeholder='Search:' onChange={(e) => handleChange(e, 5)} autoComplete='off' /></td>
+              <td><input type='search' name='duration' ref={(item) => inputRef.current[2] = item} key={countyFocus.countyInFocus.number + ':duration'} placeholder='Search:' onChange={(e) => handleChange(e, 2)} autoComplete='off' /></td>
+              <td><input type='search' name='sector' ref={(item) => inputRef.current[3] = item} key={countyFocus.countyInFocus.number + ':sector'} placeholder='Search:' onChange={(e) => handleChange(e, 3)} autoComplete='off' /></td>
+              <td><input type='search' name='estimatedCost' ref={(item) => inputRef.current[4] = item} key={countyFocus.countyInFocus.number + ':estimatedCost'} placeholder='Search:' onChange={(e) => handleChange(e, 4)} autoComplete='off' /></td>
+              <td><input type='search' name='budget' ref={(item) => inputRef.current[5] = item} key={countyFocus.countyInFocus.number + ':budget'} placeholder='Search:' onChange={(e) => handleChange(e, 5)} autoComplete='off' /></td>
               <td><input type='search' name='financialYear' ref={(item) => inputRef.current[6] = item} key={countyFocus.countyInFocus.number + ':financialYear'} placeholder='Search:' onChange={(e) => handleChange(e, 6)} autoComplete='off' /></td>
               <td><input type='search' name='status' ref={(item) => inputRef.current[7] = item} key={countyFocus.countyInFocus.number + ':status'} placeholder='Search:' onChange={(e) => handleChange(e, 7)} autoComplete='off' /></td>
             </tr>

@@ -7,9 +7,11 @@ import ProjectDetailsPanel from '../../layout/public/ProjectDetailsPanel'
 import ModalBanner from './ModalBanner'
 import ModalTable from './ModalTable'
 
+let modalCentered = false
+
 const Modal = ({props}) => {
 
-  let firstRender = false
+  React.useEffect(() => centerModal())
   
   const {statsValues} = React.useContext(AppContext)
   const {countyFocus, countyModalState} = React.useContext(CountyContext)
@@ -22,12 +24,15 @@ const Modal = ({props}) => {
     closeModal(countyModalState.setCountyModalState, modalRef)
   }
 
-  if(statsValues.stats.allProjects[countyFocus.countyInFocus.number] === 0) {
-    modalCardRef.current.className += ' modal__card_centered'
-    firstRender = true
+  const centerModal = () => {
+    if(statsValues.stats.allProjects[countyFocus.countyInFocus.number] === 0) {
+      modalCardRef.current.classList.add('modal__card_centered')
+      modalCentered = true
+    }
+
+    if(statsValues.stats.allProjects[countyFocus.countyInFocus.number] !== 0 && modalCentered)
+      modalCardRef.current.classList.remove('modal__card_centered')
   }
-  else if(firstRender)
-    modalCardRef.current.className -= ' modal__card_centered'
 
   return (
     <>

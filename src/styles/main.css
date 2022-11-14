@@ -569,7 +569,7 @@ table tbody tr:hover svg {
   z-index: 1;
 }
 .sdg__cards section {
-  width: 35%;
+  width: 33%;
   flex-direction: column;
   align-items: flex-start;
   position: relative;

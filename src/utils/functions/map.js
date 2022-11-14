@@ -53,22 +53,6 @@ export const dynamicShowDetailsSVG = (ref1, ref2, selectedValue) => {
   }
 }
 
-export const dynamicShowDetails = (ref, selectedValue) => {
-  prevOptions[0] = prevOptions[1]
-  prevOptions[1] = selectedValue
-
-  for(let i=0; i<prevOptions.length; i++ ) {
-    if(i===0 && ref.current[prevOptions[i]] !== null) {
-      ref.current[prevOptions[i]].style.visibility = 'hidden'
-      ref.current[prevOptions[i]].style.opacity = '0'
-    }
-    else if(ref.current[prevOptions[i]] !== null) {
-      ref.current[prevOptions[i]].style.visibility = 'visible'
-      ref.current[prevOptions[i]].style.opacity = '1'
-    }
-  }
-}
-
 export const dynamicMenu = (ref, selectedValue) => {
   prevMenu[0] = prevMenu[1]
   prevMenu[1] = selectedValue

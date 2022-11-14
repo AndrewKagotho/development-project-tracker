@@ -8,10 +8,16 @@ const ModalTop = ({props}) => {
 
   const {statsValues} = React.useContext(AppContext)
   const {countyFocus} = React.useContext(CountyContext)
+
+  let projectsInCounty = props.projectID.map((item, index) => index)
+  .filter((index) => parseInt(props.locCountyNo[index]-1) === countyFocus.countyInFocus.number)
+
+  let totalEstimate = projectsInCounty.reduce((acc, index) => acc + parseInt(props.estimatedCost[index]), 0)
+  let totalBudget = projectsInCounty.reduce((acc, index) => acc + parseInt(props.budget[index]), 0)
   
   const barData = [
     ['County', 'Estimated cost', 'Budget'],
-    [countyFocus.countyInFocus.name, parseInt(props.estimatedCost), parseInt(props.budget)]
+    [countyFocus.countyInFocus.name, totalEstimate, totalBudget]
   ]
 
   return (
@@ -34,7 +40,7 @@ const ModalTop = ({props}) => {
         </section>
       </div>
       <section>
-        <h3>Finances (in KES)</h3>
+        <h3>Finances (in KSH)</h3>
         <Chart chartType='ColumnChart' data={barData} options={barOptions} />
       </section>
     </div>
