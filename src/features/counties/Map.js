@@ -3,7 +3,7 @@ import { AppContext } from '../../App'
 import { CountyContext } from '../../views/public/Counties'
   
 const Map = () => {
-  let nationalAllProjects = 0
+  // let nationalAllProjects = 0
 
   React.useEffect(() => {
     shadeMap()
@@ -17,17 +17,17 @@ const Map = () => {
   const {countyFocus} = React.useContext(CountyContext)
   const countyRefs = React.useRef([])
 
-  for(let i=0; i<47; i++) nationalAllProjects += statsValues.stats.allProjects[i]
+  // for(let i=0; i<47; i++) nationalAllProjects += statsValues.stats.allProjects[i]
 
   const shadeMap = () => {
     for(let i=0; i<47; i++) {
       if(statsValues.stats.allProjects[i] === 0)
         countyRefs.current[i].style.fill = '#FFF'
-      else if(statsValues.stats.allProjects[i] <= (nationalAllProjects*1/4))
+      else if(statsValues.stats.allProjects[i] <= 1)
         countyRefs.current[i].style.fill = '#EDF4F8'
-      else if(statsValues.stats.allProjects[i] < (nationalAllProjects*2/4))
+      else if(statsValues.stats.allProjects[i] <= 3)
       countyRefs.current[i].style.fill = '#D3E4EE'
-      else if(statsValues.stats.allProjects[i]+5 < (nationalAllProjects*3/4))
+      else if(statsValues.stats.allProjects[i]+5 <= 6)
         countyRefs.current[i].style.fill = '#B9D4E4'
       else
       countyRefs.current[i].style.fill = '#A0C4DA'

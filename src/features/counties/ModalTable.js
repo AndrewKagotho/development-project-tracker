@@ -2,6 +2,7 @@ import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 import { CSVLink } from 'react-csv'
 import { dynamicShowDetailsSVG } from '../../utils/functions/map'
+import { addCommas } from '../../utils/functions/addCommas'
 
 let projectList, filterArray
 let prevInput = [0,0]
@@ -70,8 +71,8 @@ const ModalTable = ({props}) => {
           <td>{props.projectName[index]}</td>
           <td>{props.duration[index]} months</td>
           <td>{props.sector[index]}</td>
-          <td>{props.estimatedCost[index]}</td>
-          <td>{props.budget[index]}</td>
+          <td>{addCommas(props.estimatedCost[index])}</td>
+          <td>{addCommas(props.budget[index])}</td>
           <td>{props.financialYear[index]}</td>
           <td>{props.status[index]}</td>
         </tr>

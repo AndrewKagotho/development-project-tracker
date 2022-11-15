@@ -2,6 +2,7 @@ import React from 'react'
 import { CountyContext } from '../../views/public/Counties'
 import { openSidePanel } from '../../utils/functions/panels'
 import { closeSidePanel } from '../../utils/functions/panels'
+import { addCommas } from '../../utils/functions/addCommas'
 
 const ProjectDetailsPanel = ({props}) => {
 
@@ -53,9 +54,9 @@ const ProjectDetailsPanel = ({props}) => {
           <h3>Financials</h3>
           <div className='sidePanel__content__grid'>
             <span>Estimated cost:</span>
-            <span>{props.estimatedCost[projectFocus.projectInFocus]}</span>
+            <span>{addCommas(props.estimatedCost[projectFocus.projectInFocus])} KSH</span>
             <span>Budget:</span>
-            <span>{props.budget[projectFocus.projectInFocus]}</span>
+            <span>{addCommas(props.budget[projectFocus.projectInFocus])} KSH</span>
             <span>Financial year:</span>
             <span>{props.financialYear[projectFocus.projectInFocus]}</span>
             <span>Source of funding:</span>
