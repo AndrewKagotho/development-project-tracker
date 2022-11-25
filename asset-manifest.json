@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/project-tracker/static/css/main.d32a3849.css",
+    "main.js": "/project-tracker/static/js/main.7706ff0d.js",
+    "index.html": "/project-tracker/index.html",
+    "main.d32a3849.css.map": "/project-tracker/static/css/main.d32a3849.css.map",
+    "main.7706ff0d.js.map": "/project-tracker/static/js/main.7706ff0d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d32a3849.css",
+    "static/js/main.7706ff0d.js"
+  ]
+}
