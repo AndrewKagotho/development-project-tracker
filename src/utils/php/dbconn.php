@@ -5,10 +5,10 @@
   header("Content-Type: application.json; charset=UTF-8");
   header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
-  $dbserver = 'localhost';
+  $dbserver = 'containers-us-west-134.railway.app:7391';
   $dbuser = 'root';
-  $dbpass = '';
-  $dbname = 'countytrackerdb';
+  $dbpass = 'myQ7nl7PApNQISi8JHEg';
+  $dbname = 'railway';
 
   $conn = mysqli_connect($dbserver, $dbuser, $dbpass, $dbname);
 
