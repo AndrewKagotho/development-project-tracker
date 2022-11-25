@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import PublicNavbarLanding from './layout/public/NavbarLanding'
 import PublicNavbar from './layout/public/Navbar'
 import AdminNavbar from './layout/admin/Navbar'
@@ -54,23 +54,25 @@ const App = (props) => {
     scheduledArray[i] = statusTotalArray[3]
   }
 
+  const baseURL = '/development-project-tracker'
+
   return (
     <AppContext.Provider value={value} >
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
-          <Route path='/' element={<PublicNavbarLanding />}>
+          <Route path={baseURL} element={<PublicNavbarLanding />}>
             <Route index element={<Landing />} />
           </Route>
-          <Route path='/' element={<PublicNavbar />}>
-            <Route path='/counties' element={<Counties />} />
-            <Route path='/updates' element={<Updates />} />
-            <Route path='/about' element={<About />} />
+          <Route path={baseURL} element={<PublicNavbar />}>
+            <Route path={baseURL +'/counties'} element={<Counties />} />
+            <Route path={baseURL +'/updates'} element={<Updates />} />
+            <Route path={baseURL +'/about'} element={<About />} />
           </Route>
           <Route path='/admin' element={<AdminNavbar />}>
             <Route index element={<Dashboard />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </AppContext.Provider>
   )
 }
