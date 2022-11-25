@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { AppContext } from '../../App'
+import { baseURL } from '../../App'
 
 const NavbarLanding = () => {
   
@@ -9,11 +10,11 @@ const NavbarLanding = () => {
   return (
     <div>
       <nav className='flex'>
-        <h1><Link to='/' className='brand'>County Development Project Tracker</Link></h1>
+        <h1><Link to={baseURL} className='brand'>County Development Project Tracker</Link></h1>
         <ul>
-          <li><Link to='/counties'>Counties</Link></li>
-          <li><Link to='/updates'>Updates</Link></li>
-          <li><Link to='/about'>About</Link></li>
+          <li><Link to={baseURL +'/counties'}>Counties</Link></li>
+          <li><Link to={baseURL +'/updates'}>Updates</Link></li>
+          <li><Link to={baseURL +'/about'}>About</Link></li>
           <li><button onClick={() => panelStatus.setLoginPanelStatus(true)}>Login</button></li>
         </ul>
       </nav>

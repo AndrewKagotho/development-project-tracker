@@ -11,7 +11,7 @@ import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 import LoginPanel from '../../layout/public/LoginPanel'
 import Footer from '../../layout/Footer'
 
-const bannerArray = ['http://127.0.0.1:8887/banner.jpg', 'http://127.0.0.1:8887/rails.png', 'http://127.0.0.1:8887/road4.png']
+const bannerArray = ['https://i.postimg.cc/HLbxh0Qg/banner1.jpg', 'https://i.postimg.cc/RVq0BxcG/banner2.png', 'https://i.postimg.cc/XqP4JXwL/banner3.png']
 let imageOnDisplay = 0
 
 setTimeout(() => console.log('active'), 2000)

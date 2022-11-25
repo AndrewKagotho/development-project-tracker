@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PublicNavbarLanding from './layout/public/NavbarLanding'
 import PublicNavbar from './layout/public/Navbar'
 import AdminNavbar from './layout/admin/Navbar'
@@ -12,6 +12,7 @@ import Dashboard from './views/admin/Dashboard'
 import './styles/main.css'
 
 export const AppContext = React.createContext()
+export const baseURL = '/development-project-tracker'
 const projectStatusArray = ['Completed', 'In progress', 'Approved', 'Scheduled']
 let statusTotalArray = []
 let allProjectsArray = []
@@ -54,11 +55,9 @@ const App = (props) => {
     scheduledArray[i] = statusTotalArray[3]
   }
 
-  const baseURL = '/development-project-tracker'
-
   return (
     <AppContext.Provider value={value} >
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route path={baseURL} element={<PublicNavbarLanding />}>
             <Route index element={<Landing />} />
@@ -72,7 +71,7 @@ const App = (props) => {
             <Route index element={<Dashboard />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </AppContext.Provider>
   )
 }
