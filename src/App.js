@@ -67,7 +67,7 @@ const App = (props) => {
             <Route path={baseURL +'/updates'} element={<Updates />} />
             <Route path={baseURL +'/about'} element={<About />} />
           </Route>
-          <Route path='/admin' element={<AdminNavbar />}>
+          <Route path={baseURL +'/admin'} element={<AdminNavbar />}>
             <Route index element={<Dashboard />} />
           </Route>
         </Routes>
