@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getCountiesScript = 'http://localhost/development-project-tracker/src/utils/php/select/getCounties.php'
+let getCountiesScript = 'http://localhost:3001/api/counties'
 
 export const getCounties = (props) => {
   props.resetCounties()

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getProjectTimelinesScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectTimelines.php'
+let getProjectTimelinesScript = 'http://localhost:3001/api/projects/timelines'
 
 export const getProjectTimelines = (props) => {
   props.resetProjectTimelines()

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getProjectFinancesScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectFinances.php'
+let getProjectFinancesScript = 'http://localhost:3001/api/projects/finances'
 
 export const getProjectFinances = (props) => {
   props.resetProjectFinances()

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getProjectLocationsScript = 'http://localhost/development-project-tracker/src/utils/php/select/getProjectLocations.php'
+let getProjectLocationsScript = 'http://localhost:3001/api/projects/locations'
 
 export const getProjectLocations = (props) => {
   props.resetProjectLocations()
