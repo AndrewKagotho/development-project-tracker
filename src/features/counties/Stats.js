@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppContext } from '../../App'
 
-const Stats = ({props}) => {
+const Stats = () => {
 
   let nationalAllProjects = 0
   let nationalCompleted = 0
@@ -17,7 +17,6 @@ const Stats = ({props}) => {
   for(let i=0; i<47; i++) nationalApproved += statsValues.stats.approved[i]
   for(let i=0; i<47; i++) nationalScheduled += statsValues.stats.scheduled[i]
 
-
   return (
     <section className='page_section'>
       <h2>National Statistics</h2>
@@ -25,23 +24,23 @@ const Stats = ({props}) => {
       <div className='page_section__stats flex'>
         <div className='card card_md flex'>
           <span>All projects</span>
-          <span className='badge'>{nationalAllProjects}</span>
+          <span className='badge'>{String(nationalAllProjects)}</span>
         </div>
         <div className='card card_md flex'>
           <span>Completed</span>
-          <span className='badge'>{nationalCompleted}</span>
+          <span className='badge'>{String(nationalCompleted)}</span>
         </div>
         <div className='card card_md flex'>
           <span>In progress</span>
-          <span className='badge'>{nationalInProgress}</span>
+          <span className='badge'>{String(nationalInProgress)}</span>
         </div>
         <div className='card card_md flex'>
           <span>Approved</span>
-          <span className='badge'>{nationalApproved}</span>
+          <span className='badge'>{String(nationalApproved)}</span>
         </div>
         <div className='card card_md flex'>
           <span>Scheduled</span>
-          <span className='badge'>{nationalScheduled}</span>
+          <span className='badge'>{String(nationalScheduled)}</span>
         </div>
       </div>
     </section>

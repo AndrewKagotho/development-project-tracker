@@ -1,8 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../../store/Action'
+import { AppContext } from '../../App'
+import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 
 const Updates = (props) => {
+
+  const {getValue} = React.useContext(AppContext)
+
+  React.useEffect(() => {
+    setGet()
+    // eslint-disable-next-line
+  }, [])
+
+  const setGet = () => {
+    if(getValue.getData.getUpdates === false) {
+      getTrackingLogs(props)
+
+      getValue.setGetData({...getValue.getData, getUpdates: true})
+    }
+  }
 
   const [searchContent, setSearchContent] = React.useState({state: false, selectedInput: 'projectID', inputValue: ''})
   let filterArray, logList

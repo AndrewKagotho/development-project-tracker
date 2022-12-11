@@ -1,6 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from '../../store/Action'
+import { AppContext } from '../../App'
+import { getCounties } from '../../utils/functions/getCounties'
+import { getProjectDetails } from '../../utils/functions/getProjectDetails'
+import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
+import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
+import { getProjectFinances } from '../../utils/functions/getProjectFinances'
+import { getProjectLocations } from '../../utils/functions/getProjectLocations'
 import Map from '../../features/counties/Map'
 import CountiesList from '../../features/counties/Names'
 import Stats from '../../features/counties/Stats'
@@ -10,6 +17,26 @@ import Footer from '../../layout/Footer'
 export const CountyContext = React.createContext()
 
 const Counties = (props) => {
+
+  const {getValue} = React.useContext(AppContext)
+
+  React.useEffect(() => {
+    setGet()
+    // eslint-disable-next-line
+  }, [])
+
+  const setGet = () => {
+    if(getValue.getData.getCounties === false) {
+      getCounties(props)
+      getProjectDetails(props)
+      getProjectTimelines(props)
+      getProjectImplementations(props)
+      getProjectFinances(props)
+      getProjectLocations(props)
+
+      getValue.setGetData({...getValue.getData, getCounties: true})
+    }
+  }
   
   const resultsRef = React.useRef()
 
@@ -41,7 +68,7 @@ const Counties = (props) => {
           <Map />
           <CountiesList props={props} />
         </div>
-        <Stats props={props} />
+        <Stats />
         <Modal props={props} />
       </CountyContext.Provider>
       <Footer />

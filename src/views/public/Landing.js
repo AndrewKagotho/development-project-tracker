@@ -1,34 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from '../../store/Action'
-import { getCounties } from '../../utils/functions/getCounties'
-import { getProjectDetails } from '../../utils/functions/getProjectDetails'
-import { getProjectTimelines } from '../../utils/functions/getProjectTimelines'
-import { getProjectImplementations } from '../../utils/functions/getProjectImplementations'
-import { getProjectFinances } from '../../utils/functions/getProjectFinances'
-import { getProjectLocations } from '../../utils/functions/getProjectLocations'
-import { getTrackingLogs } from '../../utils/functions/getTrackingLogs'
 import LoginPanel from '../../layout/public/LoginPanel'
 import Footer from '../../layout/Footer'
 
 const bannerArray = ['https://i.postimg.cc/HLbxh0Qg/banner1.jpg', 'https://i.postimg.cc/RVq0BxcG/banner2.png', 'https://i.postimg.cc/XqP4JXwL/banner3.png']
 let imageOnDisplay = 0
 
-setTimeout(() => console.log('active'), 2000)
+// setTimeout(() => console.log('active'), 2000)
 
-const Landing = (props) => {
+const Landing = () => {
 
   React.useEffect(() => {
-    getCounties(props)
-    getProjectDetails(props)
-    getProjectTimelines(props)
-    getProjectImplementations(props)
-    getProjectFinances(props)
-    getProjectLocations(props)
-    getTrackingLogs(props)
-
     const timer = setTimeout(() => {
-      console.log('This will run after 1 second!')
+      // console.log('This will run after 1 second!')
     }, 1000)
 
     return () => clearTimeout(timer)
@@ -99,4 +82,4 @@ const Landing = (props) => {
   )
 }
 
-export default connect(null, mapDispatchToProps)(Landing)
+export default Landing

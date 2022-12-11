@@ -3,7 +3,7 @@ import { AppContext } from '../../App'
 import { openSidePanel } from '../../utils/functions/panels'
 import { closeSidePanel } from '../../utils/functions/panels'
 
-let loginScript = 'http://localhost/development-project-tracker/src/utils/php/select/login.php';
+let loginScript = 'http://localhost:3001/api/admin';
 
 const LoginPanel = () => {
 

@@ -37,7 +37,10 @@ const App = (props) => {
   const [loginPanel, setLoginPanelStatus] = React.useState(false)
   const panelStatus = {loginPanel, setLoginPanelStatus}
 
-  const value = {statsValues, panelStatus}
+  const [getData, setGetData] = React.useState({getCounties: false, getUpdates: false})
+  const getValue = {getData, setGetData}
+
+  const value = {statsValues, panelStatus, getValue}
 
   for(let i=0; i<47; i++) {
     for(let j=0; j<projectStatusArray.length; j++) {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getTrackLogsScript = 'http://localhost/development-project-tracker/src/utils/php/select/getTrackingLogs.php'
+let getTrackLogsScript = 'http://localhost:3001/api/updates'
 
 export const getTrackingLogs = (props) => {
   props.resetTrackingLogs()

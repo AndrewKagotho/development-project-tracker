@@ -22,7 +22,7 @@
 
   function redirect($val, $username) {
     if($val === 1) {
-      header("Location: https://andrewkagotho.github.io/development-project-tracker/admin?id=$username");
+      header("Location: http://localhost:3000/development-project-tracker/admin?id=$username");
     }
     elseif($val === 0) {
       echo ("<script language='javascript'>
