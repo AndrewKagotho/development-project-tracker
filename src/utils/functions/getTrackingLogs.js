@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getTrackLogsScript = 'http://localhost:3001/api/updates'
+let getTrackLogsScript = 'https://dev-project-tracker-ak.herokuapp.com/api/updates'
 
 export const getTrackingLogs = (props) => {
   props.resetTrackingLogs()

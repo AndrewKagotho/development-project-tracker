@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let getProjectLocationsScript = 'http://localhost:3001/api/projects/locations'
+let getProjectLocationsScript = 'https://dev-project-tracker-ak.herokuapp.com/api/projects/locations'
 
 export const getProjectLocations = (props) => {
   props.resetProjectLocations()
