@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { url } from './getCounties'
 
-let getProjectTimelinesScript = 'https://dev-project-tracker-ak.herokuapp.com/api/projects/timelines'
+let getProjectTimelinesScript = `${url}/api/projects/timelines`
 
 export const getProjectTimelines = (props) => {
   props.resetProjectTimelines()

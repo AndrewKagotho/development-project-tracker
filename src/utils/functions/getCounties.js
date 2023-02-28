@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-let getCountiesScript = 'https://dev-project-tracker-ak.herokuapp.com/api/counties'
+export const url = 'https://dev-project-tracker-ak.herokuapp.com'
+// export const url = 'http://localhost:3001'
+
+let getCountiesScript = `${url}/api/counties`
 
 export const getCounties = (props) => {
   props.resetCounties()
